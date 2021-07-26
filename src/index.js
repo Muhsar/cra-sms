@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'styles/style.css';
 import App from './App.jsx';
 // import reportWebVitals from 'reportWebVitals';
 import { QueryClientProvider, QueryClient } from 'react-query';
