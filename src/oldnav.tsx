@@ -28,7 +28,7 @@ import VerifyAccount from "pages/verify/staff";
 import { Route, withRouter } from 'react-router-dom';
 import { Switch } from "react-router-dom";
 import ErrorPage from "./pages/404";
-import { Redirect, withRouter } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 
 // const {slug} = matchPath
 // match
