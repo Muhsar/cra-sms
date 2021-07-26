@@ -70,13 +70,16 @@ export const UnAuthorized = (
     />
     <Route
       // path="*"
-      component={ErrorPage}
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
     />
   </Switch>
 );
 export const Teacher = (
   <Switch>
-    <Route path="/:slug/login" component={LoginPage} exact />
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
     <Route path="/:slug/staff" component={StaffDashboard} exact />
     <Route path="/:slug/staff/courses" component={StaffCourses} exact />
     <Route path="/:slug/staff/course/:id" component={StaffCourse} exact />
@@ -90,13 +93,16 @@ export const Teacher = (
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"
-      component={ErrorPage}
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
     />
   </Switch>
 );
 export const Owner = (
   <Switch>
-    <Route path="/:slug/login" component={LoginPage} exact />
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
     <Route path="/" component={LandingPage} exact />
     <Route
       path="/:slug/parent-result/:id"
@@ -139,13 +145,16 @@ export const Owner = (
     />
     <Route
       // path="*"
-      component={ErrorPage}
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
     />
   </Switch>
 );
 export const Both = (
   <Switch>
-    <Route path="/:slug/login" component={LoginPage} exact />
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
     <Route path="/:slug/school" component={SchoolDashboard} exact />
     <Route path="/:slug/school/classes" component={SchoolClasses} exact />
     <Route path="/:slug/school/students" component={SchoolStudents} exact />
@@ -192,7 +201,10 @@ export const Both = (
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"
-      component={ErrorPage}
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
     />
   </Switch>
 );
