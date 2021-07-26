@@ -94,17 +94,6 @@ const fadeInUp = {
 }
 export default function SchoolLayout({ Component, currentPage }) {
   // const params : {slug : any} = useParams()
-  if (!localStorage?.token) {
-    return (
-      <>
-      {
-        withRouter(
-      <Redirect to={`/${school}/login`} />
-        )
-      }
-      </>
-    )
-  }
   const slug = localStorage?.schoolSlug && localStorage?.schoolSlug 
   const history = useHistory()
   const [sidebarOpen, setSidebarOpen] = useState(false);

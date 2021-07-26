@@ -1,4 +1,4 @@
-import { Link, useParams, withRouter } from 'react-router-dom';
+import { Link, useParams, withRouter, Redirect, useLocation } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
@@ -14,6 +14,7 @@ export default function Login() {
   const history = useHistory()
   const params: {slug: any} = useParams()
   const school = params?.slug
+  const location = useLocation()
   console.log(params)
   const { data } = useQuery(
     [queryKeys.getSchool, school],
@@ -53,29 +54,33 @@ export default function Login() {
       }
       if (token?.groups.length === 1) {
         if (token?.groups[0] === "Teacher") {
-          history.push(`/${school}/staff/`);
+          // history.push(`/${school}/staff/`);
+          // <Redirect to={{pathname: `/${school}/staff/`, state : {from: location}}} />
+          window.location = `/${school}/staff/`;
         }
         if (token?.groups[0] === "School Owner") {
-          history.push(`/${school}/school/`);
+          window.location = `/${school}/school/`;
+          // <Redirect to={{pathname: `/${school}/school/`, state : {from: location}}} />
+          // history.push(`/${school}/school/`);
         }
       }
       // history.replace("/school/", "/school/");
     },
   });
-  const [redirectRoute, setRedirectRoute] = React.useState("")
-  const token: { groups: string[] } = typeof window !== "undefined" && localStorage?.token && localStorage?.token!=="undefined" && jwt_decode(localStorage?.token);
-      if (token?.groups.length === 2) {
-        setOpen(true);
-        // LoginDialog({open, setOpen})
-      }
-      if (token?.groups.length === 1) {
-        if (token?.groups[0] === "Teacher") {
-          setRedirectRoute(`/${school}/staff/`);
-        }
-        if (token?.groups[0] === "School Owner") {
-          setRedirectRoute(`/${school}/school/`);
-        }
-      }
+  // const [redirectRoute, setRedirectRoute] = React.useState("")
+  // const token: { groups: string[] } = typeof window !== "undefined" && localStorage?.token && localStorage?.token!=="undefined" && jwt_decode(localStorage?.token);
+  //     if (token?.groups.length === 2) {
+  //       setOpen(true);
+  //       // LoginDialog({open, setOpen})
+  //     }
+  //     if (token?.groups.length === 1) {
+  //       if (token?.groups[0] === "Teacher") {
+  //         setRedirectRoute(`/${school}/staff/`);
+  //       }
+  //       if (token?.groups[0] === "School Owner") {
+  //         setRedirectRoute(`/${school}/school/`);
+  //       }
+  //     }
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
@@ -86,23 +91,13 @@ export default function Login() {
       },
     });
   };
-  if (localStorage?.token && localStorage?.token !== "undefined" && token?.groups.length === 1) {
-    return (
-      <>
-      {
-        withRouter(
-      <Redirect to={redirectRoute} />
-        )
-      }
-      </>
-    )
-  }
+ 
   return (
     <>
     {/* {
       localStorage?.token && localStorage?.token !== "undefined" && token?.groups.length === 1 && <Redirect to={redirectRoute} />
     } */}
-    { !localStorage?.token &&
+    { 
     <>
       <LoginDialog open={open} setOpen={setOpen} school={school} />
       <div className="max-h-screen grid sm:grid-cols-2 grid-cols-1 gap-10 max-w-6xl mx-auto">

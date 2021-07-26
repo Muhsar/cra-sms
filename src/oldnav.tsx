@@ -36,9 +36,9 @@ import { Redirect } from "react-router-dom"
 export const UnAuthorized = (
   <Switch>
   <Route path="/:slug/school" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? withRouter(
+        localStorage?.token && localStorage?.token!=="undefined" ? (
           <SchoolDashboard />
-        ) : withRouter(
+        ) : (
           <Redirect
             to={{
               pathname: `/${match.params.slug}/login`,
@@ -48,9 +48,9 @@ export const UnAuthorized = (
         )
       } />
   <Route path="/:slug/staff" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? withRouter(
+        localStorage?.token && localStorage?.token!=="undefined" ? (
           <StaffDashboard />
-        ) : withRouter(
+        ) : (
           <Redirect
             to={{
               pathname: `/${match.params.slug}/login`,
