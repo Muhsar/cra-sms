@@ -1,6 +1,6 @@
 import React from 'react'
 import jwt_decode from "jwt-decode"
-import { useParams, Redirect } from "react-router-dom"
+import { useParams, Redirect, withRouter } from "react-router-dom"
 export default function ErrorPage(props) {
     console.log(props)
     const {location, match} = props
@@ -34,22 +34,22 @@ export default function ErrorPage(props) {
     return (
         <>
             {
-                !localStorage?.token && <Redirect to={{
+                !localStorage?.token && withRouter(<Redirect to={{
               pathname: `/${match.params.slug}/login`,
               state: { from: location }
-            }} />
+            }} />)
             }
             {
-                localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Teacher" &&  <Redirect to={{
+                localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Teacher" &&  withRouter(<Redirect to={{
               pathname: `/${match.params.slug}/staff`,
               state: { from: location }
-            }} />
+            }} />)
             }
             {
-                localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="School Owner" && <Redirect to={{
+                localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="School Owner" && withRouter(<Redirect to={{
               pathname: `/${match.params.slug}/school`,
               state: { from: location }
-            }} />
+            }} />)
             }
             <>you are not supposed to be here</>
         </>
