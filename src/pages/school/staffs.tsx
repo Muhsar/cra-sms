@@ -8,6 +8,8 @@ import { getRequest, postRequest } from "api/apiCall";
 import { TEACHERS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -15,7 +17,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function SchoolStaffs({ token, school }) {
+export default function SchoolStaffs() {
+  const {slug} = useParams()
+  const school = slug
+  const token = jwt_decode(localStorage?.token)
   const { data: teacherList } = useQuery(
     [queryKeys.getTeachers, token?.school_uid],
     async () => await getRequest({ url: TEACHERS(token?.school_uid) }),
@@ -28,7 +33,7 @@ export default function SchoolStaffs({ token, school }) {
   React.useEffect(() => {
     setTeachers(teacherList?.data);
   }, [teacherList?.data]);
-  const { showAlert } = React.useContext(ToastContext);
+  
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });
@@ -52,10 +57,6 @@ export default function SchoolStaffs({ token, school }) {
           id: data?.data.id,
         },
       ]);
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       setState({
         first_name: "",
         last_name: "",
@@ -70,14 +71,6 @@ export default function SchoolStaffs({ token, school }) {
         role: "",
       });
       cache.invalidateQueries();
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {

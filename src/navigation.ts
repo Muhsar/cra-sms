@@ -27,154 +27,296 @@ import LoginPage from "pages/login"
 import OTP from "pages/otp"
 import VerifyAccount from "pages/verify/staff"
 import ErrorPage from "pages/404"
+import Roles from "config/Roles"
 
-export const unauthorizedUser = ({slug}) => [
+// export const unauthorizedUser = [
+//       {
+//         path: `/:slug/login`,
+//         component: LoginPage
+//       },
+//       {
+//         path: `/:slug/otp`,
+//         component: OTP
+//       },
+//       {
+//         path: `/:slug/verify/:id`,
+//         component: VerifyAccount
+//       },
+//       {
+//         path: `/`,
+//         component: LandingPage
+//       },
+//       {
+//         path: `/:slug/parent-result/:id`,
+//         component: UnAuthorizedResult
+//       },
+// ]
+// export const staffRoutes = [
+//       {
+//         path: `/:slug/staff`,
+//         component: StaffDashboard
+//       },
+//       {
+//         path: `/:slug/staff/courses`,
+//         component: StaffCourses
+//       },
+//       {
+//         path: `/:slug/staff/:id/course`,
+//         component: StaffCourse
+//       },
+//       {
+//         path: `/:slug/staff/class`,
+//         component: StaffClass
+//       },
+//       {
+//         path: `/:slug/parent-result/:id`,
+//         component: UnAuthorizedResult
+//       },
+//       {
+//         path: `/:slug/result/:id`,
+//         component: AuthorizedResult
+//       },
+//       {
+//         path: `/`,
+//         component: LandingPage
+//       },
+// ]
+// export const schoolRoutes = [
+//       {
+//         path: `/`,
+//         component: LandingPage
+//       },
+//       {
+//         path: `/:slug/parent-result/:id`,
+//         component: UnAuthorizedResult
+//       },
+//       {
+//         path: `/:slug/result/:id`,
+//         component: AuthorizedResult
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school`,
+//         component: SchoolDashboard
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/classes`,
+//         component: SchoolClasses
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/students`,
+//         component: SchoolStudents
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/staffs`,
+//         component: SchoolStaffs
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/courses`,
+//         component: SchoolCourses
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/fees`,
+//         component: SchoolFees
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/sms`,
+//         component: SMS
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/birthdays`,
+//         component: SchoolBirthdays
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/class/:id`,
+//         component: SingleClass
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/course/:id`,
+//         component: SingleCourse
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/staff/:id`,
+//         component: SingleStaff
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/staff/:id/courses`,
+//         component: TeacherCourses
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/staff/:id/edit`,
+//         component: EditStaff
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/student/:id`,
+//         component: SingleStudent
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/student/:id/courses`,
+//         component: StudentCourses
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/student/:id/edit`,
+//         component: EditStudent
+//       },
+//       {
+  // permission: [ Roles.Owner, ...Roles.Both ],
+//         path: `/:slug/school/student/:id/history`,
+//         component: StudentFeeHistory
+//       },
+//     ];
+    export const joinedRoutes = [
       {
-        href: `/${slug}/login`,
+        path: `/:slug/login`,
         component: LoginPage
       },
       {
-        href: `/${slug}/redirect`,
-        component: RedirectPage
-      },
-      {
-        href: `/${slug}/otp`,
+        path: `/:slug/otp`,
         component: OTP
       },
       {
-        href: `/${slug}/verify/:id`,
+        path: `/:slug/verify/:id`,
         component: VerifyAccount
       },
       {
-        href: `/`,
+        path: `/`,
         component: LandingPage
       },
       {
-        href: `/${slug}/parent-result/:id`,
+        path: `/:slug/parent-result/:id`,
         component: UnAuthorizedResult
       },
       {
-        href: `*`,
-        component: ErrorPage
-      },
-]
-export const staffRoutes = ({slug}) => [
-      {
-        href: `/${slug}/staff`,
-        component: StaffDashboard
-      },
-      {
-        href: `*`,
-        component: ErrorPage
-      },
-      {
-        href: `/${slug}/staff/courses`,
-        component: StaffCourses
-      },
-      {
-        href: `/${slug}/staff/:id/course`,
-        component: StaffCourse
-      },
-      {
-        href: `/${slug}/staff/class`,
-        component: StaffClass
-      },
-      {
-        href: `/${slug}/parent-result/:id`,
-        component: UnAuthorizedResult
-      },
-      {
-        href: `/${slug}/result/:id`,
-        component: AuthorizedResult
-      },
-      {
-        href: `/`,
-        component: LandingPage
-      },
-]
-export const schoolRoutes = ({slug}) => [
-      {
-        href: `/`,
-        component: LandingPage
-      },
-      {
-        href: `/${slug}/parent-result/:id`,
-        component: UnAuthorizedResult
-      },
-      {
-        href: `/${slug}/result/:id`,
-        component: AuthorizedResult
-      },
-      {
-        href: `/${slug}/school`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school`,
         component: SchoolDashboard
       },
       {
-        href: `/${slug}/school/classes`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/classes`,
         component: SchoolClasses
       },
       {
-        href: `/${slug}/school/students`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/students`,
         component: SchoolStudents
       },
       {
-        href: `/${slug}/school/staffs`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/staffs`,
         component: SchoolStaffs
       },
       {
-        href: `/${slug}/school/courses`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/courses`,
         component: SchoolCourses
       },
       {
-        href: `/${slug}/school/fees`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/fees`,
         component: SchoolFees
       },
       {
-        href: `/${slug}/school/sms`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/sms`,
         component: SMS
       },
       {
-        href: `/${slug}/school/birthdays`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/birthdays`,
         component: SchoolBirthdays
       },
       {
-        href: `/${slug}/school/class/:id`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/class/:id`,
         component: SingleClass
       },
       {
-        href: `/${slug}/school/course/:id`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/course/:id`,
         component: SingleCourse
       },
       {
-        href: `/${slug}/school/staff/:id`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/staff/:id`,
         component: SingleStaff
       },
       {
-        href: `/${slug}/school/staff/:id/courses`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/staff/:id/courses`,
         component: TeacherCourses
       },
       {
-        href: `/${slug}/school/staff/:id/edit`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/staff/:id/edit`,
         component: EditStaff
       },
       {
-        href: `/${slug}/school/student/:id`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/student/:id`,
         component: SingleStudent
       },
       {
-        href: `/${slug}/school/student/:id/courses`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/student/:id/courses`,
         component: StudentCourses
       },
       {
-        href: `/${slug}/school/student/:id/edit`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/student/:id/edit`,
         component: EditStudent
       },
       {
-        href: `/${slug}/school/student/:id/history`,
+        permission: [ Roles.Owner, ...Roles.Both ],
+        path: `/:slug/school/student/:id/history`,
         component: StudentFeeHistory
       },
       {
-        href: `*`,
-        component: ErrorPage
+        permission: [ Roles.Teacher, ...Roles.Both ],
+        path: `/:slug/staff`,
+        component: StaffDashboard
       },
-    ];
+      {
+        permission: [ Roles.Teacher, ...Roles.Both ],
+        path: `/:slug/staff/courses`,
+        component: StaffCourses
+      },
+      {
+        permission: [ Roles.Teacher, ...Roles.Both ],
+        path: `/:slug/staff/:id/course`,
+        component: StaffCourse
+      },
+      {
+        permission: [ Roles.Teacher, ...Roles.Both ],
+        path: `/:slug/staff/class`,
+        component: StaffClass
+      },
+      {
+        path: `/:slug/parent-result/:id`,
+        component: UnAuthorizedResult
+      },
+      {
+        permission: [ Roles.Teacher, Roles.Owner, ...Roles.Both ],
+        path: `/:slug/result/:id`,
+        component: AuthorizedResult
+      },
+      {
+        path: `/`,
+        component: LandingPage
+      },
+    ]

@@ -7,6 +7,9 @@ import { getRequest, postRequest } from "api/apiCall";
 import { HOMEROOMS, STUDENTS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
+import useState from 'react';
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
@@ -14,8 +17,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 
   return { props: { school } };
 };
-export default function SMS({ token, school }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function SMS() {
+  const token = jwt_decode(localStorage?.token)
+  const {slug} = useParams()
+  const school = slug
   const [selected, setSelected] = React.useState([])
   const {
     data:homerooms
@@ -39,12 +44,18 @@ export default function SMS({ token, school }) {
     )
   const [rooms, setRooms] = React.useState(homerooms?.data)
   const [students, setStudents] = React.useState(studentList?.data)
+  const [state, setState] = React.useState({
+    message: "",
+    ids: []
+  })
     React.useEffect(() => {
 
     setRooms(homerooms?.data)
     setStudents(studentList?.data)
   },[homerooms?.data, studentList?.data ])
-
+const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  setState({ ...state, [event.target.name]: event.target.value })
+}
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });
@@ -52,20 +63,8 @@ export default function SMS({ token, school }) {
   const cache = useQueryClient()
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       setOpen(false)
       cache.invalidateQueries()
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {

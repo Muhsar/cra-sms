@@ -9,6 +9,8 @@ import { getRequest, postRequest } from "api/apiCall";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
 import { GET_COURSES, HOMEROOMS } from 'api/apiUrl';
+import jwt_decode from 'jwt-decode';
+import { useParams } from 'react-router-dom';
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -16,7 +18,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function SchoolCourses({token, school}) {
+export default function SchoolCourses() {
+  const token = jwt_decode(localStorage?.token)
+  const {slug} = useParams()
+  const school = slug
   const {
     data:courseList
   } = useQuery(
@@ -43,7 +48,6 @@ export default function SchoolCourses({token, school}) {
     setAllCourses(courseList?.data)
     setRooms(homerooms?.data)
   },[courseList?.data, homerooms?.data ])
-  const { showAlert } = React.useContext(ToastContext)
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });
@@ -58,19 +62,8 @@ export default function SchoolCourses({token, school}) {
         class_ids: [],
         classes: []
       });
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
+      setSelected([])
       cache.invalidateQueries()
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {
@@ -147,6 +140,7 @@ export default function SchoolCourses({token, school}) {
     SearchField({ value, searchBody });
   };
   const [open, setOpen] = React.useState(false)
+  const [selected, setSelected] = React.useState([])
   return (
     <SchoolLayout
       Component={
@@ -161,6 +155,8 @@ export default function SchoolCourses({token, school}) {
           open={open}
           setOpen={setOpen}
           school={school}
+          selected={selected}
+          setSelected={setSelected}
         />
       }
       currentPage="Courses"

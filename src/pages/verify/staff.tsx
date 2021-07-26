@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { getRequest, login, postRequest, getSchool } from "api/apiCall";
@@ -12,7 +12,10 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
   return { props: { staff, school } };
 };
 
-export default function ChangePassword({ staff, school }) {
+export default function ChangePassword() {
+  const { slug, id} = useParams()
+  const staff = id
+  const school = slug
   const { data } = useQuery(
     [queryKeys.getSchool, school],
     async () => await getSchool({ url: GETSCHOOL(school) }),
@@ -26,7 +29,7 @@ export default function ChangePassword({ staff, school }) {
     setSchoolData(data?.data);
   }, [data?.data]);
   const staffData: {uid: string, full_name: string} = typeof window !== "undefined" && jwt_decode(staff)
-  const { showAlert } = React.useContext(ToastContext);
+  
   const [state, setState] = React.useState<{
     confirm_password: string;
     password: string;
@@ -37,22 +40,7 @@ export default function ChangePassword({ staff, school }) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
-  const { mutate } = useMutation(postRequest, {
-    onSuccess() {
-      showAlert({
-        message: "Password Change Successful",
-        severity: "success",
-      });
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
-    },
-  });
+  const { mutate } = useMutation(postRequest);
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({

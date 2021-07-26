@@ -9,14 +9,17 @@ import Edit from 'School/Staff/Edit';
 import Courses from 'School/Student/Courses';
 import SchoolLayout from 'components/SchoolLayout';
 import { ToastContext } from 'App.jsx';
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 export const getServerSideProps = (context: { query: { staff: any, school: any } }) => {
   const { staff, school } = context.query;
 
   return { props: { staff, school } };
 };
 
-export default function EditStaff({ token, staff, school }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function EditStaff() {
+  const { id: staff, slug: school } = useParams()
+  const token = jwt_decode(localStorage?.token)
   const {
     data:teacherList
   } = useQuery(
@@ -67,19 +70,7 @@ export default function EditStaff({ token, staff, school }) {
   const cache = useQueryClient()
   const { mutate } = useMutation(patchRequest, {
     onSuccess(data) {
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       cache.invalidateQueries()
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link, useParams, withRouter, Redirect } from 'react-router-dom';
 import React, { Fragment, useState } from "react";
 import { motion } from "framer-motion"
 import { Dialog, Menu, Transition } from "@headlessui/react";
@@ -92,7 +92,20 @@ const fadeInUp = {
     }
   }
 }
-export default function SchoolLayout({ Component, currentPage, slug }) {
+export default function SchoolLayout({ Component, currentPage }) {
+  // const params : {slug : any} = useParams()
+  if (!localStorage?.token) {
+    return (
+      <>
+      {
+        withRouter(
+      <Redirect to={`/${school}/login`} />
+        )
+      }
+      </>
+    )
+  }
+  const slug = localStorage?.schoolSlug && localStorage?.schoolSlug 
   const history = useHistory()
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const localLogo = typeof window !== "undefined" && localStorage?.getItem("schoolLogo")
@@ -160,15 +173,16 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}>
-                      <a
+                    <Link
+                     key={item.name} to={`/${slug}/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
-                      >
+                     >
+                      <>
                         <item.icon
                           className={classNames(
                             item.name === currentPage
@@ -179,7 +193,7 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </>
                     </Link>
                   ))}
                       <a
@@ -193,7 +207,7 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      history.push(`/${slug}/login`, `/${slug}/login`)
+                      history.push(`/${slug}/login`)
                     }}
                       >
                         <LogoutIcon
@@ -247,14 +261,15 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
             <div className="flex flex-col flex-grow mt-5">
               <nav className="flex-1 px-2 space-y-1 bg-white">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}>
-                    <a
+                  <Link key={item.name} to={`/${slug}/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-100 text-gray-900"
                           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
                         "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                       )}
+                  >
+                    <
                     >
                       <item.icon
                         className={classNames(
@@ -266,7 +281,7 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </>
                   </Link>
                 ))}
                  <a
@@ -280,7 +295,7 @@ export default function SchoolLayout({ Component, currentPage, slug }) {
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      history.push(`/${slug}/login`, `/${slug}/login`)
+                      history.push(`/${slug}/login`)
                     }}
                       >
                         <LogoutIcon

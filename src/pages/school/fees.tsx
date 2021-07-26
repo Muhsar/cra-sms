@@ -10,15 +10,18 @@ import { PAYMENTS, STUDENTS } from "api/apiUrl";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
 
   return { props: { school } };
 };
 
-export default function SchoolFees({ token, school }) {
-  const { showAlert } = React.useContext(ToastContext);
-
+export default function SchoolFees() {
+  const token = jwt_decode(localStorage?.token)
+const {slug} = useParams()
+const school = slug
   const { data: paymentHistory } = useQuery(
     [queryKeys.getPayments, token?.school_uid],
     async () => await getRequest({ url: PAYMENTS(token?.school_uid) }),
@@ -57,10 +60,6 @@ export default function SchoolFees({ token, school }) {
         ...history,
       ]);
       setOpen(false);
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       setState({
         ...state,
         full_name: "",
@@ -68,14 +67,6 @@ export default function SchoolFees({ token, school }) {
         student_id: "",
       });
       cache.invalidateQueries();
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {

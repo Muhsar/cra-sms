@@ -6,7 +6,8 @@ import { queryKeys } from 'api/queryKey';
 import SchoolLayout from 'components/SchoolLayout';
 import { ToastContext } from 'App.jsx';
 import CoursePage from "School/Course/"
-;
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { courseId: any, school: any } }) => {
   const { courseId, school } = context.query;
@@ -14,7 +15,9 @@ export const getServerSideProps = (context: { query: { courseId: any, school: an
   return { props: { courseId, school } };
 };
 
-export default function SingleCourse({token, courseId, school}) {
+export default function SingleCourse() {
+  const { id: courseId, slug: school } = useParams()
+  const token = jwt_decode(localStorage?.token)
   const {
     data:courseList
   } = useQuery(
@@ -31,7 +34,6 @@ export default function SingleCourse({token, courseId, school}) {
 
     setAllCourse(courseList?.data)
   },[courseList?.data])
-  const { showAlert } = React.useContext(ToastContext)
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });
@@ -40,18 +42,6 @@ export default function SingleCourse({token, courseId, school}) {
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
       cache.invalidateQueries()
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
 

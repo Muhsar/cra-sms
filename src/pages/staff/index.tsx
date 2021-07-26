@@ -5,8 +5,9 @@ import { TEACHER, TEACHERCOURSES } from 'api/apiUrl'
 import { queryKeys } from 'api/queryKey'
 import Dashboard from 'Staff/Dashboard'
 import StaffLayout from 'components/StaffLayout'
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
-import { ToastContext } from 'App.jsx'
 
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
@@ -16,13 +17,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 
-export default function dashboard({ token, school }) {
-  const { showAlert } = React.useContext(ToastContext)
-  // const [token, setToken] = React.useState<any>()
-  // const localToken = typeof window !== "undefined" && localStorage?.getItem("token")
-  // React.useEffect(() => {
-  //   setToken(jwt_decode(localToken))
-  // },[localToken])
+export default function dashboard() {
+  const {slug} = useParams()
+const school = slug
+  const token = jwt_decode(localStorage?.token)
   const {
     data:teacherList
   } = useQuery(

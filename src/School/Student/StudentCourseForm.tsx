@@ -14,7 +14,7 @@ export default function StudentCourseForm({courses, handleSelect, state, selecte
     setOptions(newOptions)
     setState({
       ...state,
-      subject_ids: selected.map(id => {
+      subject_ids: selected?.map(id => {
         const ids = id.value
         return ids
       })

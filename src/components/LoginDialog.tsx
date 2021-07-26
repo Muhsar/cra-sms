@@ -17,13 +17,15 @@ export default function LoginDialog({open, setOpen, school}) {
       <h3 className="text-lg leading-6 text-gray-900 font-dosis">Choose Account</h3>
       <div className="mt-3 mb-3 px-3">
                                       <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-                                          <Link to={`/${school}/school/`}><div className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">
+                                          <Link to={`/${school}/school/`}className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">
+                                          <>
                                               <p className="text-center">School Owner</p>
-                                          </div>
+                                          </>
                                           </Link>
-                                          <Link to={`/${school}/staff/`}><div className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">
+                                          <Link to={`/${school}/staff/`}className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">
+                                          <>
                                               <p className="text-center">Teacher</p>
-                                          </div>
+                                          </>
                                           </Link>
                                       </div>
                    

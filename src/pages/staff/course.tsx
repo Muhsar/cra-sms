@@ -11,6 +11,8 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 
 export const getServerSideProps = (context: { query: { course: any, school: any } }) => {
@@ -19,7 +21,11 @@ export const getServerSideProps = (context: { query: { course: any, school: any 
   return { props: { course, school } };
 };
 
-export default function homeroom({ token, course, school }) {
+export default function homeroom() {
+  const token = jwt_decode(localStorage?.token)
+  const {slug, id} = useParams()
+  const school = slug
+  const course = id
   
   const {
     data:studentList
@@ -42,7 +48,6 @@ export default function homeroom({ token, course, school }) {
     second_ca: 0,
     exam: 0
   })
-  const { showAlert } = React.useContext(ToastContext)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
@@ -62,19 +67,7 @@ export default function homeroom({ token, course, school }) {
       })
       setStudents(updatedData)
       setOpen(false)
-      showAlert({
-        message: "Grade Added Successfuly",
-        severity: "success",
-      });
       cache.invalidateQueries()
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const submitForm = (e: any) => {

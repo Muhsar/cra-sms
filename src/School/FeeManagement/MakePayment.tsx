@@ -45,11 +45,11 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
         </DialogTitle>
         <DialogContent>
           <form
-            // onSubmit={handleSubmit}
-            onSubmit={(e: any) => {
-              e.preventDefault()
-              console.log(state)
-            }}
+            onSubmit={handleSubmit}
+            // onSubmit={(e: any) => {
+            //   e.preventDefault()
+            //   console.log(state)
+            // }}
             className='mx-3 mb-3'>
           <div className='my-2'>
               <label htmlFor="amount">

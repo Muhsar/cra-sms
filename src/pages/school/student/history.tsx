@@ -8,6 +8,8 @@ import FeeHistory from "School/Student/FeeHistory";
 import SchoolLayout from "components/SchoolLayout";
 
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 export const getServerSideProps = (context: {
   query: { student: any; school: any };
 }) => {
@@ -16,8 +18,9 @@ export const getServerSideProps = (context: {
   return { props: { student, school } };
 };
 
-export default function StudentFeeHistory({ token, student, school }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function StudentFeeHistory() {
+  const {id: student, slug: school} = useParams()
+  const token = jwt_decode(localStorage?.token)
   const { data: paymentHistory } = useQuery(
     [queryKeys.getStudentPayment, token?.school_uid],
     async () =>

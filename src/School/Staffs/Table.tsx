@@ -45,9 +45,9 @@ export default function Table({ teachers, school }) {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200" id="Staffs">
                 {teachers?.map((person) => (
-                  <Link to={`/${school}/school/staff/${person.id}`}>
                     <tr className="cursor-pointer bg-gray-50 hover:bg-gray-200">
                       <td className="px-6 hidden sm:inline py-4 whitespace-nowrap cursor-pointer">
+                  <Link to={`/${school}/school/staff/${person.id}`}>
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 ml-3">
                             <img
@@ -69,6 +69,7 @@ export default function Table({ teachers, school }) {
                             </div>
                           </div>
                         </div>
+                        </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
@@ -99,7 +100,6 @@ export default function Table({ teachers, school }) {
                         {person.user.phone_number}
                       </td>
                     </tr>
-                  </Link>
                 ))}
               </tbody>
             </table>

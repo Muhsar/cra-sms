@@ -9,6 +9,8 @@ import { TEACHER } from 'api/apiUrl';
 import { queryKeys } from 'api/queryKey';
 import { ToastContext } from 'App.jsx';
 import Profile from 'School/Staff/Profile';
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { staff: any, school: any } }) => {
   const { staff, school } = context.query;
@@ -16,7 +18,11 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
   return { props: { staff, school } };
 };
 
-export default function SingleStaff({token, staff, school, logo}) {
+export default function SingleStaff() {
+  const { id: staff, slug: school } = useParams()
+    const {schoolLogo: logo} = localStorage
+    console.log(logo)
+    const token = jwt_decode(localStorage?.token)
   const {
     data:teacherList
   } = useQuery(
@@ -32,7 +38,6 @@ export default function SingleStaff({token, staff, school, logo}) {
 
     setTeacher(teacherList?.data)
   },[teacherList?.data])
-  const { showAlert } = React.useContext(ToastContext)
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });

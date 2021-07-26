@@ -36,11 +36,11 @@ export default function StatsCards({stats: data, school}) {
               <p className="text-2xl font-semibold text-gray-900 font-dosis">{item.stat}</p>
               <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
                 <div className="text-sm">
-                  <Link to={item.href}>
-                  <a href={item.href} className="font-medium text-blue-600 hover:text-blue-500">
+                  <Link to={item.href} className="font-medium text-blue-600 hover:text-blue-500">
+                  <>
                     {' '}
                     View all<span className="sr-only"> {item.name} stats</span>
-                  </a>
+                  </>
                   </Link>
                 </div>
               </div>

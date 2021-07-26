@@ -22,8 +22,11 @@ export default function Cards({staffs, school}) {
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">
-            <Link to={`/${school}/school/staff/${staff.id}`}>
-              <div className="-ml-px w-0 flex-1 flex sm:hidden">
+            <Link to={`/${school}/school/staff/${staff.id}`}
+               className="-ml-px w-0 flex-1 flex sm:hidden"
+            >
+              <
+               >
                 <a
                   href="#"
                   className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
@@ -31,7 +34,7 @@ export default function Cards({staffs, school}) {
                   <ExternalLinkIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
                   <span className="ml-3">View</span>
                 </a>
-              </div>
+              </>
               </Link>
             </div>
           </div>

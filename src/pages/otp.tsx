@@ -1,4 +1,4 @@
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory, useParams } from 'react-router-dom';
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { getRequest, login, postRequest, getSchool } from 'api/apiCall';
@@ -13,7 +13,9 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function OTP({school}) {
+export default function OTP() {
+  const {slug} = useParams()
+  const school = slug
   const history = useHistory()
   const { data } = useQuery(
     [queryKeys.getSchool, school],
@@ -27,7 +29,7 @@ export default function OTP({school}) {
   React.useEffect(() => {
     setSchoolData(data?.data);
   }, [data?.data]);
-  const { showAlert } = React.useContext(ToastContext);
+  
   const [state, setState] = React.useState<{
     phone_number: string;
     otp: string;
@@ -48,20 +50,8 @@ export default function OTP({school}) {
         "verify"
       )
       token && history.push(`/verify/${token}`, `/verify/${token}`);
-
-      showAlert({
-        message: "Verification Successful",
-        severity: "success",
-      });
     },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
-    },
+    
   });
   const submitForm = (e: any) => {
     e.preventDefault();

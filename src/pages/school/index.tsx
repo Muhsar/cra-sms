@@ -1,21 +1,20 @@
 import React from "react";
 import SchoolLayout from "components/SchoolLayout";
-import Dashboard from "School/Dashboard"
-;
-import { ToastContext } from "App.jsx";
+import Dashboard from "School/Dashboard";
+import { useLocation, useParams, withRouter, Redirect } from 'react-router-dom';
+// import { ToastContext } from "App.jsx";
 import { useQuery } from "react-query";
 import { getRequest } from "api/apiCall";
 import { HOMEROOMS, STUDENTS, TEACHERS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
+import jwt_decode from 'jwt-decode';
 
-export const getServerSideProps = (context: { query: { school: any } }) => {
-  const { school } = context.query;
 
-  return { props: { school } };
-};
-
-export default function SchoolDashboard({ school, token }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function SchoolDashboard() {
+  const {slug} = useParams()
+  const school = slug
+  const token = jwt_decode(localStorage?.token)
+  console.log(token)
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, token?.school_uid],
     async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
@@ -95,5 +94,6 @@ export default function SchoolDashboard({ school, token }) {
   },[rooms, students])
   // const debtorsClass = rooms
   console.log(debtorsData)
+  
   return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard' slug={school} />;
 }

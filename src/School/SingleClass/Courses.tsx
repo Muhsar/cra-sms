@@ -2,7 +2,7 @@ import React from 'react'
 import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { Switch } from '@headlessui/react'
 import { MultipleAutoComplete } from 'components/AutoComplete';
-export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, open, setOpen  }) {
+export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, open, setOpen, selected, setSelected  }) {
   // const [open, setOpen] = React.useState<boolean>(false)
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,7 +19,7 @@ export default function SingleClassCourses({courses, roomCourses, handleSubmit, 
     const newOption = { label: course.name, value: course.id }
     return newOption
   }))
-  const [selected, setSelected] = React.useState([])
+  // const [selected, setSelected] = React.useState([])
   // const [state, setState] = React.useState()
   const [subjects, setSubjects] = React.useState([])
   const handleEnabled = (id) => {

@@ -14,6 +14,8 @@ import SingleClassStudents from "School/SingleClass/Students";
 import SchoolLayout from "components/SchoolLayout";
 import SingleClassCourses from "School/SingleClass/Courses";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 
 export const getServerSideProps = (context: { query: { classId: any, school: any } }) => {
@@ -22,7 +24,7 @@ export const getServerSideProps = (context: { query: { classId: any, school: any
   return { props: { classId, school } };
 };
 
-const Body = ({ classId, school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send }) => {
+const Body = ({ classId, school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send, selected, setSelected }) => {
   return (
     <>
       
@@ -30,11 +32,13 @@ const Body = ({ classId, school, room, students, courses, roomCourses, handleSub
       <div className="pt-5" />
       <SingleClassStudents students={students} school={school} />
       <SingleClassCourses courses={courses} roomCourses={roomCourses} handleSubmit={handleSubmit} state={state}
-            setState={setState} open={open} setOpen={setOpen} />
+            setState={setState} open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
     </>
   );
 };
-export default function SingleClass({ token, classId, school }) {
+export default function SingleClass() {
+  const {id: classId, slug: school} = useParams()
+  const token = jwt_decode(localStorage?.token)
   const { data: courseList } = useQuery(
     [queryKeys.getCourses, token?.school_uid],
     async () => await getRequest({ url: GET_COURSES(token?.school_uid) }),
@@ -68,7 +72,6 @@ export default function SingleClass({ token, classId, school }) {
     }
   );
   const cache = useQueryClient()
-  const { showAlert } = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data: any) {
       setOpen(false)
@@ -78,23 +81,12 @@ export default function SingleClass({ token, classId, school }) {
       })
       console.log(subjectsData)
       setHomeroomCourses([...homeroomCourses, ...subjectsData])
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       setState({
         ...state,
         subjects: []
       })
+      setSelected([])
       cache.invalidateQueries();
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const [open, setOpen] = React.useState(false)
@@ -135,6 +127,7 @@ export default function SingleClass({ token, classId, school }) {
       data: {}
     })
   }
+  const [selected, setSelected] = React.useState([])
   return (
     <div>
       <SchoolLayout
@@ -152,6 +145,8 @@ export default function SingleClass({ token, classId, school }) {
             setOpen={setOpen}
             school={school}
             send={sendResults}
+            selected={selected}
+            setSelected={setSelected}
           />
         }
         currentPage="Classes"

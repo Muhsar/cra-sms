@@ -7,6 +7,8 @@ import ProfilePage from 'ProfilePage';
 import Courses from 'School/Student/Courses';
 import SchoolLayout from 'components/SchoolLayout';
 import { ToastContext } from 'App.jsx';
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { student: any, school: any } }) => {
   const { student, school } = context.query;
@@ -14,8 +16,9 @@ export const getServerSideProps = (context: { query: { student: any, school: any
   return { props: { student, school } };
 };
 
-export default function StudentCourses({ token, student, school }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function StudentCourses() {
+  const token = jwt_decode(localStorage?.token)
+  const { id: student, slug: school } = useParams()
   const [classId, setClassId] = React.useState()
   const { data: homeroomCourseList } = useQuery(
     [queryKeys.getHomeroomCourses, classId, token?.school_uid],
@@ -57,24 +60,12 @@ export default function StudentCourses({ token, student, school }) {
     subject_ids: []
   })
   const cache = useQueryClient()
-  // const { showAlert } = React.useContext(ToastContext);
   const [open, setOpen] = React.useState(false)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
       setOpen(false)
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       cache.invalidateQueries()
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
+      setSelected([])
     },
   });
   const submitForm = (e: any) => {
@@ -86,6 +77,7 @@ export default function StudentCourses({ token, student, school }) {
       },
     });
   };
+  const [selected, setSelected] = React.useState([]);
   return (
     <>
       <SchoolLayout Component={<ProfilePage Component={<Courses
@@ -96,7 +88,8 @@ export default function StudentCourses({ token, student, school }) {
         handleSubmit={submitForm}
         open={open}
                 setOpen={setOpen}
-      />} user="student" userId={student} page="Courses" school={school} />} currentPage='Students' slug={school} />
+                selected={selected} setSelected={setSelected}
+      />} user="student" userId={student} page="Courses" school={school}  />} currentPage='Students' slug={school} />
       </>
   )
 }

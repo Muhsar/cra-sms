@@ -9,6 +9,8 @@ import ProfilePage from "ProfilePage";
 import SchoolLayout from "components/SchoolLayout";
 import Profile from "School/Student/Profile";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: {
   query: { student: any; school: any };
@@ -18,8 +20,10 @@ export const getServerSideProps = (context: {
   return { props: { student, school } };
 };
 
-export default function SingleStudent({ token, student, school, logo}) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function SingleStudent() {
+  const token = jwt_decode(localStorage?.token)
+  const {schoolLogo: logo} = localStorage
+  const {slug: school, id: student} = useParams()
   const { data: studentList } = useQuery(
     [queryKeys.getStudent, token?.school_uid],
     async () => await getRequest({ url: STUDENT(token?.school_uid, student) }),

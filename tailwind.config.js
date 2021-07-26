@@ -1,12 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [
-    './pages/**/*.tsx',
-    './pages/**/*.jsx',
-    './components/**/*.jsx',
-    './components/**/*.tsx',
-  ],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -31,7 +26,6 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
-      rose: colors.rose
     },
     spacing: {
       px: '1px',
@@ -838,11 +832,11 @@ module.exports = {
     backdropBlur: ['responsive'],
     backdropBrightness: ['responsive'],
     backdropContrast: ['responsive'],
-    backdropDropShadow: ['responsive'],
     backdropFilter: ['responsive'],
     backdropGrayscale: ['responsive'],
     backdropHueRotate: ['responsive'],
     backdropInvert: ['responsive'],
+    backdropOpacity: ['responsive'],
     backdropSaturate: ['responsive'],
     backdropSepia: ['responsive'],
     backgroundAttachment: ['responsive'],

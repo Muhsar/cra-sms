@@ -2,7 +2,7 @@ import { Dialog, DialogTitle, DialogContent, TextareaAutosize } from '@material-
 import React from 'react'
 import { MultipleAutoComplete } from 'components/AutoComplete'
 
-export default function FormDialog({handleSubmit, handleChange, state, setState, rooms, open, setOpen}) {
+export default function FormDialog({handleSubmit, handleChange, state, setState, rooms, open, setOpen, selected, setSelected}) {
   // const [open, setOpen] = React.useState<boolean>(false)
 
   const handleClickOpen = () => {
@@ -13,7 +13,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
   }
   
   const [options, setOptions] = React.useState([])
-  const [selected, setSelected] = React.useState([])
+  // const [selected, setSelected] = React.useState([])
   React.useEffect(() => {
     setOptions(rooms?.map(room => {
       const newOption = { label: room.name, value: room.id }
@@ -21,7 +21,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
     }))
     setState({
       ...state,
-      class_ids: selected.map(val => {
+      class_ids: selected?.map(val => {
         const classId = val.value
         return classId
     })})

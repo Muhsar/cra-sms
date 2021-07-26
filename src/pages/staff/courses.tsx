@@ -1,6 +1,6 @@
 import React from "react";
 import StaffLayout from "components/StaffLayout";
-import {Link} from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import { ClassList } from "Mock/ClassList";
 import Courses from "Staff/Courses";
 import { useQuery } from "react-query";
@@ -9,6 +9,7 @@ import { TEACHERCOURSES } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
 
 import { ToastContext } from "App.jsx";
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -16,8 +17,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function classes({ token, school }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function classes() {
+  const token = jwt_decode(localStorage?.token)
+  const {slug} = useParams()
+  const school = slug
   // const [token, setToken] = React.useState<any>()
   // const localToken = typeof window !== "undefined" && localStorage?.getItem("token")
   // React.useEffect(() => {

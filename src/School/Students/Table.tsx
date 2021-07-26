@@ -49,9 +49,9 @@ export default function Table({ students, school }) {
                 id="Students"
               >
                 {students?.map((person) => (
-                  <Link to={`/${school}/school/student/${person.id}`}>
                     <tr className="cursor-pointer bg-gray-50 hover:bg-gray-200">
                       <td className="px-6 hidden sm:inline py-4 whitespace-nowrap cursor-pointer">
+                  <Link to={`/${school}/school/student/${person.id}`}>
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 ml-3">
                             <img
@@ -73,6 +73,7 @@ export default function Table({ students, school }) {
                             </div>
                           </div>
                         </div>
+                        </Link>
                       </td>
 
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -108,7 +109,6 @@ export default function Table({ students, school }) {
                       </a>
                       </td>
                     </tr>
-                  </Link>
                 ))}
               </tbody>
             </table>

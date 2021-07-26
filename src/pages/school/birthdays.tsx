@@ -10,6 +10,7 @@ import { StudentList } from "Mock/StudentList";
 import SchoolLayout from "components/SchoolLayout";
 import jwt_decode from "jwt-decode"
 import { ToastContext } from 'App.jsx';
+import { useParams } from 'react-router-dom';
 
 const Body = ({students, teachers}) => {
   
@@ -130,7 +131,9 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function SchoolBirthdays({ token, school }) {
+export default function SchoolBirthdays() {
+  const token = jwt_decode(localStorage?.token)
+  const {slug: school} = useParams()
   const {
     data:teacherList
   } = useQuery(

@@ -7,6 +7,8 @@ import ProfilePage from "ProfilePage";
 import Courses from "School/Staff/Courses";
 import SchoolLayout from "components/SchoolLayout";
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 
 export const getServerSideProps = (context: { query: { staff: any, school: any } }) => {
@@ -15,7 +17,9 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
   return { props: { staff, school } };
 };
 
-export default function TeacherCourses({ token, staff, school }) {
+export default function TeacherCourses() {
+  const { id: staff, slug: school } = useParams()
+  const token = jwt_decode(localStorage?.token)
   const { data: teacherCourseList } = useQuery(
     [queryKeys.getTeacherCourses, token?.school_uid],
     async () => await getRequest({ url: TEACHERCOURSES(token?.school_uid, staff) }),
@@ -41,29 +45,17 @@ export default function TeacherCourses({ token, staff, school }) {
     setTeacherCourses(teacherCourseList?.data);
     setAllCourses(courseList?.data);
   }, [teacherCourseList?.data, courseList?.data]);
-  const { showAlert } = React.useContext(ToastContext)
 const cache = useQueryClient()
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
       setOpen(false)
-      showAlert({
-        message: data?.message,
-        severity: "success",
-      });
       setState({
         ...state,
         class_id: "",
         subject_class_ids: [],
       })
+      setSelected([])
       cache.invalidateQueries();
-    },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
     },
   });
   const [open, setOpen] = React.useState(false)
@@ -82,6 +74,7 @@ const cache = useQueryClient()
       },
     });
   };
+  const [selected, setSelected] = React.useState([])
   return (
     <>
       <SchoolLayout
@@ -96,7 +89,8 @@ const cache = useQueryClient()
                 open={open}
                 setOpen={setOpen}
                 handleSubmit={submitForm}
-                // school={school}
+                selected={selected}
+                setSelected={setSelected}
               />
             }
             school={school}

@@ -21,11 +21,11 @@ export default function StaffCourseForm({courses, handleSelect, state, selected,
   }
     setState({
       ...state,
-      subject_class_ids: selected.map(id => {
+      subject_class_ids: selected?.map(id => {
         const ids = id.value
         return ids
       }),
-      subject_class_names: selected.map(val => {
+      subject_class_names: selected?.map(val => {
         const names = val.label
         return names
       })

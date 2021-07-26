@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, withRouter, Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
@@ -60,7 +60,19 @@ const fadeInUp = {
     }
   }
 }
-export default function StaffLayout({ Component, currentPage, slug }) {
+export default function StaffLayout({ Component, currentPage }) {
+  if (!localStorage?.token) {
+    return (
+      <>
+      {
+        withRouter(
+      <Redirect to={`/${school}/login`} />
+        )
+      }
+      </>
+    )
+  }
+  const slug = localStorage?.schoolSlug && localStorage?.schoolSlug 
   const history = useHistory()
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const localLogo =
@@ -137,15 +149,16 @@ export default function StaffLayout({ Component, currentPage, slug }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}>
-                      <a
-                        // href="#"
+                    <Link key={item.name} to={`/${slug}/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
+                    >
+                      <
+                        // href="#"
                       >
                         <item.icon
                           className={classNames(
@@ -157,7 +170,7 @@ export default function StaffLayout({ Component, currentPage, slug }) {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </>
                     </Link>
                   ))}
                   <a
@@ -176,7 +189,7 @@ export default function StaffLayout({ Component, currentPage, slug }) {
                         localStorage?.removeItem("schoolName");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolLogo");
-                      history.push(`/${slug}/login`, `/${slug}/login`);
+                      history.push(`/${slug}/login`);
                     }}
                   >
                     <LogoutIcon
@@ -213,14 +226,15 @@ export default function StaffLayout({ Component, currentPage, slug }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1 bg-gray-800">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}>
-                    <a
+                  <Link key={item.name} to={`/${slug}/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-900 text-white"
                           : "text-gray-300 hover:bg-gray-700 hover:text-white",
                         "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                       )}
+                  >
+                    <
                     >
                       <item.icon
                         className={classNames(
@@ -232,7 +246,7 @@ export default function StaffLayout({ Component, currentPage, slug }) {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </>
                   </Link>
                 ))}
                 <a
@@ -251,7 +265,7 @@ export default function StaffLayout({ Component, currentPage, slug }) {
                       localStorage?.removeItem("schoolName");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolLogo");
-                    history.push(`/${slug}/login`, `/${slug}/login`);
+                    history.push(`/${slug}/login`);
                   }}
                 >
                   <LogoutIcon

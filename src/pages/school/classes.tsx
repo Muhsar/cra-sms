@@ -6,6 +6,8 @@ import { getRequest, postRequest } from "api/apiCall";
 import { HOMEROOMS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
+import jwt_decode from 'jwt-decode';
+import { useParams } from 'react-router-dom';
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -13,9 +15,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function SchoolClasses({ token, school }) {
-  const { showAlert } = React.useContext(ToastContext)
-
+export default function SchoolClasses() {
+const token = jwt_decode(localStorage?.token)
+const {slug} = useParams()
+const school = slug
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, token?.school_uid],
     async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
@@ -44,20 +47,10 @@ export default function SchoolClasses({ token, school }) {
         name: "",
         fee: 0,
       });
-      showAlert({
-        message: "Class Created Successfully",
-        severity: "success",
-      });
+      
         cache.invalidateQueries()
     },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
-    },
+    
   });
   const submitForm = (e: any) => {
     e.preventDefault();

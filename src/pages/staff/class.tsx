@@ -7,15 +7,14 @@ import { StudentList } from "Mock/StudentList";
 import { SearchField } from "components/search";
 
 import { ToastContext } from "App.jsx";
+import { useParams } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
-export const getServerSideProps = (context: { query: { school: any } }) => {
-  const { school } = context.query;
 
-  return { props: { school } };
-};
-
-export default function homeroom({ school, token }) {
-  const { showAlert } = React.useContext(ToastContext)
+export default function homeroom() {
+  const {slug} = useParams()
+  const school = slug
+  const token = jwt_decode(localStorage?.token)
   const [order, setOrder] = React.useState("asc");
   const [listCount, setlistCount] = React.useState(0);
   const [list, setList] = React.useState([]);

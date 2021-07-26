@@ -8,7 +8,9 @@ export default function Courses({
   handleSubmit,
   studentCourses,
   open,
-  setOpen
+  setOpen,
+  selected,
+  setSelected
 }) {
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setState({
@@ -16,11 +18,11 @@ export default function Courses({
       [e.target.name]: e.target.value,
     });
   };
-  const [selected, setSelected] = React.useState([]);
+  // const [selected, setSelected] = React.useState([]);
   React.useEffect(() => {
     setState({
       ...state,
-      subject_ids: selected.map((val) => {
+      subject_ids: selected?.map((val) => {
         const ids = val.value;
         return ids;
       }),
@@ -28,7 +30,7 @@ export default function Courses({
   }, [selected]);
   return (
     <>
-    <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between px-4">
+    <div className="pb-5 border-b border-gray-200 flex items-center justify-between px-4">
       <h3 className="text-lg font-medium leading-6 text-gray-900">Courses</h3>
       <div>
         <StudentCourseForm
@@ -57,7 +59,7 @@ export default function Courses({
             </div>
             <div className="flex-grow">
               <h2 className="font-medium text-gray-900 title-font">{course?.subject.name}</h2>
-              <h5 className="text-gray-700 text-sm">Teacher: {course?.teacher.user.full_name}</h5>
+              <h5 className="text-gray-700 text-sm">Teacher: {course?.teacher?.user?.full_name}</h5>
             </div>
           </div>
         </div>

@@ -1,123 +1,57 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable no-undef */
+import React, { Component } from 'react'
+import jwt_decode from 'jwt-decode';
+import LoginPage from 'pages/login';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Both, UnAuthorized, Owner, Teacher } from './oldnav';
+// import { schoolRoutes, unauthorizedUser, staffRoutes, joinedRoutes } from './navigation.ts';
 
-import "styles/globals.css";
-import "aos/dist/aos.css";
-import { QueryClient, QueryClientProvider } from "react-query";
-import useToast from "components/Alerts";
-import "tailwindcss/tailwind.css";
-import jwt_decode from "jwt-decode";
-import { schoolRoutes, unauthorizedUser, staffRoutes } from './navigation';
-
-const queryClient = new QueryClient();
-export const ToastContext = React.createContext();
-
-function App() {
-  const [token, setToken] = React.useState();
-  const [slug, setSlug] = React.useState();
-  const localToken =
-    typeof window !== "undefined" && localStorage?.getItem("token");
-  const localSlug =
-    typeof window !== "undefined" && localStorage?.getItem("schoolSlug");
-  React.useEffect(() => {
-    typeof window !== "undefined" &&
-      localToken &&
-      localToken !== "undefined" &&
-      setToken(jwt_decode(localToken));
-    typeof window !== "undefined" &&
-      localSlug &&
-      localSlug !== "undefined" &&
-      setSlug(localSlug);
-  }, [localToken, localSlug]);
-  const { showAlert, Toast } = useToast();
-  React.useEffect(() => {
-    // navigator?.serviceWorker
-    //   ?.register("/sw.js")
-    //   .then((reg) => console.log("service worker registered", reg))
-    //   .catch((err) => console.log("service worker not registered", err));
-  }, []);
-  const queryClientRef = React.useRef();
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
-  const localLogo =
-    typeof window !== "undefined" && localStorage?.getItem("schoolLogo");
-  const [logo, setLogo] = React.useState("");
-  React.useEffect(() => {
-    typeof window !== "undefined" &&
-      localLogo &&
-      localLogo !== "undefined" &&
-      setLogo(localLogo);
-  }, [localLogo]);
-  const schoolPages = () => {
-    return (
-    <>
-    {
-      schoolRoutes({slug}).map((route, index)=>(
-        <Route key={index} path={route.href} component={route.component} />
-      ))
+export default class Test extends Component {
+    
+    render() {
+        const token: {groups: any[]} = localStorage?.token && jwt_decode(localStorage?.token)
+        const AuthFunction = () => {
+            let auth = ""
+            if(token && token !=="undefined"){
+                if(token?.groups.length===2){
+                    auth = "Both"
+                }
+                if(token?.groups.length===1){
+                    if(token?.groups[0]==="Teacher"){
+                        auth = "Teacher"
+                    }
+                    if(token?.groups[0]==="School Owner"){
+                        auth = "Owner"
+                    }
+                }
+            }
+            if (!token || token =="undefined") {
+                auth = "UnAuthorized"
+            }
+            return auth
+        }
+        const user = AuthFunction()
+        console.log(user)
+    console.log(token)
+    const UserRoutes = user==="Both" ? Both : user==="Teacher" ? Teacher : user==="Owner" ? Owner : UnAuthorized
+    
+        return (
+            <Router>
+            {
+                user === "Both" && Both
+            }
+            {
+                user === "UnAuthorized" && UnAuthorized
+            }
+            {
+                user === "Teacher" && Teacher
+            }
+            {
+                user === "Owner" && Owner
+            }
+                {/* <UserRoutes /> */}
+            </Router>
+        )
     }
-    </>
-    );
-  };
-  const staffPages = () => {
-    return (
-    <>
-    {
-      staffRoutes({slug}).map((route, index)=>(
-        <Route key={index} path={route.href} component={route.component} />
-      ))
-    }
-    </>
-    );
-  };
-  const authRoutes = () => {
-    return (
-    <>
-    {
-      unauthorizedUser({slug}).map((route, index)=>(
-        <Route key={index} path={route.href} component={route.component} />
-      ))
-    }
-    </>
-    );
-  };
-  const jointRoutes = () => {
-    return (
-    <>
-    {
-      schoolRoutes({slug}).map((route, index)=>(
-        <Route key={index} path={route.href} component={route.component} />
-      ))
-    }
-    {
-      staffRoutes({slug}).map((route, index)=>(
-        <Route key={index} path={route.href} component={route.component} />
-      ))
-    }
-    </>
-    );
-  };
-  const LoggedInAsTeacher = token && token!=='undefined' && token?.groups.length===1 && token?.groups[0]==="Teacher" && staffPages
-  const LoggedInAsSchool = token && token!=='undefined' && token?.groups.length===1 && token?.groups[0]==="School Owner" && schoolPages
-  const LoggedInAsBoth = token && token!=='undefined' && token?.groups.length===2 && jointRoutes
-  const CheckRole = token && token!=='undefined' && token?.groups.length===1 && token?.groups[0]==="Teacher" ? LoggedInAsTeacher : LoggedInAsSchool
-  const LoggedInUser = token && token!=='undefined' && token?.groups.length===2 ? LoggedInAsBoth : CheckRole
-  const ComponentToRender = token && token!=='undefined' ? LoggedInUser : authRoutes
-  return (
-    <>
-      <ToastContext.Provider value={{ showAlert }}>
-        <QueryClientProvider client={queryClient}>
-          <Toast />
-          <Router>
-            <Switch>
-            <ComponentToRender />
-            </Switch>
-          </Router>
-        </QueryClientProvider>
-      </ToastContext.Provider>
-    </>
-  );
 }
-
-export default App;

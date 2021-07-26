@@ -1,34 +1,20 @@
-import {Link} from "react-router-dom";
+import { Link, useParams, withRouter } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { getSchool, login } from "api/apiCall";
 import { GETSCHOOL, LOGIN_URL } from "api/apiUrl";
-import { ToastContext } from "App.jsx";
+// import { ToastContext } from "App.jsx";
 import jwt_decode from "jwt-decode";
 import LoginDialog from "components/LoginDialog";
 import { queryKeys } from "api/queryKey";
 
-export const getServerSideProps = (context: { query: { school: any } }) => {
-  const { school } = context.query;
 
-  return { props: { school } };
-};
-
-export default function Login({ school, logged_in, redirectTo, token }) {
+export default function Login() {
   const history = useHistory()
-  const { showAlert } = React.useContext(ToastContext);
-  // if (logged_in&& token && token !== undefined && token?.groups.length==1 && token?.groups[0]=="School Owner") {
-  //   history.replace(`/${school}/${redirectTo}`, `/${school}/school`)
-  // }
-  // if (logged_in&& token && token !== undefined && token?.groups.length==1 && token?.groups[0]=="Teacher") {
-  //   history.replace(`/${school}/${redirectTo}`, `/${school}/staff`)
-  // }
-  // if (logged_in && token && token !== undefined && token?.groups.length==2) {
-  //   history.replace(`/${school}/${redirectTo}`, `/${school}/school`)
-  // }
-  // console.log(logged_in)
-      // logged_in && history.replace(`/${school}/${redirectTo}`, `/${school}/${redirectTo}`)
+  const params: {slug: any} = useParams()
+  const school = params?.slug
+  console.log(params)
   const { data } = useQuery(
     [queryKeys.getSchool, school],
     async () => await getSchool({ url: GETSCHOOL(school) }),
@@ -54,10 +40,6 @@ export default function Login({ school, logged_in, redirectTo, token }) {
   };
   const { mutate } = useMutation(login, {
     onSuccess() {
-      showAlert({
-        message: "Login Successful",
-        severity: "success",
-      });
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
       localStorage.setItem("schoolLogo", schoolData?.logo);
@@ -71,23 +53,29 @@ export default function Login({ school, logged_in, redirectTo, token }) {
       }
       if (token?.groups.length === 1) {
         if (token?.groups[0] === "Teacher") {
-          history.replace(`/${school}/staff/`, `/${school}/staff/`);
+          history.push(`/${school}/staff/`);
         }
         if (token?.groups[0] === "School Owner") {
-          history.replace(`/${school}/school/`, `/${school}/school/`);
+          history.push(`/${school}/school/`);
         }
       }
       // history.replace("/school/", "/school/");
     },
-    onError(error: any) {
-      error?.response?.data?.message.map((errormsg: any) =>
-        showAlert({
-          message: errormsg,
-          severity: "error",
-        })
-      );
-    },
   });
+  const [redirectRoute, setRedirectRoute] = React.useState("")
+  const token: { groups: string[] } = typeof window !== "undefined" && localStorage?.token && localStorage?.token!=="undefined" && jwt_decode(localStorage?.token);
+      if (token?.groups.length === 2) {
+        setOpen(true);
+        // LoginDialog({open, setOpen})
+      }
+      if (token?.groups.length === 1) {
+        if (token?.groups[0] === "Teacher") {
+          setRedirectRoute(`/${school}/staff/`);
+        }
+        if (token?.groups[0] === "School Owner") {
+          setRedirectRoute(`/${school}/school/`);
+        }
+      }
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
@@ -98,7 +86,23 @@ export default function Login({ school, logged_in, redirectTo, token }) {
       },
     });
   };
+  if (localStorage?.token && localStorage?.token !== "undefined" && token?.groups.length === 1) {
+    return (
+      <>
+      {
+        withRouter(
+      <Redirect to={redirectRoute} />
+        )
+      }
+      </>
+    )
+  }
   return (
+    <>
+    {/* {
+      localStorage?.token && localStorage?.token !== "undefined" && token?.groups.length === 1 && <Redirect to={redirectRoute} />
+    } */}
+    { !localStorage?.token &&
     <>
       <LoginDialog open={open} setOpen={setOpen} school={school} />
       <div className="max-h-screen grid sm:grid-cols-2 grid-cols-1 gap-10 max-w-6xl mx-auto">
@@ -174,10 +178,8 @@ export default function Login({ school, logged_in, redirectTo, token }) {
                 </div>
 
                 <div className="text-left">
-                  <Link to={`/${school}/otp`}>
-                    <a href="#" className="text-blue-600">
+                  <Link to={`/${school}/otp`} className="text-blue-600">
                       Verify New Account
-                    </a>
                   </Link>
                 </div>
 
@@ -194,6 +196,8 @@ export default function Login({ school, logged_in, redirectTo, token }) {
           </div>
         </div>
       </div>
+    </>
+    }
     </>
   );
 }
