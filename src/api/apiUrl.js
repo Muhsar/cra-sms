@@ -1,19 +1,5 @@
-// import React from 'react';
-// const [schoolId, setSchoolId] = React.useState("")
-// React.useEffect(() => {
-//   setSchoolId(localStorage?.getItem("schoolId"))
-// },[])
-import jwt_decode from "jwt-decode"
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-const localToken = typeof window !== "undefined" && localStorage?.token
-const token = () => {
-  if(typeof window !== "undefined") {
-    if (localToken) {
-      return jwt_decode(localToken)
-    }
-    else return {school_uid: "", groups:[], teacher_id: ''}
-}
-}
 // TODO: return teacher ID gotten in the token from the page that actually requires it
 // const teacher_id = token()?.groups.length > 0 && (token()?.groups[0] || token()?.groups[1]) === "Teacher" && token()?.teacher_id
 const API_URL = "https://scoolz.herokuapp.com/api/v1";
