@@ -54,8 +54,13 @@ export default function SchoolStudents() {
   //   setState({ ...state, [event.target.name]: event.target.value });
   // };
   const cache = useQueryClient()
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       setStudents([...students, {full_name: data?.data.full_name, image: data?.data.image, gender: data?.data.gender, email: data?.data.email, current_class: {name: data?.data.current_class.name}, age: data?.data.age, is_debtor: data?.data.is_debtor, id: data?.data.id}])
       setOpen(false)
       setState({

@@ -94,8 +94,13 @@ export default function EditStudent() {
     });
   };
   const cache = useQueryClient()
-  const { mutate } = useMutation(patchRequest, {
-    onSuccess(data) {
+  const {showAlert}  = React.useContext(ToastContext)
+  const { mutate } = useMutation(postRequest, {
+   onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       cache.invalidateQueries()
     },
   });

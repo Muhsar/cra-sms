@@ -61,8 +61,13 @@ export default function StudentCourses() {
   })
   const cache = useQueryClient()
   const [open, setOpen] = React.useState(false)
+  const {showAlert}  = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-    onSuccess(data) {
+   onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       setOpen(false)
       cache.invalidateQueries()
       setSelected([])

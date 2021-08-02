@@ -25,10 +25,20 @@ import LandingPage from "pages";
 import LoginPage from "pages/login";
 import OTP from "pages/otp";
 import VerifyAccount from "pages/verify/staff";
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Switch } from "react-router-dom";
 import ErrorPage from "./pages/404";
 import { Redirect } from "react-router-dom"
+import SecretaryDashboard from "pages/secretary";
+import SecretaryStudents from "pages/secretary";
+import SecretaryClasses from "pages/secretary";
+import SecretaryCourses from "pages/secretary";
+import SecretaryStudent from "pages/secretary";
+import SecretaryClass from "pages/secretary";
+import SecretaryCourse from "pages/secretary";
+import SecretaryEditCourse from "pages/secretary";
+import SecretaryEditClass from "pages/secretary";
+import SecretaryEditStudent from "pages/secretary";
 
 // const {slug} = matchPath
 // match
@@ -90,6 +100,75 @@ export const Teacher = (
       exact
     />
     <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
+    <Route path="/" component={LandingPage} exact />
+    <Route
+      // path="*"
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
+    />
+  </Switch>
+);
+export const Parent = (
+  <Switch>
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
+    <Route path="/:slug/parent" component={StaffDashboard} exact />
+    <Route path="/:slug/parent/courses" component={StaffCourses} exact />
+    <Route path="/:slug/parent/course/:id" component={StaffCourse} exact />
+    <Route path="/:slug/parent/class" component={StaffClass} exact />
+    <Route
+      path="/:slug/parent-result/:id"
+      component={UnAuthorizedResult}
+      exact
+    />
+    <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
+    <Route path="/" component={LandingPage} exact />
+    <Route
+      // path="*"
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
+    />
+  </Switch>
+);
+export const Secretary = (
+  <Switch>
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
+    <Route path="/:slug/secretary" component={SecretaryDashboard} exact />
+    <Route path="/:slug/secretary/students" component={SecretaryStudents} exact />
+    <Route path="/:slug/secretary/classes" component={SecretaryClasses} exact />
+    <Route path="/:slug/secretary/courses" component={SecretaryCourses} exact />
+    <Route path="/:slug/secretary/student/:id" component={SecretaryStudent} exact />
+    <Route path="/:slug/secretary/class/:id" component={SecretaryClass} exact />
+    <Route path="/:slug/secretary/course/:id" component={SecretaryCourse} exact />
+    <Route path="/:slug/secretary/course/edit/:id" component={SecretaryEditCourse} exact />
+    <Route path="/:slug/secretary/class/edit/:id" component={SecretaryEditClass} exact />
+    <Route path="/:slug/secretary/student/edit/:id" component={SecretaryEditStudent} exact />
+    <Route
+      path="/:slug/parent-result/:id"
+      component={UnAuthorizedResult}
+      exact
+    />
+    <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
+    <Route path="/" component={LandingPage} exact />
+    <Route
+      // path="*"
+      // component={ErrorPage}
+      render={(props)=>(
+        <ErrorPage {...props} />
+      )}
+    />
+  </Switch>
+);
+export const Bursar = (
+  <Switch>
+    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
+    <Route path="/:slug/bursar" component={StaffDashboard} exact />
+    <Route path="/:slug/bursar/students" component={StaffCourses} exact />
+    <Route path="/:slug/bursar/history/:id" component={StaffCourse} exact />
+    <Route path="/:slug/bursar/payments" component={StaffClass} exact />
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"

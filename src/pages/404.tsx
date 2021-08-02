@@ -13,17 +13,20 @@ export default function ErrorPage(props) {
     if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Teacher") {
         window.location = `/${localStorage?.schoolSlug}/staff`
     }
+    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Secretary") {
+        window.location = `/${localStorage?.schoolSlug}/secretary`
+    }
+    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Burasr") {
+        window.location = `/${localStorage?.schoolSlug}/bursar`
+    }
+    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Parent") {
+        window.location = `/${localStorage?.schoolSlug}/parent`
+    }
     if(!localStorage?.token) {
-        return(
-        <Redirect to={{
-              pathname: `/${match.params.slug}/login`,
-              state: { from: location }
-            }} />
-        )
+        window.location = `/${match.params.slug}/parent`
     }
     return (
         <>
-            <>you are not supposed to be here</>
         </>
     )
 }

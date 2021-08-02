@@ -45,9 +45,14 @@ export default function TeacherCourses() {
     setTeacherCourses(teacherCourseList?.data);
     setAllCourses(courseList?.data);
   }, [teacherCourseList?.data, courseList?.data]);
+  const {showAlert} = React.useContext(ToastContext)
 const cache = useQueryClient()
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      })
       setOpen(false)
       setState({
         ...state,

@@ -53,8 +53,13 @@ export default function homeroom() {
   };
   const cache = useQueryClient()
   const [studentId, setStudentId] = React.useState()
+  const {showAlert}  = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-    onSuccess(data) {
+   onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       const updatedData = students?.map(student => {
         const datas = student
         if (datas.student.id === studentId) {

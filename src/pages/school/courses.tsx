@@ -53,8 +53,13 @@ export default function SchoolCourses() {
   //   setState({ ...state, [event.target.name]: event.target.value });
   // };
   const cache = useQueryClient()
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       setAllCourses([...allCourses, {name: data?.data.name, id: data?.data.id}])
       setOpen(false)
       setState({

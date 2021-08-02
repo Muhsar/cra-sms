@@ -45,8 +45,13 @@ const school = slug
     });
   };
   const cache = useQueryClient()
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       setPaymentHistory([
         {
           id: state.student_id,

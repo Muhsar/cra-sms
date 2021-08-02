@@ -1,11 +1,12 @@
 import { Link, useHistory, useParams } from 'react-router-dom';
 import React from "react";
 import { useMutation, useQuery } from "react-query";
-import { getRequest, login, postRequest, getSchool } from 'api/apiCall';
+import { postOtp, getSchool } from 'api/apiCall';
 import { GETSCHOOL, VERIFY_OTP } from "api/apiUrl";
 import { ToastContext } from "App.jsx"
 import jwt from "jsonwebtoken"
 import { queryKeys } from "api/queryKey";
+import jwt_decode from 'jwt-decode';
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -40,8 +41,13 @@ export default function OTP() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
-  const { mutate } = useMutation(postRequest, {
+  const {showAlert} = React.useContext(ToastContext)
+  const { mutate } = useMutation(postOtp, {
     onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       const payload = {full_name: data?.data?.full_name,
         uid: data?.data?.uid,
         image: data?.data?.image}
@@ -49,7 +55,10 @@ export default function OTP() {
         payload,
         "verify"
       )
-      token && history.push(`/verify/${token}`, `/verify/${token}`);
+      // console.log(token, jwt_decode(token))
+      if(token){
+      window.location = `/${school}/verify/${token}`
+      } 
     },
     
   });

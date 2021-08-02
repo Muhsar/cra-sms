@@ -4,13 +4,14 @@ import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { getSchool, login } from "api/apiCall";
 import { GETSCHOOL, LOGIN_URL } from "api/apiUrl";
-// import { ToastContext } from "App.jsx";
+import { ToastContext } from "App.jsx";
 import jwt_decode from "jwt-decode";
 import LoginDialog from "components/LoginDialog";
 import { queryKeys } from "api/queryKey";
 
 
 export default function Login() {
+  const {showAlert} = React.useContext(ToastContext)
   const history = useHistory()
   const params: {slug: any} = useParams()
   const school = params?.slug
@@ -40,7 +41,11 @@ export default function Login() {
     setState({ ...state, [event.target.name]: event.target.value });
   };
   const { mutate } = useMutation(login, {
-    onSuccess() {
+    onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
       localStorage.setItem("schoolLogo", schoolData?.logo);
@@ -54,14 +59,16 @@ export default function Login() {
       }
       if (token?.groups.length === 1) {
         if (token?.groups[0] === "Teacher") {
-          // history.push(`/${school}/staff/`);
-          // <Redirect to={{pathname: `/${school}/staff/`, state : {from: location}}} />
           window.location = `/${school}/staff/`;
+        }
+        if (token?.groups[0] === "Bursar") {
+          window.location = `/${school}/bursar/`;
+        }
+        if (token?.groups[0] === "Secretary") {
+          window.location = `/${school}/secretary/`;
         }
         if (token?.groups[0] === "School Owner") {
           window.location = `/${school}/school/`;
-          // <Redirect to={{pathname: `/${school}/school/`, state : {from: location}}} />
-          // history.push(`/${school}/school/`);
         }
       }
       // history.replace("/school/", "/school/");

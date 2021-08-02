@@ -15,6 +15,7 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 export default function ChangePassword() {
   const { slug, id} = useParams()
   const staff = id
+  console.log(staff)
   const school = slug
   const { data } = useQuery(
     [queryKeys.getSchool, school],
@@ -40,7 +41,16 @@ export default function ChangePassword() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
-  const { mutate } = useMutation(postRequest);
+  const {showAlert}  = React.useContext(ToastContext)
+  const { mutate } = useMutation(postRequest, {
+   onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
+      window.location = `/${school}/login`
+    }
+  });
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({

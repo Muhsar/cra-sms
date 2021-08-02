@@ -56,7 +56,7 @@ export default function SingleClass() {
     }
   );
   const { data: homeroom } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
+    [queryKeys.getClass, token?.school_uid],
     async () => await getRequest({ url: HOMEROOM(token?.school_uid, classId) }),
     {
       retry: 2,
@@ -72,8 +72,13 @@ export default function SingleClass() {
     }
   );
   const cache = useQueryClient()
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-    onSuccess(data: any) {
+    onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       setOpen(false)
       const subjectsData = state.subjects.map(subject=>{
         const datas = {subject: {name: subject.name}}

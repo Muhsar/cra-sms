@@ -132,7 +132,7 @@ export default function StaffLayout({ Component, currentPage }) {
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
                   className="w-auto h-8"
-                  src="/logo/staff_logo.png"
+                  src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/staff_logo_labbas.png"
                   alt="Workflow"
                 />
               </div>
@@ -179,7 +179,7 @@ export default function StaffLayout({ Component, currentPage }) {
                         localStorage?.removeItem("schoolName");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolLogo");
-                      history.push(`/${slug}/login`);
+                      window.location =`/${slug}/login`;
                     }}
                   >
                     <LogoutIcon
@@ -209,7 +209,7 @@ export default function StaffLayout({ Component, currentPage }) {
             <div className="flex items-center flex-shrink-0 h-16 px-4 bg-gray-900">
               <img
                 className="w-auto h-8"
-                src="/logo/staff_logo.png"
+                src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/staff_logo_labbas.png"
                 alt="Workflow"
               />
             </div>
@@ -255,7 +255,7 @@ export default function StaffLayout({ Component, currentPage }) {
                       localStorage?.removeItem("schoolName");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolLogo");
-                    history.push(`/${slug}/login`);
+                    window.location =`/${slug}/login`;
                   }}
                 >
                   <LogoutIcon

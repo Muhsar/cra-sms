@@ -155,7 +155,7 @@ export default function SchoolLayout({ Component, currentPage }) {
               <div className="flex items-center flex-shrink-0 px-4">
                 <img
                   className="w-auto h-8"
-                  src="/logo/school_logo.png"
+                  src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/school_logo_zoz03u.png"
                   alt="Workflow"
                 />
               </div>
@@ -196,7 +196,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      history.push(`/${slug}/login`)
+                      window.location =`/${slug}/login`
                     }}
                       >
                         <LogoutIcon
@@ -210,7 +210,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                       </a>
                 </nav>
               </div>
-              <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+              {/* <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
               <a href="#" className="flex-shrink-0 w-full group block">
                 <div className="flex items-center">
                   <div>
@@ -226,7 +226,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                   </div>
                 </div>
               </a>
-            </div>
+            </div> */}
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -243,7 +243,7 @@ export default function SchoolLayout({ Component, currentPage }) {
             <div className="flex items-center flex-shrink-0 px-4">
               <img
                 className="w-auto h-8"
-                src="/logo/school_logo.png"
+                src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/school_logo_zoz03u.png"
                 alt="Workflow"
               />
             </div>
@@ -284,7 +284,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      history.push(`/${slug}/login`)
+                      window.location =`/${slug}/login`
                     }}
                       >
                         <LogoutIcon
@@ -298,7 +298,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                       </a>
               </nav>
             </div>
-            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+            {/* <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
                 <a href="#" className="flex-shrink-0 group block">
                   <div className="flex items-center">
                     <div>
@@ -314,7 +314,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                     </div>
                   </div>
                 </a>
-              </div>
+              </div> */}
           </div>
         </div>
       </motion.div>

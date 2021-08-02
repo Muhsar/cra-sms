@@ -11,6 +11,7 @@ import SchoolLayout from 'components/SchoolLayout';
 import { ToastContext } from 'App.jsx';
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+// import { ToastContext } from 'App.jsx';
 export const getServerSideProps = (context: { query: { staff: any, school: any } }) => {
   const { staff, school } = context.query;
 
@@ -68,8 +69,13 @@ export default function EditStaff() {
     });
   };
   const cache = useQueryClient()
-  const { mutate } = useMutation(patchRequest, {
-    onSuccess(data) {
+  const {showAlert}  = React.useContext(ToastContext)
+  const { mutate } = useMutation(postRequest, {
+   onSuccess(data) {
+      showAlert({
+        message: data?.message,
+        severity: "success",
+      });
       cache.invalidateQueries()
     },
   });

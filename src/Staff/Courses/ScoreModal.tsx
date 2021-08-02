@@ -29,7 +29,7 @@ export default function ScoreModal({setID,
                 name="first_ca"
                 type="number"
                 autoComplete="first_ca"
-                required
+                
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
                 placeholder="Enter Course Name"
               />
@@ -43,7 +43,7 @@ export default function ScoreModal({setID,
                 name="second_ca"
                 type="number"
                 autoComplete="second_ca"
-                required
+                
                 placeholder="Enter Second CA Score"
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
               />
@@ -57,7 +57,7 @@ export default function ScoreModal({setID,
                 name="exam"
                 type="number"
                 autoComplete="exam"
-                required
+                
                 placeholder="Enter Exam Score"
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
               />
