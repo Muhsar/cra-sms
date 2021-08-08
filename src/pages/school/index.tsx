@@ -1,7 +1,7 @@
 import React from "react";
 import SchoolLayout from "components/SchoolLayout";
 import Dashboard from "School/Dashboard";
-import { useLocation, useParams, withRouter, Redirect } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { ToastContext } from "App.jsx";
 import { useQuery } from "react-query";
 import { getRequest } from "api/apiCall";

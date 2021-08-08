@@ -45,7 +45,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "fix": "eslint . --fix",
-    "build-css": "tailwindcss build -i src/styles/raw.css -o src/styles/style.css"
+    "build-css": "tailwindcss build -i src/style.css -o public/style.css"
   },
   "eslintConfig": {
     "extends": [
