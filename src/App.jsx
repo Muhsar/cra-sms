@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import {
   BrowserRouter as Router
 } from "react-router-dom";
+import {Helmet} from "react-helmet"
 import { UnAuthorized } from "./routes/auth";
 import { Both } from "./routes/both";
 import { Bursar } from "./routes/bursar";
