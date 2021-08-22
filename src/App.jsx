@@ -75,6 +75,7 @@ const { showAlert, Toast } = useToast();
           <meta property="og:type" content="website" />
         </div>
       </Helmet>
+      {/* <AnimateSharedLayout> */}
       <ToastContext.Provider value={{ showAlert }}>
       <Toast />
       <Router>
@@ -88,6 +89,7 @@ const { showAlert, Toast } = useToast();
           {/* <UserRoutes /> */}
       </Router>
       </ToastContext.Provider>
+      {/* </AnimateSharedLayout> */}
       </>
     );
 }
