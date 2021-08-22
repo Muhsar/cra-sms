@@ -56,6 +56,24 @@ const { showAlert, Toast } = useToast();
     const user = AuthFunction();
 
     return (
+      <>
+      <Helmet>
+        <title>Easy SCH</title>
+        <div>
+          <meta name="description" content="A School Management System Made Easy For Primary and Secondary Schools" />
+          <meta
+            property="og:description"
+            content="A School Management System Made Easy For Primary and Secondary Schools"
+          />
+          <meta property="og:title" content="Easy SCH" />
+          <meta
+            name="twitter:description"
+            content="A School Management System Made Easy For Primary and Secondary Schools"
+          />
+          <meta name="twitter:title" content="Easy SCH" />
+          <meta property="og:type" content="website" />
+        </div>
+      </Helmet>
       <ToastContext.Provider value={{ showAlert }}>
       <Toast />
       <Router>
@@ -69,5 +87,6 @@ const { showAlert, Toast } = useToast();
           {/* <UserRoutes /> */}
       </Router>
       </ToastContext.Provider>
+      </>
     );
 }

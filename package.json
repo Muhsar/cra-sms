@@ -30,6 +30,7 @@
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.1",
     "react-material-ui-carousel": "^2.2.7",
     "react-query": "^3.19.0",
@@ -67,6 +68,7 @@
   },
   "devDependencies": {
     "@types/node": "^16.4.0",
+    "@types/react-helmet": "^6.1.2",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "autoprefixer": "^9",
