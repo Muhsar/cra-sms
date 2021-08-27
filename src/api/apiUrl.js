@@ -2,7 +2,8 @@
 
 // TODO: return teacher ID gotten in the token from the page that actually requires it
 // const teacher_id = token()?.groups.length > 0 && (token()?.groups[0] || token()?.groups[1]) === "Teacher" && token()?.teacher_id
-const API_URL = "https://scoolz.herokuapp.com/api/v1";
+// const API_URL = "https://scoolz.herokuapp.com/api/v1";
+const API_URL = "http://localhost:8000/api/v1";
 // const schoolId = token()?.school_uid;
 const LOGGED_IN = (schoolId) => `${API_URL}/schools/${schoolId}`;
 export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
