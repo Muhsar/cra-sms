@@ -35,26 +35,26 @@ export default function EditStaff() {
     React.useEffect(() => {
 
     setTeacher(teacherList?.data)
-    setState({first_name: teacher?.user.first_name,
-      last_name: teacher?.user.last_name,
+    setState({first_name: teacher?.first_name,
+      last_name: teacher?.last_name,
       religion: teacher?.religion,
-      phone_number: teacher?.user.phone_number,
+      phone_number: teacher?.phone_number,
       address: teacher?.address,
       date_of_birth: teacher?.date_of_birth,
-      email: teacher?.user.email,
+      email: teacher?.email,
       gender: teacher?.gender,
-      full_name: teacher?.user.full_name})
+      full_name: teacher?.full_name})
   }, [teacherList?.data, teacher])
   const [state, setState] = React.useState({
-    first_name: teacher?.user.first_name,
-        last_name: teacher?.user.last_name,
+    first_name: teacher?.first_name,
+        last_name: teacher?.last_name,
         religion: teacher?.religion,
-        phone_number: teacher?.user.phone_number,
+        phone_number: teacher?.phone_number,
         address: teacher?.address,
         date_of_birth: teacher?.date_of_birth,
-        email: teacher?.user.email,
+        email: teacher?.email,
         gender: teacher?.gender,
-        full_name: teacher?.user.full_name
+        full_name: teacher?.full_name
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({

@@ -7,7 +7,7 @@ export default function ErrorPage(props) {
     const token = jwt_decode(localStorage?.token)
     const {slug} = useParams()
     console.log(useParams())
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="School Owner") {
+    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Owner") {
         window.location = `/${localStorage?.schoolSlug}/school`
     }
     if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Teacher") {

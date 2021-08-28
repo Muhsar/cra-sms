@@ -67,7 +67,7 @@ export default function Login() {
         if (token?.groups[0] === "Secretary") {
           window.location = `/${school}/secretary/`;
         }
-        if (token?.groups[0] === "School Owner") {
+        if (token?.groups[0] === "Owner") {
           window.location = `/${school}/school/`;
         }
       }
@@ -84,21 +84,22 @@ export default function Login() {
   //       if (token?.groups[0] === "Teacher") {
   //         setRedirectRoute(`/${school}/staff/`);
   //       }
-  //       if (token?.groups[0] === "School Owner") {
+  //       if (token?.groups[0] === "Owner") {
   //         setRedirectRoute(`/${school}/school/`);
   //       }
   //     }
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: LOGIN_URL,
+      url: LOGIN_URL(schoolData?.uid),
       data: {
-        email: state.email,
+        username: state.email,
         password: state.password,
+        school_id: schoolData?.uid
       },
     });
   };
- 
+ console.log(schoolData?.uid)
   return (
     <>
     {/* {
@@ -144,14 +145,14 @@ export default function Login() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Email address
+                    Mobile Number Or Email Address
                   </label>
                   <div className="mt-1">
                     <input
                       onChange={handleChange}
                       id="email"
                       name="email"
-                      type="email"
+                      type="text"
                       autoComplete="email"
                       required
                       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"

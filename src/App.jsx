@@ -3,7 +3,8 @@
 import React from "react";
 import jwt_decode from "jwt-decode";
 import {
-  BrowserRouter as Router
+  BrowserRouter as Router,
+  Route
 } from "react-router-dom";
 import {Helmet} from "react-helmet"
 import { UnAuthorized } from "./routes/auth";
@@ -13,8 +14,8 @@ import { Owner } from "./routes/owner";
 import { Parent } from "./routes/parent";
 import { Secretary } from "./routes/secretary";
 import { Teacher } from "./routes/teacher";
+import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import useToast from './components/Alerts';
-// import { schoolRoutes, unauthorizedUser, staffRoutes, joinedRoutes } from './navigation.ts';
 
 export const ToastContext = React.createContext();
 
@@ -35,7 +36,7 @@ const { showAlert, Toast } = useToast();
           if (token?.groups[0] === "Teacher") {
             auth = "Teacher";
           }
-          if (token?.groups[0] === "School Owner") {
+          if (token?.groups[0] === "Owner") {
             auth = "Owner";
           }
           if (token?.groups[0] === "Secretary") {
@@ -75,10 +76,13 @@ const { showAlert, Toast } = useToast();
           <meta property="og:type" content="website" />
         </div>
       </Helmet>
-      {/* <AnimateSharedLayout> */}
+      <AnimateSharedLayout>
       <ToastContext.Provider value={{ showAlert }}>
       <Toast />
       <Router>
+      <Route
+      render={({location})=>(
+        <AnimatePresence exitBeforeEnter>
           {user === "Both" && Both}
           {user === "UnAuthorized" && UnAuthorized}
           {user === "Teacher" && Teacher}
@@ -86,10 +90,13 @@ const { showAlert, Toast } = useToast();
           {user === "Parent" && Parent}
           {user === "Secretary" && Secretary}
           {user === "Bursar" && Bursar}
+        </AnimatePresence>
+      )}
+      />
           {/* <UserRoutes /> */}
       </Router>
       </ToastContext.Provider>
-      {/* </AnimateSharedLayout> */}
+      </AnimateSharedLayout>
       </>
     );
 }

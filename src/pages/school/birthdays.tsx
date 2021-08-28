@@ -88,7 +88,7 @@ const Body = ({students, teachers}) => {
           <div className="flex-1 min-w-0">
             <a href="#" className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
-              <p className="text-sm font-medium text-gray-900">{teacher.user.full_name}</p>
+              <p className="text-sm font-medium text-gray-900">{teacher.full_name}</p>
               <p className="text-sm text-gray-500 truncate">{moment(teacher.date_of_birth).format("LL")}</p>
             </a>
           </div>
@@ -104,7 +104,7 @@ const Body = ({students, teachers}) => {
                 >
             <div className="flex-1 flex flex-col py-4">
               <img className="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full object-center object-cover" src={teacher.image ? teacher.image : teacher.gender==="Male" ? images.male : images.female} alt="" />
-              <h3 className="mt-6 text-gray-900 text-sm font-medium">{teacher.user.full_name}</h3>
+              <h3 className="mt-6 text-gray-900 text-sm font-medium">{teacher.full_name}</h3>
               <dl className="mt-1 flex-grow flex flex-col justify-between">
                 <dt className="sr-only">Class</dt>
                 <dt className="sr-only">Date Of Birth</dt>

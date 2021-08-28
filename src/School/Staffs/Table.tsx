@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function Table({ teachers, school }) {
+  console.log(teachers)
   return (
     <div className="hidden sm:flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -47,13 +48,13 @@ export default function Table({ teachers, school }) {
                 {teachers?.map((person) => (
                     <tr className="cursor-pointer bg-gray-50 hover:bg-gray-200">
                       <td className="px-6 hidden sm:inline py-4 whitespace-nowrap cursor-pointer">
-                  <Link to={`/${school}/school/staff/${person.id}`}>
+                  <Link to={`/${school}/school/staff/${person?.id}`}>
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 ml-3">
                             <img
                               className="h-10 w-10 rounded-full object-center object-cover"
                               src={
-                                person.user.image ? person.user.image : person.gender === "Male"
+                                person?.image ? person?.image : person?.gender === "Male"
                                   ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png"
                                   : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png"
                               }
@@ -62,10 +63,10 @@ export default function Table({ teachers, school }) {
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
-                              {person.user.full_name}
+                              {person?.full_name}
                             </div>
                             <div className="text-sm text-gray-500">
-                              {person.user.email}
+                              {person?.email}
                             </div>
                           </div>
                         </div>
@@ -73,22 +74,22 @@ export default function Table({ teachers, school }) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {person.gender}
+                          {person?.gender}
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">
-                          {person.user.role}
+                          {person?.groups[0]?.name}
                         </div>
                       </td>
-                      {!person.user.is_active && (
+                      {!person?.is_active && (
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                             Pending
                           </span>
                         </td>
                       )}
-                      {person.user.is_active && (
+                      {person?.is_active && (
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                             Active
@@ -97,7 +98,7 @@ export default function Table({ teachers, school }) {
                       )}
 
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {person.user.phone_number}
+                        {person?.phone_number}
                       </td>
                     </tr>
                 ))}

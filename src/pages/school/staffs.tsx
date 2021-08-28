@@ -51,12 +51,12 @@ export default function SchoolStaffs() {
         ...teachers,
         {
           user: {
-            full_name: data?.data.user.full_name,
-            image: data?.data.user.image,
-            email: data?.data.user.email,
-            is_active: data?.data.user.is_active,
-            role: data?.data.user.role,
-            phone_number: data?.data.user.phone_number,
+            full_name: data?.data.full_name,
+            image: data?.data.image,
+            email: data?.data.email,
+            is_active: data?.data.is_active,
+            role: data?.data.groups[0]?.name,
+            phone_number: data?.data.phone_number,
           },
           gender: data?.data.gender,
           id: data?.data.id,

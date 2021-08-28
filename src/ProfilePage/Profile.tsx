@@ -34,7 +34,7 @@ export default function Profile({data, details}) {
           </div>
           <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
             <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-              <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.user.full_name:data?.full_name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.full_name:data?.full_name}</h1>
             </div>
             <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
               <button
@@ -55,7 +55,7 @@ export default function Profile({data, details}) {
           </div>
         </div>
         <div className="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
-          <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.user.full_name:data?.full_name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.full_name:data?.full_name}</h1>
         </div>
     {/* <div className="flex flex-wrap -m-1 pt-5" id="Guests">
       {details?.map((detail: any) => (

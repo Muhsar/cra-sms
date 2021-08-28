@@ -43,12 +43,12 @@ export default function SingleStaff() {
   //   setState({ ...state, [event.target.name]: event.target.value });
   // };
   const StaffDetail = [
-    { param: "Full Name", value: teacher?.user.full_name },
-    { param: "Email Address", value: teacher?.user.email },
+    { param: "Full Name", value: teacher?.full_name },
+    { param: "Email Address", value: teacher?.email },
     { param: "Class", value: teacher?.class },
     { param: "Gender", value: teacher?.gender },
     { param: "Religion", value: teacher?.religion },
-    { param: "Mobile Number", value: teacher?.user.phone_number },
+    { param: "Mobile Number", value: teacher?.phone_number },
     { param: "Date Of Birth", value: teacher?.date_of_birth },
     { param: "Residential Address", value: teacher?.address },
   ]

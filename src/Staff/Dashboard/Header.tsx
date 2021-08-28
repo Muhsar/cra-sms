@@ -44,12 +44,12 @@ export default function Header({teacher}) {
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="sm:flex sm:space-x-5">
             <div className="flex-shrink-0">
-              <img className="mx-auto h-20 w-20 rounded-full object-cover object-center" src={teacher?.user.image} alt="" />
+              <img className="mx-auto h-20 w-20 rounded-full object-cover object-center" src={teacher?.image} alt="" />
             </div>
             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
               <p className="text-sm font-medium text-gray-600">Welcome back,</p>
-              <p className="text-xl font-bold text-gray-900 sm:text-2xl">{teacher?.user.full_name}</p>
-              <p className="text-sm font-medium text-gray-600 capitalize">{teacher?.user.email}</p>
+              <p className="text-xl font-bold text-gray-900 sm:text-2xl">{teacher?.full_name}</p>
+              <p className="text-sm font-medium text-gray-600 capitalize">{teacher?.email}</p>
             </div>
           </div>
         </div>

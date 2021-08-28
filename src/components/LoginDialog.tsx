@@ -19,7 +19,7 @@ export default function LoginDialog({open, setOpen, school}) {
                                       <div className="grid grid-cols-2 gap-x-4 gap-y-4">
                                           <Link to={`/${school}/school/`}className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">
                                           <>
-                                              <p className="text-center">School Owner</p>
+                                              <p className="text-center">Owner</p>
                                           </>
                                           </Link>
                                           <Link to={`/${school}/staff/`}className="border border-grey-500 cursor-pointer p-4 shadow text-gray-700 transition-all transform hover:scale-105">

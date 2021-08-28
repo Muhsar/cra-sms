@@ -7,7 +7,7 @@ const API_URL = "https://scoolz.herokuapp.com/api/v1";
 const LOGGED_IN = (schoolId) => `${API_URL}/schools/${schoolId}`;
 export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
-export const LOGIN_URL = `${API_URL}/token`;
+export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
 export const REGISTER_URL = `${API_URL}/register`;
 export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 export const SENDMESSAGE = (schoolId) =>`${LOGGED_IN(schoolId)}/send-message`; //Add and get students
@@ -15,7 +15,7 @@ export const BIRTHDAYS = (schoolId) =>`${LOGGED_IN(schoolId)}/birthdays`; //Add 
 export const TEACHERBIRTHDAYS = (schoolId) =>`${LOGGED_IN(schoolId)}/birthdays?role=Teacher`; //Add and get students
 export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
 export const STUDENTPAYMENT = (schoolId, studentId) => `${STUDENT(schoolId, studentId)}/payments`
-export const TEACHERS = (schoolId) =>`${LOGGED_IN(schoolId)}/teachers`; //Add and get teachers
+export const TEACHERS = (schoolId) =>`${LOGGED_IN(schoolId)}/staffs`; //Add and get teachers
 export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
 // export const TEACHERACCOUNT = `${TEACHER(teacher_id)}`; //get singe teacher
 export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}/courses`; //get singe teacher

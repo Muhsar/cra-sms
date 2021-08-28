@@ -12,13 +12,13 @@ export default function Cards({staffs, school}) {
           <div className="w-full flex items-center justify-between p-6 space-x-6">
             <div className="flex-1 truncate">
               <div className="flex items-center space-x-3">
-                <h3 className="text-gray-900 text-sm font-medium truncate">{staff.user.full_name}</h3>
+                <h3 className="text-gray-900 text-sm font-medium truncate">{staff.full_name}</h3>
                 
               </div>
-              <p className="mt-1 text-gray-500 text-sm truncate">{staff.user.email}</p>
-              <p className="mt-1 text-gray-500 text-sm truncate">Role: {staff.user.role}</p>
+              <p className="mt-1 text-gray-500 text-sm truncate">{staff.email}</p>
+              <p className="mt-1 text-gray-500 text-sm truncate">Role: {staff.groups[0]?.name}</p>
             </div>
-            <img className="bg-gray-300 rounded-full w-16 h-16 object-center object-cover flex-shrink-0" src={staff.user.image ? staff.user.image : staff?.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png"} alt="" />
+            <img className="bg-gray-300 rounded-full w-16 h-16 object-center object-cover flex-shrink-0" src={staff.image ? staff.image : staff?.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png"} alt="" />
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">
