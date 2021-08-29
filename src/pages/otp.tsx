@@ -51,13 +51,13 @@ export default function OTP() {
       const payload = {full_name: data?.data?.full_name,
         uid: data?.data?.uid,
         image: data?.data?.image}
-    const token =  jwt.sign(
+    const easysch_token =  jwt.sign(
         payload,
         "verify"
       )
-      // console.log(token, jwt_decode(token))
-      if(token){
-      window.location = `/${school}/verify/${token}`
+      // console.log(easysch_token, jwt_decode(easysch_token))
+      if(easysch_token){
+      window.location = `/${school}/verify/${easysch_token}`
       } 
     },
     

@@ -8,9 +8,9 @@ const apiToken = axios.create({
 apiToken.interceptors.request.use(
   (config) => {
     // Add authorization key to config object if it exist
-    const token = localStorage.getItem('token')
-    if (token) {
-      config.headers.common.Authorization = `Bearer ${token}`
+    const easysch_token = localStorage.getItem('easysch_token')
+    if (easysch_token) {
+      config.headers.common.Authorization = `Bearer ${easysch_token}`
     }
 
     return config
@@ -25,9 +25,9 @@ export const apiDownloadToken = axios.create({
 apiDownloadToken.interceptors.request.use(
   (config) => {
     // Add authorization key to config object if it exist
-    const token = localStorage.getItem('token')
-    if (token) {
-      config.headers.common.Authorization = `Bearer ${token}`
+    const easysch_token = localStorage.getItem('easysch_token')
+    if (easysch_token) {
+      config.headers.common.Authorization = `Bearer ${easysch_token}`
     }
 
     return config

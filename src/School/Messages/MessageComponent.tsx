@@ -10,7 +10,7 @@ import { STUDENT } from 'api/apiUrl';
 
 export default function MessageComponent({handleSelect, roomOptions, studentsOption, state, setState}) {
   // const [open, setOpen] = useState(false)
-  // const token = jwt_decode(localStorage?.token)
+  // const easysch_token = jwt_decode(localStorage?.easysch_token)
 const handleRecipient = (e: React.ChangeEvent<HTMLSelectElement>) => {
   const recipient = e.target.value
   setState({...state, steps:{group:  null, recipient}})

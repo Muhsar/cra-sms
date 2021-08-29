@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-// TODO: return teacher ID gotten in the token from the page that actually requires it
-// const teacher_id = token()?.groups.length > 0 && (token()?.groups[0] || token()?.groups[1]) === "Teacher" && token()?.teacher_id
+// TODO: return teacher ID gotten in the easysch_token from the page that actually requires it
+// const teacher_id = easysch_token()?.groups.length > 0 && (easysch_token()?.groups[0] || easysch_token()?.groups[1]) === "Teacher" && easysch_token()?.teacher_id
 const API_URL = "https://scoolz.herokuapp.com/api/v1";
-// const schoolId = token()?.school_uid;
 const LOGGED_IN = (schoolId) => `${API_URL}/schools/${schoolId}`;
 export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
@@ -35,57 +34,3 @@ export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
 export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
 export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
 export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
-// /schools/slug
-//  /students/studentId/payments
-// /schools/schoolID/students/studentIIID/grade
-// /schools/schoolID/birthdays?role=Teacher
-// /schools/schoolID/students/studentId/results
-// Ep to assign subject to classes. 
-// /api/school/schoolid/classes/classid/courses.
-// Post request.
-// Request body is 
-// {subject_ids : [ ]}
-// path('schools/<uuid:school_id>/students', student_views.StudentsView.as_view()), # Create students and get all students
-// path('schools/<uuid:school_id>/students/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'), # View/edit/delete single student and
-// path('schools/<uuid:school_id>/classes', TokenRefreshView.as_view(), name='token_refresh'), # Get all classes for school admin and create class
-// path('schools/<uuid:school_id>/classes/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'), # Edit/view and delete class
-// path('schools/<uuid:school_id>/classes', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/classes/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/payments', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/payments/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/teachers', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/teachers/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'),
-// path('schools/<uuid:school_id>/courses', TokenRefreshView.as_view(), name='token_refresh'), # Add courses
-// path('schools/<uuid:school_id>/courses/<int:pk>', TokenRefreshView.as_view(), name='token_refresh'),
-// 4edd41dd - 0798 - 4184 - 90b8 - a4800f77685d
-// {
-// 	"first_name": "Issa",
-// 	"last_name": "Jubril",
-// 	"religion": "Islam",
-// 	"middle_name": "isere",
-// 	"guardian_full_name": "Seidu Jubril",
-// 	"guardian_full_name2": "Safiat Jubril",
-// 	"phone_number": "08034246506",
-// 	"phone_number2": "08162203128",
-// 	"address": "22 Olukosi street Agege",
-// 	"state_of_origin": "Kogi",
-// 	"date_of_birth": "1992-12-12",
-// 	"email": "jubrilissa@gmail.com",
-// 	"outstanding_debt": 400.50,
-// 	"class_id": 3,
-// 	"gender": "Male"
-// }
-// {
-// 	"name": "JSS 2",
-// 	"fee": 120000.56
-// }
-// {
-// 	"first_name": "Issa",
-// 	"last_name": "Jubril",
-// 	"religion": "Islam",
-// 	"phone_number": "08034246506",
-// 	"address": "22 Olukosi street Agege",
-// 	"date_of_birth": "1992-12-12",
-// 	"email": "teacher2@gmail.com",
-// 	"gender": "Male"
-// }

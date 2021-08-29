@@ -17,33 +17,33 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentCourses() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const { id: student, slug: school } = useParams()
   const [classId, setClassId] = React.useState()
   const { data: homeroomCourseList } = useQuery(
-    [queryKeys.getHomeroomCourses, classId, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMCOURSES(token?.school_uid, classId) }),
+    [queryKeys.getHomeroomCourses, classId, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMCOURSES(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid&&classId)
+      enabled: !!(easysch_token?.school_uid&&classId)
     }
   );
   const { data: studentCourseList } = useQuery(
-    [queryKeys.getStudentCourses, classId, token?.school_uid],
-    async () => await getRequest({ url: STUDENTCOURSES(token?.school_uid, student) }),
+    [queryKeys.getStudentCourses, classId, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTCOURSES(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid&&classId)
+      enabled: !!(easysch_token?.school_uid&&classId)
     }
   );
   const {
     data:studentList
   } = useQuery(
-    [queryKeys.getStudent, token?.school_uid],
-    async () => await getRequest({ url: STUDENT(token?.school_uid, student) }),
+    [queryKeys.getStudent, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENT(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [list, setStudent] = React.useState(studentList?.data)
@@ -76,7 +76,7 @@ export default function StudentCourses() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: STUDENTCOURSES(token?.school_uid, student),
+      url: STUDENTCOURSES(easysch_token?.school_uid, student),
       data: {
         subject_class_ids: state.subject_ids
       },

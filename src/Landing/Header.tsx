@@ -27,8 +27,8 @@ export default function Header({navigation}) {
                       <a href="#">
                         <span className="sr-only">Workflow</span>
                         <img
-                          className="h-8 w-auto sm:h-10"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
+                          className="h-12 w-auto sm:h-10"
+                          src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/staff_logo_labbas.png"
                           alt=""
                         />
                       </a>
@@ -85,7 +85,7 @@ export default function Header({navigation}) {
                       <div>
                         <img
                           className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-500-cyan-600.svg"
+                          src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/school_logo_zoz03u.png"
                           alt=""
                         />
                       </div>

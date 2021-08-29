@@ -23,34 +23,34 @@ export default function Test() {
   // console.log(window.location.hostname.slice(0, -10))
 const { showAlert, Toast } = useToast();
 
-    const token: { groups: any[] } =
-      localStorage?.token && jwt_decode(localStorage?.token);
-      console.log(token)
+    const easysch_token: { groups: any[] } =
+      localStorage?.easysch_token && jwt_decode(localStorage?.easysch_token);
+      console.log(easysch_token)
     const AuthFunction = () => {
       let auth = "";
-      if (token && token !== "undefined") {
-        if (token?.groups.length === 2) {
+      if (easysch_token && easysch_token !== "undefined") {
+        if (easysch_token?.groups.length === 2) {
           auth = "Both";
         }
-        if (token?.groups.length === 1) {
-          if (token?.groups[0] === "Teacher") {
+        if (easysch_token?.groups.length === 1) {
+          if (easysch_token?.groups[0] === "Teacher") {
             auth = "Teacher";
           }
-          if (token?.groups[0] === "Owner") {
+          if (easysch_token?.groups[0] === "Owner") {
             auth = "Owner";
           }
-          if (token?.groups[0] === "Secretary") {
+          if (easysch_token?.groups[0] === "Secretary") {
             auth = "Secretary";
           }
-          if (token?.groups[0] === "Bursar") {
+          if (easysch_token?.groups[0] === "Bursar") {
             auth = "Bursar";
           }
-          if (token?.groups[0] === "Parent") {
+          if (easysch_token?.groups[0] === "Parent") {
             auth = "Parent";
           }
         }
       }
-      if (!token || token == "undefined") {
+      if (!easysch_token || easysch_token == "undefined") {
         auth = "UnAuthorized";
       }
       return auth;

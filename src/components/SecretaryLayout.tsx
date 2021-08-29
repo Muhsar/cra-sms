@@ -171,7 +171,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                     )}
                     onClick={() => {
                       typeof window !== "undefined" &&
-                        localStorage?.removeItem("token");
+                        localStorage?.removeItem("easysch_token");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolId");
                       typeof window !== "undefined" &&
@@ -247,7 +247,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                   )}
                   onClick={() => {
                     typeof window !== "undefined" &&
-                      localStorage?.removeItem("token");
+                      localStorage?.removeItem("easysch_token");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolId");
                     typeof window !== "undefined" &&

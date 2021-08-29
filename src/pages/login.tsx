@@ -50,24 +50,24 @@ export default function Login() {
       localStorage.setItem("schoolName", schoolData?.name);
       localStorage.setItem("schoolLogo", schoolData?.logo);
       localStorage.setItem("schoolSlug", school.toLowerCase())
-      const token: { groups: string[] } =
+      const easysch_token: { groups: string[] } =
         typeof window !== "undefined" &&
-        jwt_decode(localStorage?.getItem("token"));
-      if (token?.groups.length === 2) {
+        jwt_decode(localStorage?.getItem("easysch_token"));
+      if (easysch_token?.groups.length === 2) {
         setOpen(true);
         // LoginDialog({open, setOpen})
       }
-      if (token?.groups.length === 1) {
-        if (token?.groups[0] === "Teacher") {
+      if (easysch_token?.groups.length === 1) {
+        if (easysch_token?.groups[0] === "Teacher") {
           window.location = `/${school}/staff/`;
         }
-        if (token?.groups[0] === "Bursar") {
+        if (easysch_token?.groups[0] === "Bursar") {
           window.location = `/${school}/bursar/`;
         }
-        if (token?.groups[0] === "Secretary") {
+        if (easysch_token?.groups[0] === "Secretary") {
           window.location = `/${school}/secretary/`;
         }
-        if (token?.groups[0] === "Owner") {
+        if (easysch_token?.groups[0] === "Owner") {
           window.location = `/${school}/school/`;
         }
       }
@@ -75,16 +75,16 @@ export default function Login() {
     },
   });
   // const [redirectRoute, setRedirectRoute] = React.useState("")
-  // const token: { groups: string[] } = typeof window !== "undefined" && localStorage?.token && localStorage?.token!=="undefined" && jwt_decode(localStorage?.token);
-  //     if (token?.groups.length === 2) {
+  // const easysch_token: { groups: string[] } = typeof window !== "undefined" && localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" && jwt_decode(localStorage?.easysch_token);
+  //     if (easysch_token?.groups.length === 2) {
   //       setOpen(true);
   //       // LoginDialog({open, setOpen})
   //     }
-  //     if (token?.groups.length === 1) {
-  //       if (token?.groups[0] === "Teacher") {
+  //     if (easysch_token?.groups.length === 1) {
+  //       if (easysch_token?.groups[0] === "Teacher") {
   //         setRedirectRoute(`/${school}/staff/`);
   //       }
-  //       if (token?.groups[0] === "Owner") {
+  //       if (easysch_token?.groups[0] === "Owner") {
   //         setRedirectRoute(`/${school}/school/`);
   //       }
   //     }
@@ -103,7 +103,7 @@ export default function Login() {
   return (
     <>
     {/* {
-      localStorage?.token && localStorage?.token !== "undefined" && token?.groups.length === 1 && <Redirect to={redirectRoute} />
+      localStorage?.easysch_token && localStorage?.easysch_token !== "undefined" && easysch_token?.groups.length === 1 && <Redirect to={redirectRoute} />
     } */}
     { 
     <>

@@ -16,15 +16,15 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolClasses() {
-const token = jwt_decode(localStorage?.token)
+const easysch_token = jwt_decode(localStorage?.easysch_token)
 const {slug} = useParams()
 const school = slug
   const { data: homerooms } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const [state, setState] = React.useState({
@@ -60,7 +60,7 @@ const school = slug
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: HOMEROOMS(token?.school_uid),
+      url: HOMEROOMS(easysch_token?.school_uid),
       data: {
         name: state.name,
         fee: state.fee,

@@ -32,15 +32,15 @@ export default function StudentResult() {
   const { id: student, slug: school } = useParams()
   console.log(student, school)
   const {schoolLogo: logo} = localStorage
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {
     data:resultData
   } = useQuery(
-    [queryKeys.getResults, student, token?.school_uid],
-    async () => await getRequest({ url: RESULTS(token?.school_uid, student) }),
+    [queryKeys.getResults, student, easysch_token?.school_uid],
+    async () => await getRequest({ url: RESULTS(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid&&student)
+      enabled: !!(easysch_token?.school_uid&&student)
     }
     )
   const [result, setStudents] = React.useState(resultData?.data)

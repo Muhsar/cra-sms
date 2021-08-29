@@ -20,14 +20,14 @@ export const getServerSideProps = (context: {
 
 export default function StudentFeeHistory() {
   const {id: student, slug: school} = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const { data: paymentHistory } = useQuery(
-    [queryKeys.getStudentPayment, token?.school_uid],
+    [queryKeys.getStudentPayment, easysch_token?.school_uid],
     async () =>
-      await getRequest({ url: STUDENTPAYMENT(token?.school_uid, student) }),
+      await getRequest({ url: STUDENTPAYMENT(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const [history, setHistory] = React.useState(paymentHistory?.data);

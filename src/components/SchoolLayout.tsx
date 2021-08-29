@@ -191,7 +191,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                     )}
                     onClick={() => {
-                      typeof window !== "undefined" && localStorage?.removeItem("token")
+                      typeof window !== "undefined" && localStorage?.removeItem("easysch_token")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolId")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
@@ -279,7 +279,7 @@ export default function SchoolLayout({ Component, currentPage }) {
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                     )}
                     onClick={() => {
-                      typeof window !== "undefined" && localStorage?.removeItem("token")
+                      typeof window !== "undefined" && localStorage?.removeItem("easysch_token")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolId")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")

@@ -11,15 +11,15 @@ import jwt_decode from 'jwt-decode';
 export default function dashboard() {
   const {slug} = useParams()
 const school = slug
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
-    [queryKeys.getTeacher, token?.teacher_id, token?.school_uid],
-    async () => await getRequest({ url: `${TEACHER(token?.school_uid, token?.teacher_id)}` }),
+    [queryKeys.getTeacher, easysch_token?.teacher_id, easysch_token?.school_uid],
+    async () => await getRequest({ url: `${TEACHER(easysch_token?.school_uid, easysch_token?.teacher_id)}` }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid && token?.teacher_id)
+      enabled: !!(easysch_token?.school_uid && easysch_token?.teacher_id)
     }
     )
   const [teacher, setTeacher] = React.useState(teacherList?.data)
@@ -29,11 +29,11 @@ const school = slug
   const {
     data:courseList
   } = useQuery(
-    [queryKeys.getCourses, token?.teacher_id, token?.school_uid],
-    async () => await getRequest({ url: `${TEACHERCOURSES(token?.school_uid, token?.teacher_id)}` }),
+    [queryKeys.getCourses, easysch_token?.teacher_id, easysch_token?.school_uid],
+    async () => await getRequest({ url: `${TEACHERCOURSES(easysch_token?.school_uid, easysch_token?.teacher_id)}` }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid&&token?.teacher_id)
+      enabled: !!(easysch_token?.school_uid&&easysch_token?.teacher_id)
     }
     )
   const [allCourses, setAllCourses] = React.useState(courseList?.data)

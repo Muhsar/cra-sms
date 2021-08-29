@@ -4,25 +4,25 @@ import { useParams, Redirect } from "react-router-dom"
 export default function ErrorPage(props) {
     console.log(props)
     const {location, match} = props
-    const token = jwt_decode(localStorage?.token)
+    const easysch_token = jwt_decode(localStorage?.easysch_token)
     const {slug} = useParams()
     console.log(useParams())
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Owner") {
+    if(localStorage?.easysch_token && localStorage!=="undefined" && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Owner") {
         window.location = `/${localStorage?.schoolSlug}/school`
     }
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Teacher") {
+    if(localStorage?.easysch_token && localStorage!=="undefined" && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Teacher") {
         window.location = `/${localStorage?.schoolSlug}/staff`
     }
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Secretary") {
+    if(localStorage?.easysch_token && localStorage!=="undefined" && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Secretary") {
         window.location = `/${localStorage?.schoolSlug}/secretary`
     }
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Burasr") {
+    if(localStorage?.easysch_token && localStorage!=="undefined" && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Burasr") {
         window.location = `/${localStorage?.schoolSlug}/bursar`
     }
-    if(localStorage?.token && localStorage!=="undefined" && token?.groups.length===1 && token?.groups[0]==="Parent") {
+    if(localStorage?.easysch_token && localStorage!=="undefined" && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Parent") {
         window.location = `/${localStorage?.schoolSlug}/parent`
     }
-    if(!localStorage?.token) {
+    if(!localStorage?.easysch_token) {
         window.location = `/${match.params.slug}/parent`
     }
     return (

@@ -21,15 +21,15 @@ export const getServerSideProps = (context: {
 };
 
 export default function SingleStudent() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {schoolLogo: logo} = localStorage
   const {slug: school, id: student} = useParams()
   const { data: studentList } = useQuery(
-    [queryKeys.getStudent, token?.school_uid],
-    async () => await getRequest({ url: STUDENT(token?.school_uid, student) }),
+    [queryKeys.getStudent, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENT(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const [list, setStudent] = React.useState(studentList?.data);

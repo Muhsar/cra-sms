@@ -17,13 +17,12 @@ export default function Features({features, img6}) {
         <div className="relative bg-gray-50 pt-16 sm:pt-24 md:pt-32">
             <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl md:px-8 md:max-w-7xl">
               <div>
-                <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">Serverless</h2>
+                {/* <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">Serverless</h2> */}
                 <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                  No server? No problem.
+                  Why EasySCH?.
                 </p>
-                <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                  Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper
-                  malesuada. Eleifend condimentum id viverra nulla.
+                <p className="mt-5 max-w-prose mx-auto text-xl text-gray-500 capitalize">
+                   Easy SCH is an app that manages and automate activities involved in running a school. It Is An All-In-One School Management System Professionally Developed For A Flexible User Experience
                 </p>
               </div>
               <div className="mt-12 -mb-10 sm:-mb-24 md:-mb-80">

@@ -46,7 +46,7 @@ import SecretaryEditStudent from "pages/secretary";
 export const UnAuthorized = (
   <Switch>
   <Route path="/:slug/school" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? (
+        localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" ? (
           <SchoolDashboard />
         ) : (
           <Redirect
@@ -58,7 +58,7 @@ export const UnAuthorized = (
         )
       } />
   <Route path="/:slug/staff" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? (
+        localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" ? (
           <StaffDashboard />
         ) : (
           <Redirect

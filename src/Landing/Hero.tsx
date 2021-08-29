@@ -27,14 +27,13 @@ export default function Hero({images}) {
                         Manage Your School
                       </span>
                     </h1>
-                    <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl md:text-md xl:text-xl">
-                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit
-                      sunt amet fugiat veniam occaecat fugiat.
+                    <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl md:text-md xl:text-xl capitalize">
+                     
                     </p>
                     <div className="mt-10 sm:mt-12">
-                      <form action="#" className="sm:max-w-xl sm:mx-auto md:mx-0">
+                      <div className="sm:max-w-xl sm:mx-auto md:mx-0">
                         <div className="sm:flex">
-                          <div className="min-w-0 flex-1">
+                          {/* <div className="min-w-0 flex-1">
                             <label htmlFor="email" className="sr-only">
                               Email address
                             </label>
@@ -44,25 +43,25 @@ export default function Hero({images}) {
                               placeholder="Enter your email"
                               className="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                             />
-                          </div>
-                          <div className="mt-3 sm:mt-0 sm:ml-3">
+                          </div> */}
+                          <div className="mt-3 sm:mt-0 sm:ml-3 flex-1">
                             <button
                               type="submit"
-                              className="block w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                              className="block w-full py-3 px-4 rounded-md shadow bg-white text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                             >
-                              Start free trial
+                              Create Account
+                            </button>
+                          </div>
+                          <div className="mt-3 sm:mt-0 sm:ml-3 flex-1">
+                            <button
+                              type="submit"
+                              className="block w-full py-3 px-4 rounded-md shadow bg-white text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                            >
+                              Login
                             </button>
                           </div>
                         </div>
-                        <p className="mt-3 text-sm text-gray-300 sm:mt-4">
-                          Start your free 14-day trial, no credit card necessary. By providing your email, you agree to
-                          our{' '}
-                          <a href="#" className="font-medium text-white">
-                            terms or service
-                          </a>
-                          .
-                        </p>
-                      </form>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -22,25 +22,25 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 export default function SchoolStudents() {
   const {slug} = useParams()
   const school = slug
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {
     data:homerooms
   } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const {
     data:studentList
   } = useQuery(
-    [queryKeys.getStudents, token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(token?.school_uid) }),
+    [queryKeys.getStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
     const [rooms, setRooms] = React.useState(homerooms?.data)
@@ -106,7 +106,7 @@ export default function SchoolStudents() {
     data.append("class_id", state.class_id)
     data.append("gender", state.gender)
     mutate({
-      url: STUDENTS(token?.school_uid),
+      url: STUDENTS(easysch_token?.school_uid),
       data: data,
     });
   };

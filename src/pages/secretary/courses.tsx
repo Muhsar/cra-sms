@@ -19,27 +19,27 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolCourses() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {slug} = useParams()
   const school = slug
   const {
     data:courseList
   } = useQuery(
-    [queryKeys.getCourses, token?.school_uid],
-    async () => await getRequest({ url: GET_COURSES(token?.school_uid) }),
+    [queryKeys.getCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: GET_COURSES(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const {
     data:homerooms
   } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [allCourses, setAllCourses] = React.useState(courseList?.data)
@@ -74,7 +74,7 @@ export default function SchoolCourses() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: GET_COURSES(token?.school_uid),
+      url: GET_COURSES(easysch_token?.school_uid),
       data: {
         name: state.name,
         class_ids: state.class_ids

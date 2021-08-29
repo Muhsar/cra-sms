@@ -20,13 +20,13 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 export default function SchoolStaffs() {
   const {slug} = useParams()
   const school = slug
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const { data: teacherList } = useQuery(
-    [queryKeys.getTeachers, token?.school_uid],
-    async () => await getRequest({ url: TEACHERS(token?.school_uid) }),
+    [queryKeys.getTeachers, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHERS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const [teachers, setTeachers] = React.useState(teacherList?.data);
@@ -93,7 +93,7 @@ export default function SchoolStaffs() {
       data.append("image", state.image);
 
     mutate({
-      url: TEACHERS(token?.school_uid),
+      url: TEACHERS(easysch_token?.school_uid),
       data: data,
     });
   };

@@ -22,7 +22,7 @@ export const getServerSideProps = (context: { query: { course: any, school: any 
 };
 
 export default function homeroom() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {slug, id} = useParams()
   const school = slug
   const course = id
@@ -30,8 +30,8 @@ export default function homeroom() {
   const {
     data:studentList
   } = useQuery(
-    [queryKeys.getCourseStudents, course, token?.school_uid],
-    async () => await getRequest({ url: COURSESTUDENTS(token?.school_uid, course) }),
+    [queryKeys.getCourseStudents, course, easysch_token?.school_uid],
+    async () => await getRequest({ url: COURSESTUDENTS(easysch_token?.school_uid, course) }),
     {
       retry: 2,
       enabled: !!course
@@ -78,7 +78,7 @@ export default function homeroom() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: GRADE(token?.school_uid,studentId),
+      url: GRADE(easysch_token?.school_uid,studentId),
       data: {
         subject_class_id: course,
     first_ca: state.first_ca,

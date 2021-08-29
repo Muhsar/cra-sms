@@ -20,15 +20,15 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 
 export default function EditStaff() {
   const { id: staff, slug: school } = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
-    [queryKeys.getTeacher, token?.school_uid],
-    async () => await getRequest({ url: TEACHER(token?.school_uid, staff) }),
+    [queryKeys.getTeacher, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHER(easysch_token?.school_uid, staff) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [teacher, setTeacher] = React.useState(teacherList?.data)
@@ -82,7 +82,7 @@ export default function EditStaff() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: TEACHER(token?.school_uid, staff),
+      url: TEACHER(easysch_token?.school_uid, staff),
       data: {
         first_name: state.first_name,
         last_name: state.last_name,

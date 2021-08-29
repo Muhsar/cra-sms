@@ -38,37 +38,37 @@ const Body = ({ classId, school, room, students, courses, roomCourses, handleSub
 };
 export default function SingleClass() {
   const {id: classId, slug: school} = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const { data: courseList } = useQuery(
-    [queryKeys.getCourses, token?.school_uid],
-    async () => await getRequest({ url: GET_COURSES(token?.school_uid) }),
+    [queryKeys.getCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: GET_COURSES(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: homeroomCourseList } = useQuery(
-    [queryKeys.getHomeroomCourses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMCOURSES(token?.school_uid, classId) }),
+    [queryKeys.getHomeroomCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMCOURSES(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: homeroom } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOM(token?.school_uid, classId) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOM(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: studentList } = useQuery(
-    [queryKeys.getClassStudents, token?.school_uid],
-    async () => await getRequest({ url: CLASSSTUDENTS(token?.school_uid, classId) }),
+    [queryKeys.getClassStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: CLASSSTUDENTS(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const cache = useQueryClient()
@@ -102,7 +102,7 @@ export default function SingleClass() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: HOMEROOMCOURSES(token?.school_uid, classId),
+      url: HOMEROOMCOURSES(easysch_token?.school_uid, classId),
       data: {
         subjects: state.subjects,
       },
@@ -128,7 +128,7 @@ export default function SingleClass() {
   ]);
   const sendResults = () => {
     mutate({
-      url: SENDRESULTS(token?.school_uid, classId),
+      url: SENDRESULTS(easysch_token?.school_uid, classId),
       data: {}
     })
   }

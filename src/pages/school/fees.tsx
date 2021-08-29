@@ -19,23 +19,23 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolFees() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
 const {slug} = useParams()
 const school = slug
   const { data: paymentHistory } = useQuery(
-    [queryKeys.getPayments, token?.school_uid],
-    async () => await getRequest({ url: PAYMENTS(token?.school_uid) }),
+    [queryKeys.getPayments, easysch_token?.school_uid],
+    async () => await getRequest({ url: PAYMENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const { data: studentList } = useQuery(
-    [queryKeys.getStudents, token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(token?.school_uid) }),
+    [queryKeys.getStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +77,7 @@ const school = slug
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: PAYMENTS(token?.school_uid),
+      url: PAYMENTS(easysch_token?.school_uid),
       data: {
         student_id: state.student_id,
         amount: state.amount,

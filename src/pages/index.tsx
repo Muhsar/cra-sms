@@ -57,10 +57,10 @@ import CTA from '../Landing/CTA';
 import Footer from '../Landing/Footer';
 const images = [img1, gif1, img2, gif2, img3, gif3, img4, img5]
 const navigation = [
-  { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Blog', href: '#' },
+  { name: 'Pricing', href: '#' },
+  { name: 'Contact Us', href: '#' },
 ]
 const features = [
   {

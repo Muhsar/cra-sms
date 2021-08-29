@@ -132,26 +132,26 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolBirthdays() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token = jwt_decode(localStorage?.easysch_token)
   const {slug: school} = useParams()
   const {
     data:teacherList
   } = useQuery(
-    [queryKeys.getTeachersBirthday, token?.school_uid],
-    async () => await getRequest({ url: TEACHERBIRTHDAYS(token?.school_uid) }),
+    [queryKeys.getTeachersBirthday, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHERBIRTHDAYS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const {
     data:studentList
   } = useQuery(
-    [queryKeys.getStudentsBirthday, token?.school_uid],
-    async () => await getRequest({ url: BIRTHDAYS(token?.school_uid) }),
+    [queryKeys.getStudentsBirthday, easysch_token?.school_uid],
+    async () => await getRequest({ url: BIRTHDAYS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [teachers, setteachers] = React.useState(teacherList?.data)
