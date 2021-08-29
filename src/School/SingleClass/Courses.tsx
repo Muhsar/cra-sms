@@ -75,7 +75,7 @@ export default function SingleClassCourses({courses, roomCourses, handleSubmit, 
             {/* <SlideOver title="Add Course" Component={Component} /> */}
             <>
       <button
-        onClick={handleClickOpen}
+        onClick={()=>setOpen(true)}
         type="button"
         className="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
       >
