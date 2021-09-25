@@ -144,54 +144,7 @@ export default function StudentResult() {
                       </tr>
                         ))
                       }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
+             
               </tbody>
             </table>
           </div>

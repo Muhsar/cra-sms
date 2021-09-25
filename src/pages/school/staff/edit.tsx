@@ -70,7 +70,7 @@ export default function EditStaff() {
   };
   const cache = useQueryClient()
   const {showAlert}  = React.useContext(ToastContext)
-  const { mutate } = useMutation(postRequest, {
+  const { mutate } = useMutation(patchRequest, {
    onSuccess(data) {
       showAlert({
         message: data?.message,

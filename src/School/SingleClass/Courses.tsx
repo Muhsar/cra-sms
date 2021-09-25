@@ -2,13 +2,14 @@ import React from 'react'
 import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { Switch } from '@headlessui/react'
 import { MultipleAutoComplete } from 'components/AutoComplete';
-export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, open, setOpen, selected, setSelected  }) {
+export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, selected, setSelected, open, setOpen  }) {
   // const [open, setOpen] = React.useState<boolean>(false)
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
-
-  const handleClickOpen = () => {
+// const [open, setOpen] = React.useState(false)
+  const handleClickOpen = (e:any) => {
+    e.preventDefault()
     setOpen(true)
   }
   const handleClickClose = () => {
@@ -75,7 +76,7 @@ export default function SingleClassCourses({courses, roomCourses, handleSubmit, 
             {/* <SlideOver title="Add Course" Component={Component} /> */}
             <>
       <button
-        onClick={()=>setOpen(true)}
+        onClick={handleClickOpen}
         type="button"
         className="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
       >
