@@ -53,7 +53,7 @@ export default function Features({features, img6}) {
                         <div className="-mt-6">
                           <div>
                             <span className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-md">
-                              <img className="h-48 w-48" src={feature.icon} aria-hidden="true" />
+                              <img className="h-48 w-48 transform transition-all hover:scale-105" src={feature.icon} aria-hidden="true" />
                             </span>
                           </div>
                           <h3 className="mt-8 text-md font-medium text-gray-900 tracking-tight">{feature.name}</h3>

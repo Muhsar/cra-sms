@@ -45,12 +45,12 @@ export default function Hero({images}) {
                             />
                           </div> */}
                           <div className="mt-3 sm:mt-0 sm:ml-3 flex-1">
-                            <button
-                              type="submit"
-                              className="block w-full py-3 px-4 rounded-md shadow bg-white text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                            <a
+                              href="#"
+                              className="block w-full py-3 px-4 rounded-md shadow bg-white text-center text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                             >
                               Setup Account
-                            </button>
+                            </a>
                           </div>
                           
                         </div>
