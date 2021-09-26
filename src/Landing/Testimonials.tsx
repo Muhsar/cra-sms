@@ -57,7 +57,7 @@ export default function Testimonials({img6, blogPosts}) {
 
           {/* Blog section */}
           <div className="relative bg-gray-50 py-16 sm:py-24 md:py-32">
-            <div className="relative">
+            {/* <div className="relative">
               <div className="text-center mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 md:px-8 md:max-w-7xl">
                 <h2 className="text-base font-semibold tracking-wider text-cyan-600 uppercase">Learn</h2>
                 <p className="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
@@ -109,7 +109,7 @@ export default function Testimonials({img6, blogPosts}) {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
     </>
   )

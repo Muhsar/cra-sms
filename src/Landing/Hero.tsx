@@ -21,7 +21,7 @@ export default function Hero({images}) {
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center md:px-0 md:text-left md:flex md:items-center">
                   <div className="md:py-24">
-                    <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl md:mt-6 xl:text-6xl">
+                    <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl md:mt-6 xl:text-6xl md:text-left text-center">
                       <span className="block">A better way to</span>
                       <span className="bg-clip-text text-white bg-gradient-to-r from-teal-200 to-cyan-400 block">
                         Manage Your School
@@ -49,17 +49,10 @@ export default function Hero({images}) {
                               type="submit"
                               className="block w-full py-3 px-4 rounded-md shadow bg-white text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
                             >
-                              Create Account
+                              Setup Account
                             </button>
                           </div>
-                          <div className="mt-3 sm:mt-0 sm:ml-3 flex-1">
-                            <button
-                              type="submit"
-                              className="block w-full py-3 px-4 rounded-md shadow bg-white text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
-                            >
-                              Login
-                            </button>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
