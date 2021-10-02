@@ -46,7 +46,8 @@ export default function CTA({img1}) {
                 <div className="mt-8">
                   <div className="inline-flex rounded-md shadow">
                     <a
-                      href="#"
+                      href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                     >
                       Setup Account

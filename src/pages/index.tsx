@@ -61,6 +61,7 @@ import g3 from "../images/g3.svg"
 import g4 from "../images/g4.svg"
 import g5 from "../images/g5.svg"
 import g6 from "../images/g6.svg"
+import Footers from '../Landing/Footers';
 const images = [img1, gif1, img2, gif2, img3, gif3, img4, img5]
 const navigation = [
   { name: 'Features', href: '#' },
@@ -259,6 +260,7 @@ export default function Example() {
           <Hero images={images} />
           <Features features={features} img6={img6} />
           {/* <Testimonials img6={img6} blogPosts={blogPosts} /> */}
+          <Testimonials />
           <CTA img1={img1} />
           {/* Feature section with screenshot */}
         
@@ -267,9 +269,9 @@ export default function Example() {
           
 
           {/* CTA Section */}
-          
         </main>
-        <Footer footerNavigation={footerNavigation} />
+        <Footers />
+        {/* <Footer footerNavigation={footerNavigation} /> */}
       </div>
     </div>
   )

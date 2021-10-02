@@ -52,14 +52,12 @@ export default function Header({navigation}) {
                     </div>
                   </div>
                   <div className="hidden md:flex md:items-center md:space-x-6">
-                    <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                      Log in
-                    </a>
                     <a
-                      href="#"
+                      href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                       className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
                     >
-                      Start free trial
+                      Setup Account
                     </a>
                   </div>
                 </nav>
@@ -110,20 +108,14 @@ export default function Header({navigation}) {
                       </div>
                       <div className="mt-6 px-5">
                         <a
-                          href="#"
+                          href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                           className="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
                         >
-                          Start free trial
+                          Setup Account
                         </a>
                       </div>
-                      <div className="mt-6 px-5">
-                        <p className="text-center text-base font-medium text-gray-500">
-                          Existing customer?{' '}
-                          <a href="#" className="text-gray-900 hover:underline">
-                            Login
-                          </a>
-                        </p>
-                      </div>
+                      
                     </div>
                   </div>
                 </Popover.Panel>
