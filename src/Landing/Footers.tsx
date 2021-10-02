@@ -1,4 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
+import { Tooltip } from "@material-ui/core"
 const navigation = {
   main: [
     { name: 'About', href: '#' },
@@ -11,6 +11,7 @@ const navigation = {
   social: [
     {
       name: 'Facebook',
+      class: "text-blue-500 hover:text-blue-600 transform transition-all hover:scale-110",
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
@@ -24,6 +25,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
+      class: "text-red-400 hover:text-red-500 transform transition-all hover:scale-110",
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
@@ -37,6 +39,7 @@ const navigation = {
     },
     {
       name: 'Twitter',
+      class: "text-blue-400 hover:text-blue-500 transform transition-all hover:scale-110",
       href: '#',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
@@ -62,10 +65,12 @@ export default function Footers() {
         </nav>
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
-            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+            <Tooltip title={item.name} arrow>
+            <a key={item.name} href={item.href} className={item.class}>
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>
+            </Tooltip>
           ))}
         </div>
         <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
