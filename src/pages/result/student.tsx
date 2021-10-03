@@ -7,6 +7,7 @@ import { queryKeys } from "api/queryKey";
 import { images } from "components/images";
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { Helmet } from 'react-helmet';
 const results = [
   {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
   {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
@@ -49,13 +50,13 @@ export default function StudentResult() {
   }, [resultData?.data]);
   return (
     <>
-      <header>
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-      </header>
-      <div className="text-lg result-parent-div px-5 py-5">
+      </Helmet>
+      <div className="text-lg result-parent-div px-5 py-2">
   <div className="text-lg ">
     <div className="text-lg ">
       <div className="text-lg ">
@@ -66,8 +67,8 @@ export default function StudentResult() {
                 <img src={logo} alt="" className="text-lg h-48 w-48 object-center d-block mx-auto" />
               </div>
               <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
-              <div className="text-lg flex justify-between flex-row w-full bd-highlight mb-3 max-w-5xl" style={{width: 1004}}>
-                <div className="text-lg p-2 bd-highlight" style={{width: 804}}>
+              <div className="text-lg flex justify-between flex-row w-full bd-highlight max-w-5xl" style={{width: 1004}}>
+                <div className="text-lg px-2 bd-highlight" style={{width: 804}}>
                   <div>
                     NAME: <span id="student-name-underline">{result?.student.full_name}</span>
                     GENDER: <span id="student-gender-underline">{result?.student.gender}</span>
@@ -144,7 +145,6 @@ export default function StudentResult() {
                       </tr>
                         ))
                       }
-             
               </tbody>
             </table>
           </div>

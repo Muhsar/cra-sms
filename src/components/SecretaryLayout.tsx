@@ -2,10 +2,12 @@ import React, { Fragment, useState } from "react";
 import { Link, useHistory, withRouter, Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import { AttachMoneyOutlined } from "@material-ui/icons";
+
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
+  UserGroupIcon,
+  ChatAlt2Icon,
   FolderIcon,
   HomeIcon,
   InboxIcon,
@@ -16,22 +18,32 @@ import {
   ClipboardListIcon,
   BookOpenIcon,
   CogIcon,
-  LogoutIcon,
+  ChevronDownIcon,
+  SearchIcon,
+  SortAscendingIcon,
+  HashtagIcon,
+  CakeIcon,
+  LogoutIcon
 } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
-// import history from '../pages/school/student/[student]/history';
+// import history from '../pages/secretary/student/[student]/history';
 const navigation = [
-  { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
+   { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
   {
-    name: "Students",
-    href: "secretary/students",
+    name: "Classes",
+    href: "secretary/classes",
     icon: OfficeBuildingIcon,
     current: false,
   },
   {
-    name: "Classes",
-    href: "secretary/classes",
-    icon: BookOpenIcon,
+    name: "Students",
+    href: "secretary/students",
+    icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    name: "Staffs",
+    href: "secretary/staffs",
+    icon: UsersIcon,
     current: false,
   },
   {
@@ -40,6 +52,19 @@ const navigation = [
     icon: BookOpenIcon,
     current: false,
   },
+  {
+    name: "Fee Management",
+    href: "secretary/fees",
+    icon: AttachMoneyOutlined,
+    current: false,
+  },
+  {
+    name: "Messages",
+    href: "secretary/sms",
+    icon: ChatAlt2Icon,
+    current: false,
+  },
+  { name: "Birthdays", href: "secretary/birthdays", icon: CakeIcon, current: false },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
 ];
 

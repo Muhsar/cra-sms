@@ -7,6 +7,7 @@ import { queryKeys } from "api/queryKey";
 import { images } from "components/images";
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { Helmet } from 'react-helmet';
 
 export const getServerSideProps = (context: { query: { student: any, school: any } }) => {
   const { student, school } = context.query;
@@ -34,12 +35,12 @@ export default function StudentResult() {
   }, [resultData?.data]);
   return (
     <>
-      <header>
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-      </header>
+      </Helmet>
       <div className="result-parent-div px-5 py-5">
   <div className="">
     <div className="">

@@ -38,9 +38,9 @@ const school = slug
     });
   };
   const cache = useQueryClient()
-  const {showAlert}  = React.useContext(ToastContext)
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-   onSuccess(data) {
+    onSuccess(data) {
       showAlert({
         message: data?.message,
         severity: "success",

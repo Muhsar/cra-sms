@@ -23,12 +23,6 @@ import { SearchIcon } from "@heroicons/react/solid";
 const navigation = [
   { name: "Dashboard", href: "staff/", icon: HomeIcon, current: true },
   {
-    name: "Class",
-    href: "staff/class",
-    icon: OfficeBuildingIcon,
-    current: false,
-  },
-  {
     name: "Courses",
     href: "staff/courses",
     icon: BookOpenIcon,

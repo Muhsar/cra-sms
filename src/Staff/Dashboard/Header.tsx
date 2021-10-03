@@ -24,13 +24,15 @@ export default function Header({teacher}) {
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="sm:flex sm:space-x-5">
             <div className="flex-shrink-0">
-              <img className="mx-auto h-20 w-20 object-contain object-center" src={images?.logo} alt="" />
+              <img className="mx-auto h-20 w-20 object-contain object-center" src={typeof window !== "undefined" &&
+                      localStorage?.getItem("schoolLogo")} alt="" />
               {/* <img className="mx-auto h-20 w-20 object-cover object-center" src={"/img/logo.jpeg"} alt="" /> */}
             </div>
             <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
               {/* <p className="text-sm font-medium text-gray-600">Welcome back,</p> */}
-              <p className="text-xl font-bold text-gray-900 sm:text-2xl">Best Enkefalos College</p>
-              <p className="text-sm font-medium text-gray-600 capitalize">beskenkefaloscollege@gmail.com</p>
+              <p className="text-xl font-bold text-gray-900 sm:text-2xl">{typeof window !== "undefined" &&
+                      localStorage?.getItem("schoolName")}</p>
+              {/* <p className="text-sm font-medium text-gray-600 capitalize">beskenkefaloscollege@gmail.com</p> */}
             </div>
           </div>
         </div>

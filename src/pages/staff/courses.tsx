@@ -27,14 +27,14 @@ export default function classes() {
   //   setToken(jwt_decode(localToken))
   // },[localToken])
   const { data: courseList } = useQuery(
-    [queryKeys.getCourses, easysch_token?.teacher_id, easysch_token?.school_uid],
+    [queryKeys.getCourses, easysch_token?.user_id, easysch_token?.school_uid],
     async () =>
       await getRequest({
-        url: `${TEACHERCOURSES(easysch_token?.school_uid, easysch_token?.teacher_id)}`,
+        url: `${TEACHERCOURSES(easysch_token?.school_uid, easysch_token?.user_id)}`,
       }),
     {
       retry: 2,
-      enabled: !!(easysch_token?.school_uid && easysch_token?.teacher_id),
+      enabled: !!(easysch_token?.school_uid && easysch_token?.user_id),
     }
   );
   const [allCourses, setAllCourses] = React.useState(courseList?.data);

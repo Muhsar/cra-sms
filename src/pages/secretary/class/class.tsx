@@ -24,7 +24,7 @@ export const getServerSideProps = (context: { query: { classId: any, school: any
   return { props: { classId, school } };
 };
 
-const Body = ({ classId, school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send, selected, setSelected }) => {
+const Body = ({ school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send, selected, setSelected }) => {
   return (
     <>
       
@@ -32,13 +32,14 @@ const Body = ({ classId, school, room, students, courses, roomCourses, handleSub
       <div className="pt-5" />
       <SingleClassStudents students={students} school={school} />
       <SingleClassCourses courses={courses} roomCourses={roomCourses} handleSubmit={handleSubmit} state={state}
-            setState={setState} open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
+            setState={setState} selected={selected} setSelected={setSelected} open={open} setOpen={setOpen} />
     </>
   );
 };
 export default function SingleClass() {
   const {id: classId, slug: school} = useParams()
   const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const [open, setOpen] = React.useState(false)
   const { data: courseList } = useQuery(
     [queryKeys.getCourses, easysch_token?.school_uid],
     async () => await getRequest({ url: GET_COURSES(easysch_token?.school_uid) }),
@@ -56,7 +57,7 @@ export default function SingleClass() {
     }
   );
   const { data: homeroom } = useQuery(
-    [queryKeys.getClasses, easysch_token?.school_uid],
+    [queryKeys.getClass, easysch_token?.school_uid],
     async () => await getRequest({ url: HOMEROOM(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
@@ -72,14 +73,13 @@ export default function SingleClass() {
     }
   );
   const cache = useQueryClient()
-  const {showAlert}  = React.useContext(ToastContext)
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-   onSuccess(data) {
+    onSuccess(data) {
       showAlert({
         message: data?.message,
         severity: "success",
       });
-      setOpen(false)
       const subjectsData = state.subjects.map(subject=>{
         const datas = {subject: {name: subject.name}}
         return datas
@@ -91,10 +91,10 @@ export default function SingleClass() {
         subjects: []
       })
       setSelected([])
+      setOpen(false)
       cache.invalidateQueries();
     },
   });
-  const [open, setOpen] = React.useState(false)
   const [state, setState] = React.useState({
     subjects: [],
     names: []
@@ -138,7 +138,7 @@ export default function SingleClass() {
       <SecretaryLayout
         Component={
           <Body
-            classId={classId}
+            // classId={classId}
             courses={courses}
             room={room}
             students={students}

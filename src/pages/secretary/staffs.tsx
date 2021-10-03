@@ -1,17 +1,15 @@
 import React from "react";
 import SecretaryLayout from "components/SecretaryLayout";
-import Students from "School/Students";
-import { StudentList } from "Mock/StudentList";
+import Staffs from "School/Staffs";
+import { StaffList } from "Mock/StaffList";
 import { SearchField } from "components/search.js";
-import { STUDENTS, HOMEROOMS } from 'api/apiUrl';
-import { ToastContext } from "App.jsx";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { TEACHERS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
-import { SortByDateAdded } from 'components/helpers';
+import { ToastContext } from "App.jsx";
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-
 
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
@@ -19,41 +17,28 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
   return { props: { school } };
 };
 
-export default function SchoolStudents() {
+export default function SchoolStaffs() {
   const {slug} = useParams()
   const school = slug
   const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {
-    data:homerooms
-  } = useQuery(
-    [queryKeys.getClasses, easysch_token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
+  const { data: teacherList } = useQuery(
+    [queryKeys.getTeachers, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHERS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!easysch_token?.school_uid
+      enabled: !!easysch_token?.school_uid,
     }
-    )
-  const {
-    data:studentList
-  } = useQuery(
-    [queryKeys.getStudents, easysch_token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
-    {
-      retry: 2,
-      enabled: !!easysch_token?.school_uid
-    }
-    )
-    const [rooms, setRooms] = React.useState(homerooms?.data)
-    const [students, setStudents] = React.useState(studentList?.data)
-    React.useEffect(() => {
-    setRooms(homerooms?.data)
-    setStudents(studentList?.data)
-  },[homerooms?.data, studentList?.data ])
+  );
+  const [teachers, setTeachers] = React.useState(teacherList?.data);
+  React.useEffect(() => {
+    setTeachers(teacherList?.data);
+  }, [teacherList?.data]);
+  
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   //   setState({ ...state, [event.target.name]: event.target.value });
   // };
-  const cache = useQueryClient()
+  const cache = useQueryClient();
   const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {
@@ -61,64 +46,71 @@ export default function SchoolStudents() {
         message: data?.message,
         severity: "success",
       });
-      setStudents([...students, {full_name: data?.data.full_name, image: data?.data.image, gender: data?.data.gender, email: data?.data.email, current_class: {name: data?.data.current_class.name}, age: data?.data.age, is_debtor: data?.data.is_debtor, id: data?.data.id}])
-      setOpen(false)
+      setOpen(false);
+      setTeachers([
+        ...teachers,
+        {
+          user: {
+            full_name: data?.data.full_name,
+            image: data?.data.image,
+            email: data?.data.email,
+            is_active: data?.data.is_active,
+            role: data?.data.groups[0]?.name,
+            phone_number: data?.data.phone_number,
+          },
+          gender: data?.data.gender,
+          id: data?.data.id,
+        },
+      ]);
       setState({
         first_name: "",
         last_name: "",
         religion: "",
-        middle_name: "",
-        guardian_full_name: "",
-        guardian_full_name2: "",
         phone_number: "",
-        phone_number2: "",
         address: "",
-        state_of_origin: "",
         date_of_birth: new Date(),
         email: "",
-        outstanding_debt: 0,
-        class_id: null,
-        gender: null,
-        guardian_name: "",
+        gender: "",
         image: "",
-        imageFile: ""
-      })
-      cache.invalidateQueries()
+        imageFile: "",
+        role: "",
+      });
+      cache.invalidateQueries();
     },
   });
   const submitForm = (e: any) => {
     e.preventDefault();
-    const data = new FormData()
-    data.append("first_name", state.first_name)
-    data.append("last_name", state.last_name)
-    data.append("religion", state.religion)
-    data.append("middle_name", state.middle_name)
-    data.append("guardian_full_name", state.guardian_full_name)
-    data.append("guardian_full_name2", state.guardian_full_name2)
-    data.append("phone_number", state.phone_number)
-    data.append("phone_number2", state.phone_number2)
-    data.append("address", state.address)
-    data.append("state_of_origin", state.state_of_origin)
-    data.append("date_of_birth", state.date_of_birth.toString())
-    data.append("email", state.email)
-    data.append("outstanding_debt", state.outstanding_debt.toString())
-    data.append("image", state.image)
-    data.append("class_id", state.class_id)
-    data.append("gender", state.gender)
+    const data = new FormData();
+    data.append("first_name", state.first_name),
+      data.append("last_name", state.last_name),
+      data.append("religion", state.religion),
+      data.append("phone_number", state.phone_number),
+      data.append("address", state.address),
+      data.append("date_of_birth", state.date_of_birth.toString()),
+      data.append("email", state.email),
+      data.append("gender", state.gender),
+      data.append("role", state.role),
+      data.append("image", state.image);
+
     mutate({
-      url: STUDENTS(easysch_token?.school_uid),
+      url: TEACHERS(easysch_token?.school_uid),
       data: data,
     });
   };
   const [order, setOrder] = React.useState("asc");
   const [listCount, setlistCount] = React.useState(0);
   const [list, setList] = React.useState([]);
-   React.useEffect(() => {
-    setList(students?.slice(listCount, listCount + 10));
-  }, [listCount, studentList?.data]);
+  React.useEffect(() => {
+    setList(
+      StaffList.slice(listCount, listCount + 10).sort(
+        (a: { full_name: any }, b: { full_name: any }) =>
+          -b.full_name.localeCompare(a.full_name)
+      )
+    );
+  }, [listCount]);
   const handleNext = () => {
     listCount >= 0 &&
-      listCount + 10 < students?.length &&
+      listCount + 10 < StaffList.length &&
       setlistCount(listCount + 10);
   };
   const handlePrevious = () => {
@@ -132,14 +124,14 @@ export default function SchoolStudents() {
     order === "desc" &&
       setList(
         list.sort(
-          (a: { last_name: any }, b: { last_name: any }) =>
-            -b.last_name.localeCompare(a.last_name)
+          (a: { full_name: any }, b: { full_name: any }) =>
+            -b.full_name.localeCompare(a.full_name)
         )
       );
     order === "asc" &&
       setList(
-        list.sort((a: { last_name: any }, b: { last_name: any }) =>
-          b.last_name.localeCompare(a.last_name)
+        list.sort((a: { full_name: any }, b: { full_name: any }) =>
+          b.full_name.localeCompare(a.full_name)
         )
       );
     order === "desc" && setOrder("asc");
@@ -149,21 +141,14 @@ export default function SchoolStudents() {
     first_name: "",
     last_name: "",
     religion: "",
-    middle_name: "",
-    guardian_full_name: "",
-    guardian_full_name2: "",
     phone_number: "",
-    phone_number2: "",
     address: "",
-    state_of_origin: "",
     date_of_birth: new Date(),
     email: "",
-    outstanding_debt: 0,
-    class_id: null,
-    gender: null,
-    guardian_name: "",
+    gender: "",
     image: "",
-    imageFile: ""
+    imageFile: "",
+    role: "",
   });
   const handleDate = (date: Date | null) => {
     setState({ ...state, date_of_birth: date });
@@ -186,14 +171,14 @@ export default function SchoolStudents() {
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
-    const searchBody = "#Students tr";
+    const searchBody = "#Staffs tr";
     SearchField({ value, searchBody });
   };
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
   return (
     <SecretaryLayout
       Component={
-        <Students
+        <Staffs
           state={state}
           handleChange={handleChange}
           handleSelect={handleSelect}
@@ -205,15 +190,15 @@ export default function SchoolStudents() {
           handlePrevious={handlePrevious}
           listCount={listCount}
           order={order}
-          rooms={rooms}
-          students={students}
+          handleDate={handleDate}
+          teachers={teachers}
           open={open}
           setOpen={setOpen}
           setState={setState}
           school={school}
         />
       }
-      currentPage="Students"
+      currentPage="Teachers"
       slug={school}
     />
   );
