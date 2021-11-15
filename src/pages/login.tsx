@@ -54,12 +54,12 @@ export default function Login() {
       const easysch_token: { groups: string[] } =
         typeof window !== "undefined" &&
         jwt_decode(localStorage?.getItem("easysch_token"));
-      if (easysch_token?.groups.length === 2) {
-        setOpen(true);
-        // LoginDialog({open, setOpen})
-      }
-      if (easysch_token?.groups.length === 1) {
-        if (easysch_token?.groups[0] === "Teacher") {
+        if (easysch_token?.groups.length === 2) {
+          setOpen(true);
+          // LoginDialog({open, setOpen})
+        }
+        if (easysch_token?.groups.length === 1) {
+          if (easysch_token?.groups[0] === "Teacher") {
           window.location.href = `/${school}/staff/`;
         }
         if (easysch_token?.groups[0] === "Bursar") {

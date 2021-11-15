@@ -120,7 +120,7 @@ const school = slug
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#PaymentHistory tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   const [open, setOpen] = React.useState(false);
   return (

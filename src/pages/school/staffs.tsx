@@ -28,11 +28,16 @@ export default function SchoolStaffs() {
     {
       retry: 2,
       enabled: !!easysch_token?.school_uid,
+      onError(err){
+        console.log(err)
+      }
     }
   );
   const [teachers, setTeachers] = React.useState(teacherList?.data);
+  const [filteredData, setFilteredData] = React.useState(teacherList?.data);
   React.useEffect(() => {
     setTeachers(teacherList?.data);
+    setFilteredData(teacherList?.data);
   }, [teacherList?.data]);
   
 
@@ -57,6 +62,7 @@ export default function SchoolStaffs() {
             email: data?.data.email,
             is_active: data?.data.is_active,
             role: data?.data.groups[0]?.name,
+            groups: data?.data.groups,
             phone_number: data?.data.phone_number,
           },
           gender: data?.data.gender,
@@ -171,10 +177,8 @@ export default function SchoolStaffs() {
     setList([state, ...list]);
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#Staffs tr";
-    SearchField({ value, searchBody });
-  };
+    SearchField({value:e.target.value, data: filteredData, setData: setFilteredData, initData:teachers})
+  }
   const [open, setOpen] = React.useState(false);
   return (
     <SchoolLayout
@@ -192,7 +196,7 @@ export default function SchoolStaffs() {
           listCount={listCount}
           order={order}
           handleDate={handleDate}
-          teachers={teachers}
+          teachers={filteredData}
           open={open}
           setOpen={setOpen}
           setState={setState}

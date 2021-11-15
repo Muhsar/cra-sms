@@ -87,8 +87,10 @@ const params:{slug: any} = useParams()
   };
   const [students, setStudents] = React.useState(studentList?.data);
   const [history, setPaymentHistory] = React.useState(paymentHistory?.data);
+  const [filteredData, setFilteredData] = React.useState(paymentHistory?.data);
   React.useEffect(() => {
     setPaymentHistory(paymentHistory?.data);
+    setFilteredData(paymentHistory?.data);
     setStudents(studentList?.data);
   }, [paymentHistory?.data, studentList?.data]);
   const [order, setOrder] = React.useState("asc");
@@ -118,10 +120,8 @@ const params:{slug: any} = useParams()
     });
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#PaymentHistory tr";
-    SearchField({ value, searchBody });
-  };
+    SearchField({value:e.target.value, data: filteredData, setData: setFilteredData, initData:history})
+  }
   const [open, setOpen] = React.useState(false);
   return (
     <SchoolLayout
@@ -133,7 +133,7 @@ const params:{slug: any} = useParams()
           handleSubmit={submitForm}
           handleSearch={handleSearch}
           setState={setState}
-          history={history}
+          history={filteredData}
           students={students}
           open={open}
           setOpen={setOpen}

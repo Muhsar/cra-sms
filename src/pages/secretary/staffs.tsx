@@ -173,7 +173,7 @@ const params:{slug: any} = useParams()
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#Staffs tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   const [open, setOpen] = React.useState(false);
   return (

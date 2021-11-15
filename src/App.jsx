@@ -53,12 +53,15 @@ const { showAlert, Toast } = useToast();
         }
       }
       if (!localStorage?.easysch_token) {
+        localStorage.setItem("redirectTo", window.location.pathname)
         auth = "UnAuthorized";
       }
       if (!easysch_token) {
+        localStorage.setItem("redirectTo", window.location.pathname)
         auth = "UnAuthorized";
       }
       if (easysch_token && ((easysch_token?.exp*1000) < (Date.now()))) {
+        localStorage.setItem("redirectTo", window.location.pathname)
         localStorage.removeItem("easysch_token")
         auth = "UnAuthorized";
       }

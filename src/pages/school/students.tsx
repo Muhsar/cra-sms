@@ -46,9 +46,11 @@ export default function SchoolStudents() {
     )
     const [rooms, setRooms] = React.useState(homerooms?.data)
     const [students, setStudents] = React.useState(studentList?.data)
+    const [filteredData, setFilteredData] = React.useState(studentList?.data)
     React.useEffect(() => {
     setRooms(homerooms?.data)
     setStudents(studentList?.data)
+    setFilteredData(studentList?.data)
   },[homerooms?.data, studentList?.data ])
 
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -185,11 +187,14 @@ export default function SchoolStudents() {
     e.preventDefault();
     setList([state, ...list]);
   };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value.toLowerCase();
+  //   const searchBody = "#Students tr";
+  //   SearchField({ value, searchBody });
+  // };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#Students tr";
-    SearchField({ value, searchBody });
-  };
+    SearchField({value:e.target.value, data: filteredData, setData: setFilteredData, initData:students})
+  }
   const [open, setOpen] = React.useState(false)
   return (
     <SchoolLayout
@@ -207,7 +212,7 @@ export default function SchoolStudents() {
           listCount={listCount}
           order={order}
           rooms={rooms}
-          students={students}
+          students={filteredData}
           open={open}
           setOpen={setOpen}
           setState={setState}

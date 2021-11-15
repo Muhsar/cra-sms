@@ -143,7 +143,7 @@ const params:{slug: any} = useParams()
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#Courses tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   const [open, setOpen] = React.useState(false)
   const [selected, setSelected] = React.useState([])

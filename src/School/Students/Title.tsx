@@ -2,8 +2,10 @@
 import { ChevronDownIcon, SearchIcon, SortAscendingIcon } from '@heroicons/react/solid'
 import React from 'react'
 import SlideOver from 'components/SlideOver'
+import { SearchField } from 'components/search'
 
-export default function Title({Component, handleSearch, open, setOpen}) {
+export default function Title({Component, handleSearch, open, setOpen, data}) {
+
   return (
     <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
       <h3 className="text-lg font-medium leading-6 text-gray-900">Students</h3>
@@ -17,7 +19,7 @@ export default function Title({Component, handleSearch, open, setOpen}) {
               <SearchIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
             </div>
             <input
-              type="text"
+              type="search"
               name="search_students "
               id="search_students"
               className="block w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:hidden"
@@ -25,7 +27,7 @@ export default function Title({Component, handleSearch, open, setOpen}) {
               onChange={handleSearch}
             />
             <input
-              type="text"
+              type="search"
               name="search_students"
               id="search_students"
               className="hidden w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:block sm:text-sm"

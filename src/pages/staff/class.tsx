@@ -55,7 +55,7 @@ const params:{slug: any} = useParams()
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#Students tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   return (
     <>
