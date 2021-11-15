@@ -66,7 +66,6 @@ const navigation = [
     icon: ChatAlt2Icon,
     current: false,
   },
-  { name: "Birthdays", href: "school/birthdays", icon: CakeIcon, current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
