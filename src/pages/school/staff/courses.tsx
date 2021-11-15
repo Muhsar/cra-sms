@@ -18,8 +18,10 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 };
 
 export default function TeacherCourses() {
-  const { id: staff, slug: school } = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  // const { id: staff, slug: school } = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: staff, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const { data: teacherCourseList } = useQuery(
     [queryKeys.getTeacherCourses, easysch_token?.school_uid],
     async () => await getRequest({ url: TEACHERCOURSES(easysch_token?.school_uid, staff) }),
@@ -105,7 +107,7 @@ const cache = useQueryClient()
           />
         }
         currentPage="Teachers"
-        slug={school}
+        
       />
     </>
   );

@@ -30,10 +30,11 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentResult() {
-  const { id: student, slug: school } = useParams()
+  const params:{ id: any, slug: any } = useParams()
+  const { id: student, slug: school } = params
   console.log(student, school)
   const {schoolLogo: logo} = localStorage
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token: {school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:resultData
   } = useQuery(
@@ -56,7 +57,7 @@ export default function StudentResult() {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
       </Helmet>
-      <div className="text-lg result-parent-div px-5 py-2">
+      <div className="px-5 py-2 text-lg result-parent-div">
   <div className="text-lg ">
     <div className="text-lg ">
       <div className="text-lg ">
@@ -64,11 +65,11 @@ export default function StudentResult() {
           <div className="text-lg ">
             <div className="text-lg ">
               <div style={{width: 1004}}>
-                <img src={logo} alt="" className="text-lg h-48 w-48 object-center d-block mx-auto" />
+                <img src={logo} alt="" className="object-center w-48 h-48 mx-auto text-lg d-block" />
               </div>
               <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
-              <div className="text-lg flex justify-between flex-row w-full bd-highlight max-w-5xl" style={{width: 1004}}>
-                <div className="text-lg px-2 bd-highlight" style={{width: 804}}>
+              <div className="flex flex-row justify-between w-full max-w-5xl text-lg bd-highlight" style={{width: 1004}}>
+                <div className="px-2 text-lg bd-highlight" style={{width: 804}}>
                   <div>
                     NAME: <span id="student-name-underline">{result?.student.full_name}</span>
                     GENDER: <span id="student-gender-underline">{result?.student.gender}</span>
@@ -78,7 +79,7 @@ export default function StudentResult() {
                     SESSION: <span className="text-lg student-basic-data">2020/2021</span>
                   </div>
                   <div className="text-lg performance-summary-table">
-                    <table className="text-lg table table-bordered">
+                    <table className="table text-lg table-bordered">
                       <thead className="text-lg thead-light">
                         <tr>
                           <th colSpan={5} id="perfomance-summary">PERFORMANCE SUMMARY</th>
@@ -104,8 +105,8 @@ export default function StudentResult() {
                     </table>
                   </div>
                 </div>
-                <div className="text-lg p-2 bd-highlight" style={{width: 200}}>
-                  <img src={result?.student.image} alt="" className="text-lg h-48 w-full object-center object-cover mt-5" />
+                <div className="p-2 text-lg bd-highlight" style={{width: 200}}>
+                  <img src={result?.student.image} alt="" className="object-cover object-center w-full h-48 mt-5 text-lg" />
                 </div>
                 <div>
                 </div>
@@ -113,7 +114,7 @@ export default function StudentResult() {
             </div>
           </div>
           <div className="text-lg " style={{width: 1004}}>
-            <table className="text-lg table table-bordered" style={{width: 1004}}>
+            <table className="table text-lg table-bordered" style={{width: 1004}}>
               <thead className="text-lg thead-light">
                 <tr>
                 <th scope="col">SUBJECTS</th>

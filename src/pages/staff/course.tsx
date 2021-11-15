@@ -22,8 +22,9 @@ export const getServerSideProps = (context: { query: { course: any, school: any 
 };
 
 export default function homeroom() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {slug, id} = useParams()
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const params:{slug:any, id:any} = useParams()
+  const {slug, id} = params
   const school = slug
   const course = id
   
@@ -105,7 +106,7 @@ export default function homeroom() {
           />
         }
         currentPage="Courses"
-        slug={school}
+        // slug={school}
       />
     </>
   );

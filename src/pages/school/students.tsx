@@ -2,7 +2,7 @@ import React from "react";
 import SchoolLayout from "components/SchoolLayout";
 import Students from "School/Students";
 import { StudentList } from "Mock/StudentList";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import { STUDENTS, HOMEROOMS } from 'api/apiUrl';
 import { ToastContext } from "App.jsx";
 import { getRequest, postRequest } from "api/apiCall";
@@ -20,9 +20,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolStudents() {
-  const {slug} = useParams()
-  const school = slug
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:homerooms
   } = useQuery(
@@ -214,7 +215,7 @@ export default function SchoolStudents() {
         />
       }
       currentPage="Students"
-      slug={school}
+      
     />
   );
 }

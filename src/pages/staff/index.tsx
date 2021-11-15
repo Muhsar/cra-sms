@@ -18,9 +18,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 
 
 export default function dashboard() {
-  const {slug} = useParams()
+const params:{slug: any} = useParams()
+  const {slug} = params
 const school = slug
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token:{school_uid: any, user_id} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
@@ -55,7 +56,7 @@ const school = slug
         teacher={teacher}
         courses={allCourses}
         school={school}
-      />} currentPage='Dashboard' slug={school} />
+      />} currentPage='Dashboard' />
 </>
   )
 }

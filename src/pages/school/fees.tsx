@@ -3,7 +3,7 @@ import SchoolLayout from "components/SchoolLayout";
 // import Table from "School/PaymentHistory/Table";
 import FeeManagement from "School/FeeManagement";
 // import { PaymentHistory } from "Mock/PaymentHistory";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import { PaymentHistory } from "Mock/PaymentHistory";
 import { queryKeys } from "api/queryKey";
 import { PAYMENTS, STUDENTS } from "api/apiUrl";
@@ -19,9 +19,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolFees() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-const {slug} = useParams()
-const school = slug
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug: school} = params
+
   const { data: paymentHistory } = useQuery(
     [queryKeys.getPayments, easysch_token?.school_uid],
     async () => await getRequest({ url: PAYMENTS(easysch_token?.school_uid) }),
@@ -139,7 +140,7 @@ const school = slug
         />
       }
       currentPage="Fee Management"
-      slug={school}
+      
     />
   );
 }

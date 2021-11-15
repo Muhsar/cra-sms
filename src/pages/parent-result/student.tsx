@@ -16,9 +16,10 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentResult() {
-  const { id: student, slug: school } = useParams()
+  const params:{ id: any, slug: any } = useParams()
+  const { id: student, slug: school } = params
   const {schoolLogo: logo} = localStorage
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:resultData
   } = useQuery(
@@ -41,7 +42,7 @@ export default function StudentResult() {
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
       </Helmet>
-      <div className="result-parent-div px-5 py-5">
+      <div className="px-5 py-5 result-parent-div">
   <div className="">
     <div className="">
       <div className="">
@@ -49,10 +50,10 @@ export default function StudentResult() {
           <div className="">
             <div className="">
               <div style={{width: 1004}}>
-                <img src={logo} alt="" className="h-48 w-48 object-center d-block mx-auto" />
+                <img src={logo} alt="" className="object-center w-48 h-48 mx-auto d-block" />
               </div>
               <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
-              <div className="flex justify-between flex-row w-full bd-highlight mb-3 max-w-5xl" style={{width: 1004}}>
+              <div className="flex flex-row justify-between w-full max-w-5xl mb-3 bd-highlight" style={{width: 1004}}>
                 <div className="p-2 bd-highlight" style={{width: 804}}>
                   <div>
                     NAME: <span id="student-name-underline">{result?.student.full_name}</span>
@@ -90,7 +91,7 @@ export default function StudentResult() {
                   </div>
                 </div>
                 <div className="p-2 bd-highlight" style={{width: 200}}>
-                  <img src={result?.student.image} alt="" className="h-48 w-48 object-contain mt-5" />
+                  <img src={result?.student.image} alt="" className="object-contain w-48 h-48 mt-5" />
                 </div>
                 <div>
                 </div>

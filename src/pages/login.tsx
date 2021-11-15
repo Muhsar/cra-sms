@@ -41,9 +41,10 @@ export default function Login() {
     setState({ ...state, [event.target.name]: event.target.value });
   };
   const { mutate } = useMutation(login, {
-    onSuccess(data) {
-      showAlert({
-        message: data?.message,
+    async onSuccess(data) {
+      
+      await showAlert({
+        message: "Login Successful",
         severity: "success",
       });
       localStorage.setItem("schoolId", schoolData?.uid);
@@ -59,16 +60,16 @@ export default function Login() {
       }
       if (easysch_token?.groups.length === 1) {
         if (easysch_token?.groups[0] === "Teacher") {
-          window.location = `/${school}/staff/`;
+          window.location.href = `/${school}/staff/`;
         }
         if (easysch_token?.groups[0] === "Bursar") {
-          window.location = `/${school}/bursar/`;
+          window.location.href = `/${school}/bursar/`;
         }
         if (easysch_token?.groups[0] === "Secretary") {
-          window.location = `/${school}/secretary/`;
+          window.location.href = `/${school}/secretary/`;
         }
         if (easysch_token?.groups[0] === "Owner") {
-          window.location = `/${school}/school/`;
+          window.location.href = `/${school}/school/`;
         }
       }
       // history.replace("/school/", "/school/");
@@ -99,7 +100,7 @@ export default function Login() {
       },
     });
   };
- console.log(schoolData?.uid)
+//  console.log(schoolData?.uid)
   return (
     <>
     {/* {
@@ -108,9 +109,9 @@ export default function Login() {
     { 
     <>
       <LoginDialog open={open} setOpen={setOpen} school={school} />
-      <div className="max-h-screen grid sm:grid-cols-2 grid-cols-1 gap-10 max-w-6xl mx-auto">
+      <div className="grid max-w-6xl max-h-screen grid-cols-1 gap-10 mx-auto sm:grid-cols-2">
         <div
-          className="col-span-1 sm:my-auto sm:mx-auto sm:block hidden"
+          className="hidden col-span-1 sm:my-auto sm:mx-auto sm:block"
           data-aos="fade-in-up"
           data-aos-duration="800"
         >
@@ -121,24 +122,24 @@ export default function Login() {
             className="transition-all transform hover:scale-105 hover:-translate-y-3 h-52 w-52"
           />
         </div>
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center sm:py-12 sm:px-6 lg:px-8 px-4 col-span-1">
+        <div className="flex flex-col justify-center min-h-screen col-span-1 px-4 bg-gray-50 sm:py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <img
-              className="mx-auto h-auto w-auto sm:hidden"
+              className="w-auto h-auto mx-auto sm:hidden"
               // src="https://res.cloudinary.com/jewbreel1/image/upload/v1625737196/jewbreel/sms/mobile_password_kehmcc.svg"
               src={schoolData?.logo}
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
               {schoolData?.name}
             </h2>
-            <h2 className="mt-1 text-center text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
               Sign in
             </h2>
           </div>
 
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
-            <div className="bg-gray-50 py-8 px-4 sm:rounded-lg sm:px-5">
+            <div className="px-4 py-8 bg-gray-50 sm:rounded-lg sm:px-5">
               <form className="space-y-6" onSubmit={submitForm}>
                 <div>
                   <label
@@ -155,7 +156,7 @@ export default function Login() {
                       type="text"
                       autoComplete="email"
                       required
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+                      className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -175,7 +176,7 @@ export default function Login() {
                       type="password"
                       autoComplete="current-password"
                       required
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+                      className="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -189,7 +190,7 @@ export default function Login() {
                 <div>
                   <button
                     type="submit"
-                    className="w-full flex justify-center py-2 px-4 border hover:scale-105 transition-all transform border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white transition-all transform bg-gray-600 border border-transparent rounded-md shadow-sm hover:scale-105 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     Sign in
                   </button>

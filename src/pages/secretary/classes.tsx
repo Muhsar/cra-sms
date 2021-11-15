@@ -16,8 +16,9 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolClasses() {
-const easysch_token = jwt_decode(localStorage?.easysch_token)
-const {slug} = useParams()
+const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug} = params
 const school = slug
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, easysch_token?.school_uid],
@@ -86,7 +87,7 @@ const school = slug
         />
       }
       currentPage="Classes"
-      slug={school}
+      // slug={school}
     />
   );
 }

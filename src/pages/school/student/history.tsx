@@ -19,8 +19,9 @@ export const getServerSideProps = (context: {
 };
 
 export default function StudentFeeHistory() {
-  const {id: student, slug: school} = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const { data: paymentHistory } = useQuery(
     [queryKeys.getStudentPayment, easysch_token?.school_uid],
     async () =>
@@ -49,7 +50,7 @@ export default function StudentFeeHistory() {
           />
         }
         currentPage="Students"
-        slug={school}
+        
       />
     </>
   );

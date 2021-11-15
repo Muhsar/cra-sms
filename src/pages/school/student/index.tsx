@@ -21,9 +21,10 @@ export const getServerSideProps = (context: {
 };
 
 export default function SingleStudent() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {schoolLogo: logo} = localStorage
-  const {slug: school, id: student} = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
   const { data: studentList } = useQuery(
     [queryKeys.getStudent, easysch_token?.school_uid],
     async () => await getRequest({ url: STUDENT(easysch_token?.school_uid, student) }),
@@ -71,7 +72,7 @@ export default function SingleStudent() {
           />
         }
         currentPage="Students"
-        slug={school}
+        
       />
     </>
   );

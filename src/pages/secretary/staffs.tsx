@@ -2,7 +2,7 @@ import React from "react";
 import SecretaryLayout from "components/SecretaryLayout";
 import Staffs from "School/Staffs";
 import { StaffList } from "Mock/StaffList";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { TEACHERS } from "api/apiUrl";
@@ -18,9 +18,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolStaffs() {
-  const {slug} = useParams()
+const params:{slug: any} = useParams()
+  const {slug} = params
   const school = slug
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const { data: teacherList } = useQuery(
     [queryKeys.getTeachers, easysch_token?.school_uid],
     async () => await getRequest({ url: TEACHERS(easysch_token?.school_uid) }),
@@ -199,7 +200,7 @@ export default function SchoolStaffs() {
         />
       }
       currentPage="Teachers"
-      slug={school}
+      // slug={school}
     />
   );
 }

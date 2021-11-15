@@ -11,9 +11,10 @@ import jwt_decode from 'jwt-decode';
 
 
 export default function SchoolDashboard() {
-  const {slug} = useParams()
-  const school = slug
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   console.log(easysch_token)
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, easysch_token?.school_uid],
@@ -95,5 +96,5 @@ export default function SchoolDashboard() {
   // const debtorsClass = rooms
   console.log(debtorsData)
   
-  return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard' slug={school} />;
+  return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard'  />;
 }

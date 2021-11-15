@@ -18,8 +18,9 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function classes() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {slug} = useParams()
+  const easysch_token:{school_uid: any, user_id} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug} = params
   const school = slug
   // const [easysch_token, setToken] = React.useState<any>()
   // const localToken = typeof window !== "undefined" && localStorage?.getItem("easysch_token")
@@ -46,7 +47,7 @@ export default function classes() {
     <StaffLayout
       Component={<Courses courseList={allCourses} school={school} />}
       currentPage="Courses"
-      slug={school}
+      // slug={school}
     />
   );
 }

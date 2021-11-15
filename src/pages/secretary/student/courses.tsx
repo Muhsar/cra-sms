@@ -17,9 +17,10 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentCourses() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const { id: student, slug: school } = useParams()
-  const [classId, setClassId] = React.useState()
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
+    const [classId, setClassId] = React.useState()
   const { data: homeroomCourseList } = useQuery(
     [queryKeys.getHomeroomCourses, classId, easysch_token?.school_uid],
     async () => await getRequest({ url: HOMEROOMCOURSES(easysch_token?.school_uid, classId) }),
@@ -94,7 +95,7 @@ export default function StudentCourses() {
         open={open}
                 setOpen={setOpen}
                 selected={selected} setSelected={setSelected}
-      />} user="student" userId={student} page="Courses" school={school}  />} currentPage='Students' slug={school} />
+      />} user="student" userId={student} page="Courses" school={school}  />} currentPage='Students' />
       </>
   )
 }

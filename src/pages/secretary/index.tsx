@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { getRequest } from 'api/apiCall'
-import { TEACHER, TEACHERCOURSES } from 'api/apiUrl'
+import { TEACHER, TEACHERCOURSES, HOMEROOMS, STUDENTS, TEACHERS } from 'api/apiUrl'
 import { queryKeys } from 'api/queryKey'
 // import Dashboard from 'Staff/Dashboard'
 import SecretaryLayout from 'components/SecretaryLayout'
@@ -14,9 +14,10 @@ import DebtorsCards from '../../School/Dashboard/DebtorsCards';
 import BirthdayCard from '../../School/Dashboard/BirthdayCard';
 
 export default function dashboard() {
-  const {slug} = useParams()
+const params:{slug: any} = useParams()
+  const {slug} = params
 const school = slug
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const easysch_token:{school_uid: any, user_id: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
@@ -127,7 +128,7 @@ const school = slug
       <SecretaryLayout Component={<Dashboard
         teacher={teacher}
         stats={stats} school={school} debts={debtorsData}
-      />} currentPage='Dashboard' slug={school} />
+      />} currentPage='Dashboard' />
 </>
   )
 }

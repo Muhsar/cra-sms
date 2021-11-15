@@ -19,10 +19,12 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 };
 
 export default function SingleStaff() {
-  const { id: staff, slug: school } = useParams()
+  // const { id: staff, slug: school } = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: staff, slug: school} = params
     const {schoolLogo: logo} = localStorage
     console.log(logo)
-    const easysch_token = jwt_decode(localStorage?.easysch_token)
+    const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
@@ -54,7 +56,7 @@ export default function SingleStaff() {
   ]
   return (
     <>
-      <SchoolLayout Component={<ProfilePage Component={<Profile data={teacher} details={StaffDetail} logo={logo} />} user="staff" userId={staff} page="Profile" school={school} />} currentPage='Teachers' slug={school} />
+      <SchoolLayout Component={<ProfilePage Component={<Profile data={teacher} details={StaffDetail} logo={logo} />} user="staff" userId={staff} page="Profile" school={school} />} currentPage='Teachers'  />
       </>
   )
 }

@@ -17,8 +17,9 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function EditStudent() {
-  const {id: student, slug: school} = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:wardList
   } = useQuery(
@@ -132,7 +133,7 @@ export default function EditStudent() {
       <SecretaryLayout Component={<ProfilePage Component={<Edit  handleChange={handleChange}
         handleSelect={handleSelect}
         handleSubmit={submitForm}
-        state={state} rooms={rooms} />} user="student" userId={student} page="Edit" school={school} />} currentPage='Students' slug={school} />
+        state={state} rooms={rooms} />} user="student" userId={student} page="Edit" school={school} />} currentPage='Students' />
       </>
   )
 }

@@ -37,8 +37,9 @@ const Body = ({ school, room, students, courses, roomCourses, handleSubmit, stat
   );
 };
 export default function SingleClass() {
-  const {id: classId, slug: school} = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: classId, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const [open, setOpen] = React.useState(false)
   const { data: courseList } = useQuery(
     [queryKeys.getCourses, easysch_token?.school_uid],
@@ -155,7 +156,7 @@ export default function SingleClass() {
           />
         }
         currentPage="Classes"
-        slug={school}
+        // slug={school}
       />
     </div>
   );

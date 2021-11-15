@@ -4,7 +4,7 @@ import React from "react";
 import jwt_decode from "jwt-decode";
 import {
   BrowserRouter as Router,
-  Route
+  Route,
 } from "react-router-dom";
 import {Helmet} from "react-helmet"
 import { UnAuthorized } from "./routes/auth";
@@ -22,10 +22,12 @@ export const ToastContext = React.createContext();
 export default function Test() {
   // console.log(window.location.hostname.slice(0, -10))
 const { showAlert, Toast } = useToast();
-
-    const easysch_token: { groups: any[] } =
+    const easysch_token =
       localStorage?.easysch_token && jwt_decode(localStorage?.easysch_token);
       console.log(easysch_token)
+      console.log(Number(easysch_token?.exp) < (Date.now() / 1000))
+      console.log(easysch_token?.exp*1000, Date.now())
+      // const decode = jwt_decode(localStorage)
     const AuthFunction = () => {
       let auth = "";
       if (easysch_token && easysch_token !== "undefined") {
@@ -50,7 +52,14 @@ const { showAlert, Toast } = useToast();
           }
         }
       }
-      if (!easysch_token || easysch_token == "undefined") {
+      if (!localStorage?.easysch_token) {
+        auth = "UnAuthorized";
+      }
+      if (!easysch_token) {
+        auth = "UnAuthorized";
+      }
+      if (easysch_token && ((easysch_token?.exp*1000) < (Date.now()))) {
+        localStorage.removeItem("easysch_token")
         auth = "UnAuthorized";
       }
       return auth;

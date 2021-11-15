@@ -2,7 +2,7 @@ import React from "react";
 import SchoolLayout from "components/SchoolLayout";
 import CoursePage from "School/Courses";
 // import { Courses } from "Mock/Courses";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import {Courses} from "Mock/Courses";
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getRequest, postRequest } from "api/apiCall";
@@ -19,9 +19,10 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolCourses() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {slug} = useParams()
-  const school = slug
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
   const {
     data:courseList
   } = useQuery(
@@ -165,7 +166,7 @@ export default function SchoolCourses() {
         />
       }
       currentPage="Courses"
-      slug={school}
+      
     />
   );
 }

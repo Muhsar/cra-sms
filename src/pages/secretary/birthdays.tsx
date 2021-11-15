@@ -132,8 +132,9 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolBirthdays() {
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {slug: school} = useParams()
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug: school} = params
   const {
     data:teacherList
   } = useQuery(
@@ -164,6 +165,6 @@ export default function SchoolBirthdays() {
   console.log(teachers, students)
   return (
     <>
-        <SecretaryLayout Component={<Body students={students} teachers={teachers} />} currentPage='Birthdays' slug={school} />
+        <SecretaryLayout Component={<Body students={students} teachers={teachers} />} currentPage='Birthdays' />
       </>
 )}

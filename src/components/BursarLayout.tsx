@@ -174,7 +174,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                         localStorage?.removeItem("schoolName");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolLogo");
-                      window.location =`/${slug}/login`;
+                      window.location.href =`/${slug}/login`;
                     }}
                   >
                     <LogoutIcon
@@ -250,7 +250,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                       localStorage?.removeItem("schoolName");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolLogo");
-                    window.location =`/${slug}/login`;
+                    window.location.href =`/${slug}/login`;
                   }}
                 >
                   <LogoutIcon
@@ -282,12 +282,12 @@ export default function SecretaryLayout({ Component, currentPage }) {
                 <label htmlFor="search_field" className="sr-only">
                   Search
                 </label>
-                <div className="relative w-full text-gray-400 focus:outline-none flex flex-row">
+                <div className="relative flex flex-row w-full text-gray-400 focus:outline-none">
                   <img
-                    className="h-16 w-16 object-contain object-center p-1 ml-2 rounded-full"
+                    className="object-contain object-center w-16 h-16 p-1 ml-2 rounded-full"
                     src={logo}
                   />
-                  <div className="flex items-center pointer-events-none font-extrabold text-gray-800 text-2xl ml-3">
+                  <div className="flex items-center ml-3 text-2xl font-extrabold text-gray-800 pointer-events-none">
                     {typeof window !== "undefined" &&
                       localStorage?.getItem("schoolName")}
                   </div>

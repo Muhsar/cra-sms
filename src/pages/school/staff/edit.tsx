@@ -19,8 +19,10 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 };
 
 export default function EditStaff() {
-  const { id: staff, slug: school } = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  // const { id: staff, slug: school } = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: staff, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
@@ -102,7 +104,7 @@ export default function EditStaff() {
         handleSelect={handleSelect}
         handleSubmit={submitForm}
         staff={state}
-      />} user="staff" userId={staff} page="Edit" school={school} />} currentPage='Teachers' slug={school} />
+      />} user="staff" userId={staff} page="Edit" school={school} />} currentPage='Teachers'  />
       </>
   )
 }

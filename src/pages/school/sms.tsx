@@ -37,9 +37,10 @@ export default function SMS() {
     student: null,
     group: []
   })
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
-  const {slug} = useParams()
-  const school = slug
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
   const [selected, setSelected] = React.useState([])
   const homerooms = query(queryKeys.getClasses, easysch_token?.school_uid, HOMEROOMS(easysch_token?.school_uid), easysch_token?.school_uid)
   const studentList = query(queryKeys.getStudents, easysch_token?.school_uid, STUDENTS(easysch_token?.school_uid), easysch_token?.school_uid)
@@ -105,11 +106,11 @@ console.log(groups)
         handleSelect={handleSelect}
         rooms={rooms}
         students={students}
-        selected={selected}
-        setSelected={setSelected}
+        // selected={selected}
+        // setSelected={setSelected}
         handleSubmit={submitForm}
-        open={open}
-        setOpen={setOpen}
+        // open={open}
+        // setOpen={setOpen}
         state={state}
         student={student}
         group={group}
@@ -117,6 +118,6 @@ console.log(groups)
       />
     }
     currentPage="Messages"
-    slug={school}
+    
   />;
 }

@@ -16,8 +16,9 @@ export const getServerSideProps = (context: { query: { courseId: any, school: an
 };
 
 export default function SingleCourse() {
-  const { id: courseId, slug: school } = useParams()
-  const easysch_token = jwt_decode(localStorage?.easysch_token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: courseId, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:courseList
   } = useQuery(
@@ -85,7 +86,7 @@ export default function SingleCourse() {
         />
       }
         currentPage="Courses"
-        slug={school}
+        
     />
     </>
   )
