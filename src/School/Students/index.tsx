@@ -123,7 +123,7 @@ const Component = ({
                   htmlFor="last_name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Last name
+                  Last name (Surname)
                 </label>
                 <div className="mt-1">
                   <input
@@ -185,7 +185,6 @@ const Component = ({
                 </label>
                 <div className="mt-1">
                   <input
-                    required
                     onChange={handleChange}
                     id="email"
                     name="email"
@@ -347,7 +346,6 @@ const Component = ({
                 </label>
                 <div className="mt-1">
                   <select
-                    required
                     onChange={handleSelect}
                     id="state_of_origin"
                     name="state_of_origin"
@@ -360,7 +358,7 @@ const Component = ({
                   </select>
                 </div>
               </div>
-              {state.state && (
+              {/* {state.state && (
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="lga"
@@ -387,7 +385,7 @@ const Component = ({
                     </select>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
