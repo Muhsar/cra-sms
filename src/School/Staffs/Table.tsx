@@ -42,6 +42,12 @@ export default function Table({ teachers, school }) {
                   >
                     Mobile Number
                   </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                  >
+                    Activation Code
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200" id="Staffs">
@@ -102,6 +108,9 @@ export default function Table({ teachers, school }) {
 
                       <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {person?.phone_number}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        {person?.code}
                       </td>
                     </tr>
                 ))}
