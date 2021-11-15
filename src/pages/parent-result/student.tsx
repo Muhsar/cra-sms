@@ -107,8 +107,8 @@ export default function StudentResult() {
                         <th scope="col">SECOND CA</th>
                         <th scope="col">EXAM</th>
                         <th scope="col">TOTAL</th>
-                        <th scope="col">FIRST TERM</th>
-                        <th scope="col">SECOND TERM</th>
+                        {/* <th scope="col">FIRST TERM</th>
+                        <th scope="col">SECOND TERM</th> */}
                         <th scope="col">AVERAGE</th>
                         <th scope="col">GRADE</th>
                         <th scope="col">REMARKS</th>
@@ -123,8 +123,8 @@ export default function StudentResult() {
                         <td>{result.t_second_ca}</td>
                         <td>{result.third_exam}</td>
                         <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
+                        {/* <td>{result.total_first}</td>
+                        <td>{result.total_second}</td> */}
                         <td>{result.session_average}</td>
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>

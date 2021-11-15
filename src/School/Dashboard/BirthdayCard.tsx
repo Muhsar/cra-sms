@@ -73,7 +73,7 @@ export default function BirthdayCard() {
     <>
     <h2 className="py-3 my-3 text-xl font-medium leading-6 text-gray-900">Today's Celebrants</h2>
     {
-      !students.length && !teachers.length && (
+      !students?.length && !teachers?.length && (
         <div className="flex flex-col items-center justify-center w-full h-full py-6 mx-6 text-xl font-extrabold text-center text-gray-400">No Data Returned</div>
       )
     }
