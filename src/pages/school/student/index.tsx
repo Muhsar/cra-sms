@@ -45,7 +45,7 @@ export default function SingleStudent() {
     },
     {
       param: "Guardian Name",
-      value: list?.last_name + " " + list?.guardian_name,
+      value: list?.guardian_full_name,
     },
     { param: "Email Address", value: list?.email },
     { param: "Class", value: list?.current_class.name },
