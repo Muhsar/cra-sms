@@ -37,6 +37,7 @@ export const UnAuthorized = (
         )
       } />
     <Route path="/:slug/login" component={LoginPage} exact />
+    <Route path="/:slug/" component={LoginPage} exact />
     <Route path="/:slug/otp" component={OTP} exact />
     <Route path="/:slug/verify/:id" component={VerifyAccount} exact />
     <Route path="/" component={LandingPage} exact />

@@ -32,6 +32,7 @@ export const Owner = (
     />
     <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
     <Route path="/:slug/school" component={SchoolDashboard} exact />
+    <Route path="/:slug/" component={SchoolDashboard} exact />
     <Route path="/:slug/school/classes" component={SchoolClasses} exact />
     <Route path="/:slug/school/students" component={SchoolStudents} exact />
     <Route path="/:slug/school/staffs" component={SchoolStaffs} exact />

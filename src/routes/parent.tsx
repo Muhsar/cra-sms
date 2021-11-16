@@ -12,6 +12,7 @@ import ParentStats from "Parent/pages/stats";
 export const Parent = (
   <Switch>
     {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
+    <Route path="/:slug/" component={ParentDashboard} exact />
     <Route path="/:slug/parent" component={ParentDashboard} exact />
     <Route path="/:slug/parent/child/:id" component={ParentChildDashboard} exact />
     <Route path="/:slug/parent/child/:id/result/test" component={ParentTestResult} exact />

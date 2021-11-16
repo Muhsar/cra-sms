@@ -31,6 +31,7 @@ export const Secretary = (
       exact
     />
     <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
+    <Route path="/:slug/" component={Dashboard} exact />
     <Route path="/:slug/secretary" component={Dashboard} exact />
     <Route path="/:slug/secretary/classes" component={SchoolClasses} exact />
     <Route path="/:slug/secretary/students" component={SchoolStudents} exact />
