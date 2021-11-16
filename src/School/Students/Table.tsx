@@ -42,6 +42,9 @@ export default function Table({ students, school }) {
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Result</span>
                   </th>
+                  <th scope="col" className="relative px-6 py-3">
+                    <span className="sr-only">Action</span>
+                  </th>
                 </tr>
               </thead>
               <tbody
@@ -106,6 +109,11 @@ export default function Table({ students, school }) {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <a href={`/${school}/result/${person.id}`} target="_blank" className="text-blue-600 hover:text-blue-900">
                         View Result
+                      </a>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a href={`/${school}/result/${person.id}`} target="_blank" className="text-red-600 hover:text-red-900">
+                        Delete Result
                       </a>
                       </td>
                     </tr>
