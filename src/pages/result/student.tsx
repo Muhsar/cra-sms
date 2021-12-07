@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Helmet } from 'react-helmet';
 
+// https://explore.skillbuilder.aws/learn
+
 export const getServerSideProps = (context: { query: { student: any, school: any } }) => {
   const { student, school } = context.query;
 
@@ -49,11 +51,12 @@ export default function StudentResult() {
       <div className="text-lg ">
         <div className="text-lg ">
           <div className="text-lg ">
-            <div className="text-lg ">
-              <div style={{width: 1004}}>
-                <img src={logo} alt="" className="object-center w-48 h-48 mx-auto text-lg d-block" />
-              </div>
-              <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
+            <div className="text-lg ">                            
+              <div style={{marginLeft: 45}}>
+                  <img src="https://res.cloudinary.com/masterp4dev/image/upload/v1638876935/logo4-1_xoa0ru.jpg" alt="" />
+                  
+                </div>
+              <h3 id="current-term-header">FIRST TERM STUDENT'S PERFORMANCE REPORT</h3>
               <div className="flex flex-row justify-between w-full max-w-5xl text-lg bd-highlight" style={{width: 1004}}>
                 <div className="px-2 text-lg bd-highlight" style={{width: 804}}>
                   <div>
