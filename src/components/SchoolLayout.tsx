@@ -66,7 +66,6 @@ const navigation = [
     icon: ChatAlt2Icon,
     current: false,
   },
-  { name: "Birthdays", href: "school/birthdays", icon: CakeIcon, current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -191,12 +190,12 @@ export default function SchoolLayout({ Component, currentPage }) {
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                     )}
                     onClick={() => {
-                      typeof window !== "undefined" && localStorage?.removeItem("token")
+                      typeof window !== "undefined" && localStorage?.removeItem("easysch_token")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolId")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      window.location =`/${slug}/login`
+                      window.location.href =`/${slug}/login`
                     }}
                       >
                         <LogoutIcon
@@ -210,12 +209,12 @@ export default function SchoolLayout({ Component, currentPage }) {
                       </a>
                 </nav>
               </div>
-              {/* <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-              <a href="#" className="flex-shrink-0 w-full group block">
+              {/* <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
+              <a href="#" className="flex-shrink-0 block w-full group">
                 <div className="flex items-center">
                   <div>
                     <img
-                      className="inline-block h-9 w-9 rounded-full"
+                      className="inline-block rounded-full h-9 w-9"
                       src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
                       alt=""
                     />
@@ -279,12 +278,12 @@ export default function SchoolLayout({ Component, currentPage }) {
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                     )}
                     onClick={() => {
-                      typeof window !== "undefined" && localStorage?.removeItem("token")
+                      typeof window !== "undefined" && localStorage?.removeItem("easysch_token")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolId")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolSlug")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolName")
                       typeof window !== "undefined" && localStorage?.removeItem("schoolLogo")
-                      window.location =`/${slug}/login`
+                      window.location.href =`/${slug}/login`
                     }}
                       >
                         <LogoutIcon
@@ -298,12 +297,12 @@ export default function SchoolLayout({ Component, currentPage }) {
                       </a>
               </nav>
             </div>
-            {/* <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-                <a href="#" className="flex-shrink-0 group block">
+            {/* <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
+                <a href="#" className="flex-shrink-0 block group">
                   <div className="flex items-center">
                     <div>
                       <img
-                        className="inline-block h-10 w-10 rounded-full"
+                        className="inline-block w-10 h-10 rounded-full"
                         src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
                         alt=""
                       />
@@ -333,12 +332,12 @@ export default function SchoolLayout({ Component, currentPage }) {
                 <label htmlFor="search_field" className="sr-only">
                   Search
                 </label>
-                <div className="relative w-full text-gray-400 focus:outline-none flex flex-row">
+                <div className="relative flex flex-row w-full text-gray-400 focus:outline-none">
                   <img
-                    className="h-16 w-16 object-contain object-center p-1 ml-2 rounded-full"
+                    className="object-contain object-center w-16 h-16 p-1 ml-2 rounded-full"
                     src={logo}
                   />
-                  <div className="flex items-center pointer-events-none font-extrabold text-gray-800 text-2xl ml-3">
+                  <div className="flex items-center ml-3 text-2xl font-extrabold text-gray-800 pointer-events-none">
                   {typeof window !== "undefined" && localStorage?.getItem("schoolName")}
                   </div>
                 </div>

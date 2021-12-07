@@ -16,16 +16,17 @@ export const getServerSideProps = (context: { query: { courseId: any, school: an
 };
 
 export default function SingleCourse() {
-  const { id: courseId, slug: school } = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: courseId, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:courseList
   } = useQuery(
-    [queryKeys.getCourse, token?.school_uid],
-    async () => await getRequest({ url: COURSE(token?.school_uid, courseId) }),
+    [queryKeys.getCourse, easysch_token?.school_uid],
+    async () => await getRequest({ url: COURSE(easysch_token?.school_uid, courseId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
 
@@ -53,7 +54,7 @@ export default function SingleCourse() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: COURSE(token?.school_uid, courseId),
+      url: COURSE(easysch_token?.school_uid, courseId),
       data: {
       },
     });
@@ -85,7 +86,7 @@ export default function SingleCourse() {
         />
       }
         currentPage="Courses"
-        slug={school}
+        
     />
     </>
   )

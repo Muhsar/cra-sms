@@ -14,12 +14,12 @@ export default function Profile({data, details, logo}) {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
           <div className="flex">
-            <img className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 transition-all transform hover:scale-105 object-center object-cover" src={data?.user.image ? data?.user.image : data?.gender==="Male" ? images.male : images.female} alt="" />
+            <img className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32 transition-all transform hover:scale-105 object-center object-cover" src={data?.image ? data?.image : data?.gender==="Male" ? images.male : images.female} alt="" />
           </div>
           <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
             <div className="sm:hidden md:block mt-6 min-w-0 flex-1">
-              <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.user.full_name:data?.full_name}</h1>
-              <h1 className="text-sm font-bold text-gray-900 truncate">Role: {data?.user.role}</h1>
+              <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.full_name:data?.full_name}</h1>
+              <h1 className="text-sm font-bold text-gray-900 truncate">Role: {data?.role}</h1>
             </div>
             <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
               <button
@@ -33,7 +33,7 @@ export default function Profile({data, details, logo}) {
           </div>
         </div>
         <div className="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
-          <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.user.full_name:data?.full_name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 truncate">{data?.user?data?.full_name:data?.full_name}</h1>
         </div>
     
       </div>

@@ -13,7 +13,7 @@ import { Redirect } from "react-router-dom"
 export const UnAuthorized = (
   <Switch>
   <Route path="/:slug/school" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? (
+        localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" ? (
           <SchoolDashboard />
         ) : (
           <Redirect
@@ -25,7 +25,7 @@ export const UnAuthorized = (
         )
       } />
   <Route path="/:slug/staff" render={({ location, match }) =>
-        localStorage?.token && localStorage?.token!=="undefined" ? (
+        localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" ? (
           <StaffDashboard />
         ) : (
           <Redirect
@@ -37,6 +37,7 @@ export const UnAuthorized = (
         )
       } />
     <Route path="/:slug/login" component={LoginPage} exact />
+    <Route path="/:slug/" component={LoginPage} exact />
     <Route path="/:slug/otp" component={OTP} exact />
     <Route path="/:slug/verify/:id" component={VerifyAccount} exact />
     <Route path="/" component={LandingPage} exact />

@@ -17,26 +17,27 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function EditStudent() {
-  const {id: student, slug: school} = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:wardList
   } = useQuery(
-    [queryKeys.getStudent, token?.school_uid],
-    async () => await getRequest({ url: STUDENT(token?.school_uid, student) }),
+    [queryKeys.getStudent, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENT(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const {
     data:homerooms
   } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [ward, setward] = React.useState(wardList?.data)
@@ -107,7 +108,7 @@ export default function EditStudent() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: STUDENT(token?.school_uid, student),
+      url: STUDENT(easysch_token?.school_uid, student),
       data: {
         first_name: state.first_name,
         last_name: state.last_name,
@@ -132,7 +133,7 @@ export default function EditStudent() {
       <SchoolLayout Component={<ProfilePage Component={<Edit  handleChange={handleChange}
         handleSelect={handleSelect}
         handleSubmit={submitForm}
-        state={state} rooms={rooms} />} user="student" userId={student} page="Edit" school={school} />} currentPage='Students' slug={school} />
+        state={state} rooms={rooms} />} user="student" userId={student} page="Edit" school={school} />} currentPage='Students'  />
       </>
   )
 }

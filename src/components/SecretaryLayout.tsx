@@ -2,10 +2,12 @@ import React, { Fragment, useState } from "react";
 import { Link, useHistory, withRouter, Redirect } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import { AttachMoneyOutlined } from "@material-ui/icons";
+
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
+  UserGroupIcon,
+  ChatAlt2Icon,
   FolderIcon,
   HomeIcon,
   InboxIcon,
@@ -16,22 +18,32 @@ import {
   ClipboardListIcon,
   BookOpenIcon,
   CogIcon,
-  LogoutIcon,
+  ChevronDownIcon,
+  SearchIcon,
+  SortAscendingIcon,
+  HashtagIcon,
+  CakeIcon,
+  LogoutIcon
 } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
-// import history from '../pages/school/student/[student]/history';
+// import history from '../pages/secretary/student/[student]/history';
 const navigation = [
-  { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
+   { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
   {
-    name: "Students",
-    href: "secretary/students",
+    name: "Classes",
+    href: "secretary/classes",
     icon: OfficeBuildingIcon,
     current: false,
   },
   {
-    name: "Classes",
-    href: "secretary/classes",
-    icon: BookOpenIcon,
+    name: "Students",
+    href: "secretary/students",
+    icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    name: "Staffs",
+    href: "secretary/staffs",
+    icon: UsersIcon,
     current: false,
   },
   {
@@ -40,6 +52,19 @@ const navigation = [
     icon: BookOpenIcon,
     current: false,
   },
+  {
+    name: "Fee Management",
+    href: "secretary/fees",
+    icon: AttachMoneyOutlined,
+    current: false,
+  },
+  {
+    name: "Messages",
+    href: "secretary/sms",
+    icon: ChatAlt2Icon,
+    current: false,
+  },
+  { name: "Birthdays", href: "secretary/birthdays", icon: CakeIcon, current: false },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
 ];
 
@@ -171,7 +196,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                     )}
                     onClick={() => {
                       typeof window !== "undefined" &&
-                        localStorage?.removeItem("token");
+                        localStorage?.removeItem("easysch_token");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolId");
                       typeof window !== "undefined" &&
@@ -180,7 +205,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                         localStorage?.removeItem("schoolName");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolLogo");
-                      window.location =`/${slug}/login`;
+                      window.location.href =`/${slug}/login`;
                     }}
                   >
                     <LogoutIcon
@@ -247,7 +272,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                   )}
                   onClick={() => {
                     typeof window !== "undefined" &&
-                      localStorage?.removeItem("token");
+                      localStorage?.removeItem("easysch_token");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolId");
                     typeof window !== "undefined" &&
@@ -256,7 +281,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
                       localStorage?.removeItem("schoolName");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolLogo");
-                    window.location =`/${slug}/login`;
+                    window.location.href =`/${slug}/login`;
                   }}
                 >
                   <LogoutIcon
@@ -288,12 +313,12 @@ export default function SecretaryLayout({ Component, currentPage }) {
                 <label htmlFor="search_field" className="sr-only">
                   Search
                 </label>
-                <div className="relative w-full text-gray-400 focus:outline-none flex flex-row">
+                <div className="relative flex flex-row w-full text-gray-400 focus:outline-none">
                   <img
-                    className="h-16 w-16 object-contain object-center p-1 ml-2 rounded-full"
+                    className="object-contain object-center w-16 h-16 p-1 ml-2 rounded-full"
                     src={logo}
                   />
-                  <div className="flex items-center pointer-events-none font-extrabold text-gray-800 text-2xl ml-3">
+                  <div className="flex items-center ml-3 text-2xl font-extrabold text-gray-800 pointer-events-none">
                     {typeof window !== "undefined" &&
                       localStorage?.getItem("schoolName")}
                   </div>

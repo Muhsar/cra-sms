@@ -4,12 +4,12 @@ import { SearchField } from "components/search"
 import FormDialog from './AddClass';
 
 export default function Title({handleChange, handleSubmit, open, setOpen}) {
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#Classes .searchBody"
-    SearchField({value, searchBody})
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value.toLowerCase();
+  //   const searchBody = "#Classes .searchBody"
+  //   SearchField({value, searchBody})
     
-  }
+  // }
   return (
     <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
     <h3 className="text-2xl font-medium leading-6 text-gray-900">Classes</h3>
@@ -19,10 +19,10 @@ export default function Title({handleChange, handleSubmit, open, setOpen}) {
       </label>
       <div className="flex rounded-md shadow-sm">
         <div className="relative flex-grow focus-within:z-10">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          {/* <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <SearchIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-          </div>
-          <input
+          </div> */}
+          {/* <input
             type="text"
             name="search_classes "
             id="search_classes"
@@ -37,7 +37,7 @@ export default function Title({handleChange, handleSubmit, open, setOpen}) {
             className="hidden w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:block sm:text-sm"
             placeholder="Search classes"
             onChange={handleSearch}
-          />
+          /> */}
         </div>
         {/* <button
           type="button"

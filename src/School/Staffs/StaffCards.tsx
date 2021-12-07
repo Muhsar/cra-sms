@@ -14,10 +14,10 @@ export default function StaffCards({staffs, school}) {
           <div className="flex items-center h-full p-4 transform border border-gray-200 rounded-lg shadow hover:scale-105  cursor-pointer hover:bg-gray-200 bg-gray-100">
             <img
                 className={`avatar avatar-lg h-10 w-10 rounded-full object-center object-cover mr-4`}
-                src={staff.user.image ? staff.user.image : `/img/${staff.gender==="Male"?"":"fe"}male_avatar.png`}
+                src={staff.image ? staff.image : `/img/${staff.gender==="Male"?"":"fe"}male_avatar.png`}
             />
             <div className="flex-grow">
-              <h2 className="font-medium text-gray-900 title-font">{staff.user.full_name}</h2>
+              <h2 className="font-medium text-gray-900 title-font">{staff.full_name}</h2>
             </div>
           </div>
         </>

@@ -6,7 +6,10 @@ const query = (key, param, url, enabled) => {
     async () => await getRequest({ url }),
     {
       retry: 2,
-      enabled: !!enabled
+      enabled: !!enabled,
+      onError(data){
+        console.log(data)
+      }
     }
     )
     return data

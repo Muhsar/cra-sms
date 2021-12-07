@@ -24,7 +24,7 @@ export const getServerSideProps = (context: { query: { classId: any, school: any
   return { props: { classId, school } };
 };
 
-const Body = ({ classId, school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send, selected, setSelected }) => {
+const Body = ({ school, room, students, courses, roomCourses, handleSubmit, state, setState, open, setOpen, send, selected, setSelected }) => {
   return (
     <>
       
@@ -32,43 +32,45 @@ const Body = ({ classId, school, room, students, courses, roomCourses, handleSub
       <div className="pt-5" />
       <SingleClassStudents students={students} school={school} />
       <SingleClassCourses courses={courses} roomCourses={roomCourses} handleSubmit={handleSubmit} state={state}
-            setState={setState} open={open} setOpen={setOpen} selected={selected} setSelected={setSelected} />
+            setState={setState} selected={selected} setSelected={setSelected} open={open} setOpen={setOpen} />
     </>
   );
 };
 export default function SingleClass() {
-  const {id: classId, slug: school} = useParams()
-  const token = jwt_decode(localStorage?.token)
+  const params:{id: any, slug: any} = useParams()
+  const {id: classId, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const [open, setOpen] = React.useState(false)
   const { data: courseList } = useQuery(
-    [queryKeys.getCourses, token?.school_uid],
-    async () => await getRequest({ url: GET_COURSES(token?.school_uid) }),
+    [queryKeys.getCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: GET_COURSES(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: homeroomCourseList } = useQuery(
-    [queryKeys.getHomeroomCourses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMCOURSES(token?.school_uid, classId) }),
+    [queryKeys.getHomeroomCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMCOURSES(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: homeroom } = useQuery(
-    [queryKeys.getClass, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOM(token?.school_uid, classId) }),
+    [queryKeys.getClass, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOM(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const { data: studentList } = useQuery(
-    [queryKeys.getClassStudents, token?.school_uid],
-    async () => await getRequest({ url: CLASSSTUDENTS(token?.school_uid, classId) }),
+    [queryKeys.getClassStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: CLASSSTUDENTS(easysch_token?.school_uid, classId) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const cache = useQueryClient()
@@ -79,7 +81,6 @@ export default function SingleClass() {
         message: data?.message,
         severity: "success",
       });
-      setOpen(false)
       const subjectsData = state.subjects.map(subject=>{
         const datas = {subject: {name: subject.name}}
         return datas
@@ -91,10 +92,10 @@ export default function SingleClass() {
         subjects: []
       })
       setSelected([])
+      setOpen(false)
       cache.invalidateQueries();
     },
   });
-  const [open, setOpen] = React.useState(false)
   const [state, setState] = React.useState({
     subjects: [],
     names: []
@@ -102,7 +103,7 @@ export default function SingleClass() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: HOMEROOMCOURSES(token?.school_uid, classId),
+      url: HOMEROOMCOURSES(easysch_token?.school_uid, classId),
       data: {
         subjects: state.subjects,
       },
@@ -128,7 +129,7 @@ export default function SingleClass() {
   ]);
   const sendResults = () => {
     mutate({
-      url: SENDRESULTS(token?.school_uid, classId),
+      url: SENDRESULTS(easysch_token?.school_uid, classId),
       data: {}
     })
   }
@@ -138,7 +139,7 @@ export default function SingleClass() {
       <SchoolLayout
         Component={
           <Body
-            classId={classId}
+            // classId={classId}
             courses={courses}
             room={room}
             students={students}
@@ -155,7 +156,7 @@ export default function SingleClass() {
           />
         }
         currentPage="Classes"
-        slug={school}
+        
       />
     </div>
   );

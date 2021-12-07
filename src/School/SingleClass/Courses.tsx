@@ -2,13 +2,14 @@ import React from 'react'
 import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import { Switch } from '@headlessui/react'
 import { MultipleAutoComplete } from 'components/AutoComplete';
-export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, open, setOpen, selected, setSelected  }) {
+export default function SingleClassCourses({courses, roomCourses, handleSubmit, state, setState, selected, setSelected, open, setOpen  }) {
   // const [open, setOpen] = React.useState<boolean>(false)
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
-
-  const handleClickOpen = () => {
+// const [open, setOpen] = React.useState(false)
+  const handleClickOpen = (e:any) => {
+    e.preventDefault()
     setOpen(true)
   }
   const handleClickClose = () => {

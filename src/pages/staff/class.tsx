@@ -12,9 +12,10 @@ import jwt_decode from 'jwt-decode';
 
 
 export default function homeroom() {
-  const {slug} = useParams()
+const params:{slug: any} = useParams()
+  const {slug} = params
   const school = slug
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const [order, setOrder] = React.useState("asc");
   const [listCount, setlistCount] = React.useState(0);
   const [list, setList] = React.useState([]);
@@ -54,7 +55,7 @@ export default function homeroom() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#Students tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   return (
     <>
@@ -71,7 +72,7 @@ export default function homeroom() {
           />
         }
         currentPage="Class"
-        slug={school}
+        // slug={school}
       />
     </>
   );

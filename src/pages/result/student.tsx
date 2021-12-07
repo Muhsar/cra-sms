@@ -7,20 +7,7 @@ import { queryKeys } from "api/queryKey";
 import { images } from "components/images";
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-const results = [
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  {subject: "Mathematics",first_ca: 20,second_ca: 20,exam: 60,total: 100,first_term: 100,second_term: 100, average: 100, remark: "Excellent",grade: "A"},
-  // More people...
-];
+import { Helmet } from 'react-helmet';
 
 export const getServerSideProps = (context: { query: { student: any, school: any } }) => {
   const { student, school } = context.query;
@@ -29,18 +16,19 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentResult() {
-  const { id: student, slug: school } = useParams()
+  const params:{ id: any, slug: any } = useParams()
+  const { id: student, slug: school } = params
   console.log(student, school)
   const {schoolLogo: logo} = localStorage
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token: {school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:resultData
   } = useQuery(
-    [queryKeys.getResults, student, token?.school_uid],
-    async () => await getRequest({ url: RESULTS(token?.school_uid, student) }),
+    [queryKeys.getResults, student, easysch_token?.school_uid],
+    async () => await getRequest({ url: RESULTS(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid&&student)
+      enabled: !!(easysch_token?.school_uid&&student)
     }
     )
   const [result, setStudents] = React.useState(resultData?.data)
@@ -49,13 +37,13 @@ export default function StudentResult() {
   }, [resultData?.data]);
   return (
     <>
-      <header>
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-      </header>
-      <div className="text-lg result-parent-div px-5 py-5">
+      </Helmet>
+      <div className="px-5 py-2 text-lg result-parent-div">
   <div className="text-lg ">
     <div className="text-lg ">
       <div className="text-lg ">
@@ -63,11 +51,11 @@ export default function StudentResult() {
           <div className="text-lg ">
             <div className="text-lg ">
               <div style={{width: 1004}}>
-                <img src={logo} alt="" className="text-lg h-48 w-48 object-center d-block mx-auto" />
+                <img src={logo} alt="" className="object-center w-48 h-48 mx-auto text-lg d-block" />
               </div>
               <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
-              <div className="text-lg flex justify-between flex-row w-full bd-highlight mb-3 max-w-5xl" style={{width: 1004}}>
-                <div className="text-lg p-2 bd-highlight" style={{width: 804}}>
+              <div className="flex flex-row justify-between w-full max-w-5xl text-lg bd-highlight" style={{width: 1004}}>
+                <div className="px-2 text-lg bd-highlight" style={{width: 804}}>
                   <div>
                     NAME: <span id="student-name-underline">{result?.student.full_name}</span>
                     GENDER: <span id="student-gender-underline">{result?.student.gender}</span>
@@ -77,7 +65,7 @@ export default function StudentResult() {
                     SESSION: <span className="text-lg student-basic-data">2020/2021</span>
                   </div>
                   <div className="text-lg performance-summary-table">
-                    <table className="text-lg table table-bordered">
+                    <table className="table text-lg table-bordered">
                       <thead className="text-lg thead-light">
                         <tr>
                           <th colSpan={5} id="perfomance-summary">PERFORMANCE SUMMARY</th>
@@ -103,8 +91,8 @@ export default function StudentResult() {
                     </table>
                   </div>
                 </div>
-                <div className="text-lg p-2 bd-highlight" style={{width: 200}}>
-                  <img src={result?.student.image} alt="" className="text-lg h-48 w-full object-center object-cover mt-5" />
+                <div className="p-2 text-lg bd-highlight" style={{width: 200}}>
+                  <img src={result?.student.image} alt="" className="object-cover object-center w-full h-48 mt-5 text-lg" />
                 </div>
                 <div>
                 </div>
@@ -112,7 +100,7 @@ export default function StudentResult() {
             </div>
           </div>
           <div className="text-lg " style={{width: 1004}}>
-            <table className="text-lg table table-bordered" style={{width: 1004}}>
+            <table className="table text-lg table-bordered" style={{width: 1004}}>
               <thead className="text-lg thead-light">
                 <tr>
                 <th scope="col">SUBJECTS</th>
@@ -120,8 +108,8 @@ export default function StudentResult() {
                         <th scope="col">SECOND CA</th>
                         <th scope="col">EXAM</th>
                         <th scope="col">TOTAL</th>
-                        <th scope="col">FIRST TERM</th>
-                        <th scope="col">SECOND TERM</th>
+                        {/* <th scope="col">FIRST TERM</th>
+                        <th scope="col">SECOND TERM</th> */}
                         <th scope="col">AVERAGE</th>
                         <th scope="col">GRADE</th>
                         <th scope="col">REMARKS</th>
@@ -136,56 +124,8 @@ export default function StudentResult() {
                         <td>{result.t_second_ca}</td>
                         <td>{result.third_exam}</td>
                         <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
-                      </tr>
-                        ))
-                      }
-              {
-                        result?.results.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
+                        {/* <td>{result.total_first}</td>
+                        <td>{result.total_second}</td> */}
                         <td>{result.session_average}</td>
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>

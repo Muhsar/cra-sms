@@ -32,11 +32,11 @@ export default function ProfileSlideOver({ open, setOpen, person, page }) {
                           <div className="text-sm font-medium text-gray-900">
                             {!person.user && person.full_name}
               {
-                person.user && person.user.full_name
+                person.user && person.full_name
               }
                           </div>
                           <div className="text-sm text-gray-500">
-                            {person.user ? person.user.email : person.email}
+                            {person.user ? person.email : person.email}
                           </div>
                         </div>
                       </div>

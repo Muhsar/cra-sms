@@ -1,5 +1,5 @@
 export default {
- Owner: "School Owner",
+ Owner: "Owner",
  Teacher: "Teacher",
- Both: ["School Owner", "Teacher"]
+ Both: ["Owner", "Teacher"]
 };

@@ -19,42 +19,44 @@ export const getServerSideProps = (context: { query: { staff: any, school: any }
 };
 
 export default function EditStaff() {
-  const { id: staff, slug: school } = useParams()
-  const token = jwt_decode(localStorage?.token)
+  // const { id: staff, slug: school } = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: staff, slug: school} = params
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
   } = useQuery(
-    [queryKeys.getTeacher, token?.school_uid],
-    async () => await getRequest({ url: TEACHER(token?.school_uid, staff) }),
+    [queryKeys.getTeacher, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHER(easysch_token?.school_uid, staff) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [teacher, setTeacher] = React.useState(teacherList?.data)
     React.useEffect(() => {
 
     setTeacher(teacherList?.data)
-    setState({first_name: teacher?.user.first_name,
-      last_name: teacher?.user.last_name,
+    setState({first_name: teacher?.first_name,
+      last_name: teacher?.last_name,
       religion: teacher?.religion,
-      phone_number: teacher?.user.phone_number,
+      phone_number: teacher?.phone_number,
       address: teacher?.address,
       date_of_birth: teacher?.date_of_birth,
-      email: teacher?.user.email,
+      email: teacher?.email,
       gender: teacher?.gender,
-      full_name: teacher?.user.full_name})
+      full_name: teacher?.full_name})
   }, [teacherList?.data, teacher])
   const [state, setState] = React.useState({
-    first_name: teacher?.user.first_name,
-        last_name: teacher?.user.last_name,
+    first_name: teacher?.first_name,
+        last_name: teacher?.last_name,
         religion: teacher?.religion,
-        phone_number: teacher?.user.phone_number,
+        phone_number: teacher?.phone_number,
         address: teacher?.address,
         date_of_birth: teacher?.date_of_birth,
-        email: teacher?.user.email,
+        email: teacher?.email,
         gender: teacher?.gender,
-        full_name: teacher?.user.full_name
+        full_name: teacher?.full_name
   })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
@@ -70,7 +72,7 @@ export default function EditStaff() {
   };
   const cache = useQueryClient()
   const {showAlert}  = React.useContext(ToastContext)
-  const { mutate } = useMutation(postRequest, {
+  const { mutate } = useMutation(patchRequest, {
    onSuccess(data) {
       showAlert({
         message: data?.message,
@@ -82,7 +84,7 @@ export default function EditStaff() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: TEACHER(token?.school_uid, staff),
+      url: TEACHER(easysch_token?.school_uid, staff),
       data: {
         first_name: state.first_name,
         last_name: state.last_name,
@@ -102,7 +104,7 @@ export default function EditStaff() {
         handleSelect={handleSelect}
         handleSubmit={submitForm}
         staff={state}
-      />} user="staff" userId={staff} page="Edit" school={school} />} currentPage='Teachers' slug={school} />
+      />} user="staff" userId={staff} page="Edit" school={school} />} currentPage='Teachers'  />
       </>
   )
 }

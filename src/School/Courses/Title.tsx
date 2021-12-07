@@ -14,10 +14,10 @@ export default function Title({handleSearch, handleSubmit, handleChange, state, 
         </label>
         <div className="flex rounded-md shadow-sm">
           <div className="relative flex-grow focus-within:z-10">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            {/* <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <SearchIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
-            </div>
-            <input
+            </div> */}
+            {/* <input
               type="text"
               name="search_students "
               id="search_students"
@@ -32,7 +32,7 @@ export default function Title({handleSearch, handleSubmit, handleChange, state, 
               className="hidden w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:block sm:text-sm"
               placeholder="Search students"
               onChange={handleSearch}
-            />
+            /> */}
           </div>
           {/* <button
             type="button"

@@ -31,7 +31,7 @@ const Component = ({
         <div className="space-y-8 divide-y divide-gray-200">
           <div className="pt-8">
             {/* <div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
+            <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
             <p className="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
           </div> */}
             <div className="grid grid-cols-1 gap-y-6 gap-x-4">
@@ -95,7 +95,7 @@ const Component = ({
                     name="first_name"
                     id="first_name"
                     autoComplete="first_name"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -114,7 +114,7 @@ const Component = ({
                     name="middle_name"
                     id="middle_name"
                     autoComplete="middle_name"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -123,7 +123,7 @@ const Component = ({
                   htmlFor="last_name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Last name
+                  Last name (Surname)
                 </label>
                 <div className="mt-1">
                   <input
@@ -133,7 +133,7 @@ const Component = ({
                     name="last_name"
                     id="last_name"
                     autoComplete="last_name"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -153,7 +153,7 @@ const Component = ({
                     name="guardian_full_name"
                     id="guardian_full_name"
                     autoComplete="guardian_full_name"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -171,7 +171,7 @@ const Component = ({
                     name="guardian_full_name2"
                     id="guardian_full_name2"
                     autoComplete="guardian_full_name2"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -185,13 +185,12 @@ const Component = ({
                 </label>
                 <div className="mt-1">
                   <input
-                    required
                     onChange={handleChange}
                     id="email"
                     name="email"
                     type="email"
                     autoComplete="email"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -210,7 +209,7 @@ const Component = ({
                     name="phone_number"
                     type="text"
                     autoComplete="phone_number"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -228,7 +227,7 @@ const Component = ({
                     name="phone_number2"
                     type="text"
                     autoComplete="phone_number2"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -247,7 +246,7 @@ const Component = ({
                     name="address"
                     type="text"
                     autoComplete="address"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -266,7 +265,7 @@ const Component = ({
                     id="class_id"
                     name="class_id"
                     autoComplete="class"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   >
                     <option value="">Please Select Class</option>
                     {rooms?.map((room) => (
@@ -289,7 +288,7 @@ const Component = ({
                     id="gender"
                     name="gender"
                     autoComplete="gender"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   >
                     <option>Please select Gender</option>
                     <option>Male</option>
@@ -312,7 +311,7 @@ const Component = ({
                     name="date_of_birth"
                     type="date"
                     autoComplete="date_of_birth"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   />
                 </div>
               </div>
@@ -330,7 +329,7 @@ const Component = ({
                     id="religion"
                     name="religion"
                     autoComplete="religion"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   >
                     <option>Please select Religion</option>
                     <option>Islam</option>
@@ -347,11 +346,10 @@ const Component = ({
                 </label>
                 <div className="mt-1">
                   <select
-                    required
                     onChange={handleSelect}
                     id="state_of_origin"
                     name="state_of_origin"
-                    className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                   >
                     <option>Please Select State</option>
                     {Nigeria.map((niger) => (
@@ -360,7 +358,7 @@ const Component = ({
                   </select>
                 </div>
               </div>
-              {state.state && (
+              {/* {state.state && (
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="lga"
@@ -375,7 +373,7 @@ const Component = ({
                       id="lga"
                       name="lga"
                       autoComplete="lga"
-                      className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
                     >
                       <option>Please Select LGA</option>
                       {Nigeria.map((niger) => (
@@ -387,7 +385,7 @@ const Component = ({
                     </select>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -396,13 +394,13 @@ const Component = ({
           <div className="flex justify-end">
             <button
               type="button"
-              className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
               Save
             </button>
@@ -447,6 +445,7 @@ export default function Students({
         handleSearch={handleSearch}
         open={open}
         setOpen={setOpen}
+        data={students}
       />
       <Table students={students} school={school} />
       <div className="sm:hidden">

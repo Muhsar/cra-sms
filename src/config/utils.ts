@@ -2,8 +2,8 @@
 import { intersection } from 'lodash';
 import jwt_decode from 'jwt-decode';
 
-const token : {groups: any[]} = localStorage?.token && jwt_decode(localStorage?.token)
-const {groups} = token
+const easysch_token : {groups: any[]} = localStorage?.easysch_token && jwt_decode(localStorage?.easysch_token)
+const {groups} = easysch_token
 export function isArrayWithLength(arr) {
  return (Array.isArray(arr) && arr.length)
 }

@@ -2,7 +2,7 @@ import React from "react";
 import SchoolLayout from "components/SchoolLayout";
 import Staffs from "School/Staffs";
 import { StaffList } from "Mock/StaffList";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { TEACHERS } from "api/apiUrl";
@@ -18,20 +18,26 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolStaffs() {
-  const {slug} = useParams()
-  const school = slug
-  const token = jwt_decode(localStorage?.token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const { data: teacherList } = useQuery(
-    [queryKeys.getTeachers, token?.school_uid],
-    async () => await getRequest({ url: TEACHERS(token?.school_uid) }),
+    [queryKeys.getTeachers, easysch_token?.school_uid],
+    async () => await getRequest({ url: TEACHERS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
+      onError(err){
+        console.log(err)
+      }
     }
   );
   const [teachers, setTeachers] = React.useState(teacherList?.data);
+  const [filteredData, setFilteredData] = React.useState(teacherList?.data);
   React.useEffect(() => {
     setTeachers(teacherList?.data);
+    setFilteredData(teacherList?.data);
   }, [teacherList?.data]);
   
 
@@ -51,12 +57,13 @@ export default function SchoolStaffs() {
         ...teachers,
         {
           user: {
-            full_name: data?.data.user.full_name,
-            image: data?.data.user.image,
-            email: data?.data.user.email,
-            is_active: data?.data.user.is_active,
-            role: data?.data.user.role,
-            phone_number: data?.data.user.phone_number,
+            full_name: data?.data.full_name,
+            image: data?.data.image,
+            email: data?.data.email,
+            is_active: data?.data.is_active,
+            role: data?.data.groups[0]?.name,
+            groups: data?.data.groups,
+            phone_number: data?.data.phone_number,
           },
           gender: data?.data.gender,
           id: data?.data.id,
@@ -93,7 +100,7 @@ export default function SchoolStaffs() {
       data.append("image", state.image);
 
     mutate({
-      url: TEACHERS(token?.school_uid),
+      url: TEACHERS(easysch_token?.school_uid),
       data: data,
     });
   };
@@ -170,10 +177,8 @@ export default function SchoolStaffs() {
     setList([state, ...list]);
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#Staffs tr";
-    SearchField({ value, searchBody });
-  };
+    SearchField({value:e.target.value, data: filteredData, setData: setFilteredData, initData:teachers})
+  }
   const [open, setOpen] = React.useState(false);
   return (
     <SchoolLayout
@@ -191,7 +196,7 @@ export default function SchoolStaffs() {
           listCount={listCount}
           order={order}
           handleDate={handleDate}
-          teachers={teachers}
+          teachers={filteredData}
           open={open}
           setOpen={setOpen}
           setState={setState}
@@ -199,7 +204,7 @@ export default function SchoolStaffs() {
         />
       }
       currentPage="Teachers"
-      slug={school}
+      
     />
   );
 }

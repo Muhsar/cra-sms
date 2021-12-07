@@ -7,6 +7,7 @@ import { queryKeys } from "api/queryKey";
 import { images } from "components/images";
 import { useParams } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { Helmet } from 'react-helmet';
 
 export const getServerSideProps = (context: { query: { student: any, school: any } }) => {
   const { student, school } = context.query;
@@ -15,9 +16,10 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentResult() {
-  const { id: student, slug: school } = useParams()
+  const params:{ id: any, slug: any } = useParams()
+  const { id: student, slug: school } = params
   const {schoolLogo: logo} = localStorage
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:resultData
   } = useQuery(
@@ -34,13 +36,13 @@ export default function StudentResult() {
   }, [resultData?.data]);
   return (
     <>
-      <header>
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
-      </header>
-      <div className="result-parent-div px-5 py-5">
+      </Helmet>
+      <div className="px-5 py-5 result-parent-div">
   <div className="">
     <div className="">
       <div className="">
@@ -48,10 +50,10 @@ export default function StudentResult() {
           <div className="">
             <div className="">
               <div style={{width: 1004}}>
-                <img src={logo} alt="" className="h-48 w-48 object-center d-block mx-auto" />
+                <img src={logo} alt="" className="object-center w-48 h-48 mx-auto d-block" />
               </div>
               <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
-              <div className="flex justify-between flex-row w-full bd-highlight mb-3 max-w-5xl" style={{width: 1004}}>
+              <div className="flex flex-row justify-between w-full max-w-5xl mb-3 bd-highlight" style={{width: 1004}}>
                 <div className="p-2 bd-highlight" style={{width: 804}}>
                   <div>
                     NAME: <span id="student-name-underline">{result?.student.full_name}</span>
@@ -89,7 +91,7 @@ export default function StudentResult() {
                   </div>
                 </div>
                 <div className="p-2 bd-highlight" style={{width: 200}}>
-                  <img src={result?.student.image} alt="" className="h-48 w-48 object-contain mt-5" />
+                  <img src={result?.student.image} alt="" className="object-contain w-48 h-48 mt-5" />
                 </div>
                 <div>
                 </div>
@@ -105,8 +107,8 @@ export default function StudentResult() {
                         <th scope="col">SECOND CA</th>
                         <th scope="col">EXAM</th>
                         <th scope="col">TOTAL</th>
-                        <th scope="col">FIRST TERM</th>
-                        <th scope="col">SECOND TERM</th>
+                        {/* <th scope="col">FIRST TERM</th>
+                        <th scope="col">SECOND TERM</th> */}
                         <th scope="col">AVERAGE</th>
                         <th scope="col">GRADE</th>
                         <th scope="col">REMARKS</th>
@@ -121,8 +123,8 @@ export default function StudentResult() {
                         <td>{result.t_second_ca}</td>
                         <td>{result.third_exam}</td>
                         <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
+                        {/* <td>{result.total_first}</td>
+                        <td>{result.total_second}</td> */}
                         <td>{result.session_average}</td>
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>

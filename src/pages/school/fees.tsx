@@ -3,7 +3,7 @@ import SchoolLayout from "components/SchoolLayout";
 // import Table from "School/PaymentHistory/Table";
 import FeeManagement from "School/FeeManagement";
 // import { PaymentHistory } from "Mock/PaymentHistory";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import { PaymentHistory } from "Mock/PaymentHistory";
 import { queryKeys } from "api/queryKey";
 import { PAYMENTS, STUDENTS } from "api/apiUrl";
@@ -19,23 +19,24 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolFees() {
-  const token = jwt_decode(localStorage?.token)
-const {slug} = useParams()
-const school = slug
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug: school} = params
+
   const { data: paymentHistory } = useQuery(
-    [queryKeys.getPayments, token?.school_uid],
-    async () => await getRequest({ url: PAYMENTS(token?.school_uid) }),
+    [queryKeys.getPayments, easysch_token?.school_uid],
+    async () => await getRequest({ url: PAYMENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const { data: studentList } = useQuery(
-    [queryKeys.getStudents, token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(token?.school_uid) }),
+    [queryKeys.getStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +78,7 @@ const school = slug
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: PAYMENTS(token?.school_uid),
+      url: PAYMENTS(easysch_token?.school_uid),
       data: {
         student_id: state.student_id,
         amount: state.amount,
@@ -86,8 +87,10 @@ const school = slug
   };
   const [students, setStudents] = React.useState(studentList?.data);
   const [history, setPaymentHistory] = React.useState(paymentHistory?.data);
+  const [filteredData, setFilteredData] = React.useState(paymentHistory?.data);
   React.useEffect(() => {
     setPaymentHistory(paymentHistory?.data);
+    setFilteredData(paymentHistory?.data);
     setStudents(studentList?.data);
   }, [paymentHistory?.data, studentList?.data]);
   const [order, setOrder] = React.useState("asc");
@@ -117,10 +120,8 @@ const school = slug
     });
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    const searchBody = "#PaymentHistory tr";
-    SearchField({ value, searchBody });
-  };
+    SearchField({value:e.target.value, data: filteredData, setData: setFilteredData, initData:history})
+  }
   const [open, setOpen] = React.useState(false);
   return (
     <SchoolLayout
@@ -132,14 +133,14 @@ const school = slug
           handleSubmit={submitForm}
           handleSearch={handleSearch}
           setState={setState}
-          history={history}
+          history={filteredData}
           students={students}
           open={open}
           setOpen={setOpen}
         />
       }
       currentPage="Fee Management"
-      slug={school}
+      
     />
   );
 }

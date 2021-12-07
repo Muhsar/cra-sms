@@ -18,23 +18,24 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function classes() {
-  const token = jwt_decode(localStorage?.token)
-  const {slug} = useParams()
+  const easysch_token:{school_uid: any, user_id} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug} = params
   const school = slug
-  // const [token, setToken] = React.useState<any>()
-  // const localToken = typeof window !== "undefined" && localStorage?.getItem("token")
+  // const [easysch_token, setToken] = React.useState<any>()
+  // const localToken = typeof window !== "undefined" && localStorage?.getItem("easysch_token")
   // React.useEffect(() => {
   //   setToken(jwt_decode(localToken))
   // },[localToken])
   const { data: courseList } = useQuery(
-    [queryKeys.getCourses, token?.teacher_id, token?.school_uid],
+    [queryKeys.getCourses, easysch_token?.user_id, easysch_token?.school_uid],
     async () =>
       await getRequest({
-        url: `${TEACHERCOURSES(token?.school_uid, token?.teacher_id)}`,
+        url: `${TEACHERCOURSES(easysch_token?.school_uid, easysch_token?.user_id)}`,
       }),
     {
       retry: 2,
-      enabled: !!(token?.school_uid && token?.teacher_id),
+      enabled: !!(easysch_token?.school_uid && easysch_token?.user_id),
     }
   );
   const [allCourses, setAllCourses] = React.useState(courseList?.data);
@@ -46,7 +47,7 @@ export default function classes() {
     <StaffLayout
       Component={<Courses courseList={allCourses} school={school} />}
       currentPage="Courses"
-      slug={school}
+      // slug={school}
     />
   );
 }

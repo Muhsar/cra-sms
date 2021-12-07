@@ -18,7 +18,7 @@ export default function Title({handleSearch, handleSubmit, handleChange, state, 
               <SearchIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
             </div>
             <input
-              type="text"
+              type="search"
               name="search_history "
               id="search_history"
               className="block w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:hidden"
@@ -26,7 +26,7 @@ export default function Title({handleSearch, handleSubmit, handleChange, state, 
               onChange={handleSearch}
             />
             <input
-              type="text"
+              type="search"
               name="search_history"
               id="search_history"
               className="hidden w-full pl-10 border-gray-300 rounded-none focus:ring-gray-500 focus:border-gray-500 rounded-l-md sm:block sm:text-sm"

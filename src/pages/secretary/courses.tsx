@@ -2,7 +2,7 @@ import React from "react";
 import SecretaryLayout from "components/SecretaryLayout";
 import CoursePage from "School/Courses";
 // import { Courses } from "Mock/Courses";
-import { SearchField } from "components/search.js";
+import { SearchField } from "components/search";
 import {Courses} from "Mock/Courses";
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getRequest, postRequest } from "api/apiCall";
@@ -19,27 +19,28 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolCourses() {
-  const token = jwt_decode(localStorage?.token)
-  const {slug} = useParams()
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug} = params
   const school = slug
   const {
     data:courseList
   } = useQuery(
-    [queryKeys.getCourses, token?.school_uid],
-    async () => await getRequest({ url: GET_COURSES(token?.school_uid) }),
+    [queryKeys.getCourses, easysch_token?.school_uid],
+    async () => await getRequest({ url: GET_COURSES(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const {
     data:homerooms
   } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
   const [allCourses, setAllCourses] = React.useState(courseList?.data)
@@ -53,9 +54,9 @@ export default function SchoolCourses() {
   //   setState({ ...state, [event.target.name]: event.target.value });
   // };
   const cache = useQueryClient()
-  const {showAlert}  = React.useContext(ToastContext)
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-   onSuccess(data) {
+    onSuccess(data) {
       showAlert({
         message: data?.message,
         severity: "success",
@@ -74,7 +75,7 @@ export default function SchoolCourses() {
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: GET_COURSES(token?.school_uid),
+      url: GET_COURSES(easysch_token?.school_uid),
       data: {
         name: state.name,
         class_ids: state.class_ids
@@ -142,7 +143,7 @@ export default function SchoolCourses() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#Courses tr";
-    SearchField({ value, searchBody });
+    // SearchField({ value, searchBody });
   };
   const [open, setOpen] = React.useState(false)
   const [selected, setSelected] = React.useState([])
@@ -165,7 +166,6 @@ export default function SchoolCourses() {
         />
       }
       currentPage="Courses"
-      slug={school}
     />
   );
 }

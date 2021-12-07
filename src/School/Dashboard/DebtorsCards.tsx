@@ -36,7 +36,7 @@ export default function DebtorsCards({debts}) {
 }}
     >
         {
-            debts?.map( (item, i) => <div className="my-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" key={i}>
+            debts?.map( (item, i) => <div className="grid grid-cols-1 gap-5 my-5 sm:grid-cols-2 lg:grid-cols-3" key={i}>
             <DebtorsList people={item.debtors} title={item.name} fee={item.fee} />
             <DebtorsChart debt={item.totalDebt} paid={item.totalPaid} />
             </div> )

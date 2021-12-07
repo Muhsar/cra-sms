@@ -59,7 +59,7 @@ export default function Courses({
             </div>
             <div className="flex-grow">
               <h2 className="font-medium text-gray-900 title-font">{course?.subject.name}</h2>
-              <h5 className="text-gray-700 text-sm">Teacher: {course?.teacher?.user?.full_name}</h5>
+              <h5 className="text-gray-700 text-sm">Teacher: {course?.teacher?.full_name}</h5>
             </div>
           </div>
         </div>

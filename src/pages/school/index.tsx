@@ -11,26 +11,27 @@ import jwt_decode from 'jwt-decode';
 
 
 export default function SchoolDashboard() {
-  const {slug} = useParams()
-  const school = slug
-  const token = jwt_decode(localStorage?.token)
-  console.log(token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  console.log(easysch_token)
   const { data: homerooms } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const {
     data:studentList
   } = useQuery(
-    [queryKeys.getStudents, token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(token?.school_uid) }),
+    [queryKeys.getStudents, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
     )
     const [rooms, setRooms] = React.useState(homerooms?.data)
@@ -42,11 +43,11 @@ export default function SchoolDashboard() {
     const {
       data:teacherList
     } = useQuery(
-      [queryKeys.getTeachers, token?.school_uid],
-      async () => await getRequest({ url: TEACHERS(token?.school_uid) }),
+      [queryKeys.getTeachers, easysch_token?.school_uid],
+      async () => await getRequest({ url: TEACHERS(easysch_token?.school_uid) }),
       {
         retry: 2,
-        enabled: !!token?.school_uid
+        enabled: !!easysch_token?.school_uid
       }
       )
       const [teachers, setTeachers] = React.useState(teacherList?.data)
@@ -95,5 +96,5 @@ export default function SchoolDashboard() {
   // const debtorsClass = rooms
   console.log(debtorsData)
   
-  return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard' slug={school} />;
+  return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard'  />;
 }

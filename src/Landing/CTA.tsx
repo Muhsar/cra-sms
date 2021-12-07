@@ -30,22 +30,27 @@ export default function CTA({img1}) {
             </div>
             <div className="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 md:px-8 md:py-32">
               <div className="md:ml-auto md:w-1/2 md:pl-10">
-                <h2 className="text-base font-semibold uppercase tracking-wider text-gray-300">
+                {/* <h2 className="text-base font-semibold uppercase tracking-wider text-gray-300">
                   Award winning support
-                </h2>
+                </h2> */}
                 <p className="mt-2 text-white text-3xl font-extrabold tracking-tight sm:text-4xl">We’re here to help</p>
                 <p className="mt-3 text-md text-gray-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed. Quam a
-                  scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum
-                  tincidunt duis.
+                  Please, contact us to setup ur account.
+                  <br/>
+                  Tel: (+234) 9078044747
+                  <br/>
+                  WhatsApp: (+234) 9078044747
+                  <br/>
+                  Email: Jewbreel1@gmail.com
                 </p>
                 <div className="mt-8">
                   <div className="inline-flex rounded-md shadow">
                     <a
-                      href="#"
+                      href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                       className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                     >
-                      Visit the help center
+                      Setup Account
                       <ExternalLinkIcon className="-mr-1 ml-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </a>
                   </div>

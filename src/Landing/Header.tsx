@@ -27,8 +27,8 @@ export default function Header({navigation}) {
                       <a href="#">
                         <span className="sr-only">Workflow</span>
                         <img
-                          className="h-8 w-auto sm:h-10"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-200-cyan-400.svg"
+                          className="h-12 w-auto sm:h-10"
+                          src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/staff_logo_labbas.png"
                           alt=""
                         />
                       </a>
@@ -52,14 +52,12 @@ export default function Header({navigation}) {
                     </div>
                   </div>
                   <div className="hidden md:flex md:items-center md:space-x-6">
-                    <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                      Log in
-                    </a>
                     <a
-                      href="#"
+                      href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                       className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
                     >
-                      Start free trial
+                      Setup Account
                     </a>
                   </div>
                 </nav>
@@ -85,7 +83,7 @@ export default function Header({navigation}) {
                       <div>
                         <img
                           className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/workflow-mark-teal-500-cyan-600.svg"
+                          src="https://res.cloudinary.com/jewbreel1/image/upload/v1627500985/sms/Logo/school_logo_zoz03u.png"
                           alt=""
                         />
                       </div>
@@ -110,20 +108,14 @@ export default function Header({navigation}) {
                       </div>
                       <div className="mt-6 px-5">
                         <a
-                          href="#"
+                          href="https://forms.gle/woRYojYbThAp5AqH7"
+                      target="_blank"
                           className="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700"
                         >
-                          Start free trial
+                          Setup Account
                         </a>
                       </div>
-                      <div className="mt-6 px-5">
-                        <p className="text-center text-base font-medium text-gray-500">
-                          Existing customer?{' '}
-                          <a href="#" className="text-gray-900 hover:underline">
-                            Login
-                          </a>
-                        </p>
-                      </div>
+                      
                     </div>
                   </div>
                 </Popover.Panel>

@@ -17,9 +17,9 @@ export default function MessageTypes({
   // open,
   // setOpen,
 }) {
-  const getGroupData = () => {
-    set
-  }
+  // const getGroupData = () => {
+  //   set
+  // }
   const [roomOptions, setRoomOptions] = React.useState([]);
   const [studentsOption, setStudentOption] = React.useState([]);
   const [filteredGroup, setFilteredGroup] = React.useState([])
@@ -80,7 +80,7 @@ export default function MessageTypes({
     },[filteredGroup])
     console.log(state.student_ids)
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center max-w-3xl self-center mx-auto">
+    <form onSubmit={handleSubmit} className="flex flex-col self-center justify-center max-w-3xl mx-auto">
       <MessageComponent
         roomOptions={roomOptions}
         studentsOption={studentsOption}
@@ -91,18 +91,18 @@ export default function MessageTypes({
        {
          filteredGroup &&
          <>
-       <h5 className="text-gray-500 italic text-center py-4">Confirm Selection then scroll down to send</h5>
+       <h5 className="py-4 italic text-center text-gray-500">Confirm Selection then scroll down to send</h5>
        <div className="grid grid-cols-2 gap-3">
        {
          filteredGroup?.map((data,index)=> (
-       <div className="flex items-center bg-white p-3 rounded-xl shadow col-span-1" key={index}>
+       <div className="flex items-center col-span-1 p-3 bg-white shadow rounded-xl" key={index}>
                 <input
                 onChange={()=>handleFilter(data.value)}
                   type="checkbox"
                   checked={data.checked}
-                  className="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
+                  className="w-4 h-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500"
                 />
-                <label className="ml-2 block text-sm text-gray-900">
+                <label className="block ml-2 text-sm text-gray-900">
                   {data?.label}
                 </label>
               </div>
@@ -111,17 +111,17 @@ export default function MessageTypes({
        </div>
        </>
        }
-      <div className="bg-grey-lighter py-8 w-full rounded-lg">
-        <div className=" w-full mx-auto">
-          <div className=" bg-white p-8 shadow-md rounded-lg">
-            <div className=" py-4 border-b">
+      <div className="w-full py-8 rounded-lg bg-grey-lighter">
+        <div className="w-full mx-auto ">
+          <div className="p-8 bg-white rounded-lg shadow-md ">
+            <div className="py-4 border-b ">
             <h1 className="text-xl font-extrabold">{state.title}</h1>
             <br />
               <p>
                 {state.body}
               </p>
               <div className="flex flex-row justify-end pt-6">
-                <button className="text-sm text-right rounded-lg px-10 py-4 bg-gray-700 text-gray-100 hover:bg-gray-900 transform transition-all hover:scale-105"
+                <button className="px-10 py-4 text-sm text-right text-gray-100 transition-all transform bg-gray-700 rounded-lg hover:bg-gray-900 hover:scale-105"
                 type="submit"
                 disabled={groupCount.filtered && groupCount.filtered.length===0}
                 >

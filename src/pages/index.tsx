@@ -55,44 +55,51 @@ import Features from '../Landing/Features';
 import Testimonials from '../Landing/Testimonials';
 import CTA from '../Landing/CTA';
 import Footer from '../Landing/Footer';
+import g1 from "../images/g1.svg"
+import g2 from "../images/g2.svg"
+import g3 from "../images/g3.svg"
+import g4 from "../images/g4.svg"
+import g5 from "../images/g5.svg"
+import g6 from "../images/g6.svg"
+import Footers from '../Landing/Footers';
 const images = [img1, gif1, img2, gif2, img3, gif3, img4, img5]
 const navigation = [
-  { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Blog', href: '#' },
+  { name: 'Pricing', href: '#' },
+  { name: 'Contact Us', href: '#' },
 ]
 const features = [
   {
-    name: 'Push to Deploy',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi vitae lobortis.',
-    icon: CloudUploadIcon,
+    name: 'Fee Management',
+    description: 'Track debtors and payments by homeroom or individual.',
+    icon: g6,
   },
   {
-    name: 'SSL Certificates',
-    description: 'Qui aut temporibus nesciunt vitae dicta repellat sit dolores pariatur. Temporibus qui illum aut.',
-    icon: LockClosedIcon,
+    name: 'Bulk SMS',
+    description: 'Send sms in bulk to parent(s).',
+    icon: g2,
   },
   {
-    name: 'Simple Queues',
-    description: 'Rerum quas incidunt deleniti quaerat suscipit mollitia. Amet repellendus ut odit dolores qui.',
-    icon: RefreshIcon,
+    name: 'Result Automation',
+    description: 'Easy automation and collation of results.',
+    icon: g1,
   },
   {
-    name: 'Advanced Security',
-    description: 'Ullam laboriosam est voluptatem maxime ut mollitia commodi. Et dignissimos suscipit perspiciatis.',
-    icon: ShieldCheckIcon,
+    name: 'Data Collation',
+    description: 'This feature helps the management get, read and update students data easily .',
+    icon: g3,
   },
   {
-    name: 'Powerful API',
+    name: 'Custom Website',
     description:
-      'Ab a facere voluptatem in quia corrupti veritatis aliquam. Veritatis labore quaerat ipsum quaerat id.',
-    icon: CogIcon,
+      'A free customized website for our premium users.',
+    icon: g5,
   },
   {
-    name: 'Database Backups',
-    description: 'Quia qui et est officia cupiditate qui consectetur. Ratione similique et impedit ea ipsum et.',
-    icon: ServerIcon,
+    name: 'Bills Creation',
+    description: 'Creating and passing of bills made easy for the management, staffs and parents of the school.',
+    icon: g4,
   },
 ]
 const blogPosts = [
@@ -252,7 +259,8 @@ export default function Example() {
         <main className="">
           <Hero images={images} />
           <Features features={features} img6={img6} />
-          <Testimonials img6={img6} blogPosts={blogPosts} />
+          {/* <Testimonials img6={img6} blogPosts={blogPosts} /> */}
+          <Testimonials />
           <CTA img1={img1} />
           {/* Feature section with screenshot */}
         
@@ -261,9 +269,9 @@ export default function Example() {
           
 
           {/* CTA Section */}
-          
         </main>
-        <Footer footerNavigation={footerNavigation} />
+        <Footers />
+        {/* <Footer footerNavigation={footerNavigation} /> */}
       </div>
     </div>
   )

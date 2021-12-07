@@ -21,15 +21,16 @@ export const getServerSideProps = (context: {
 };
 
 export default function SingleStudent() {
-  const token = jwt_decode(localStorage?.token)
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {schoolLogo: logo} = localStorage
-  const {slug: school, id: student} = useParams()
+  const params:{id: any, slug: any} = useParams()
+  const {id: student, slug: school} = params
   const { data: studentList } = useQuery(
-    [queryKeys.getStudent, token?.school_uid],
-    async () => await getRequest({ url: STUDENT(token?.school_uid, student) }),
+    [queryKeys.getStudent, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENT(easysch_token?.school_uid, student) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid,
+      enabled: !!easysch_token?.school_uid,
     }
   );
   const [list, setStudent] = React.useState(studentList?.data);
@@ -44,7 +45,7 @@ export default function SingleStudent() {
     },
     {
       param: "Guardian Name",
-      value: list?.last_name + " " + list?.guardian_name,
+      value: list?.guardian_full_name,
     },
     { param: "Email Address", value: list?.email },
     { param: "Class", value: list?.current_class.name },
@@ -71,7 +72,7 @@ export default function SingleStudent() {
           />
         }
         currentPage="Students"
-        slug={school}
+        
       />
     </>
   );

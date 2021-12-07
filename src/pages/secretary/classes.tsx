@@ -16,15 +16,16 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolClasses() {
-const token = jwt_decode(localStorage?.token)
-const {slug} = useParams()
+const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+const params:{slug: any} = useParams()
+  const {slug} = params
 const school = slug
   const { data: homerooms } = useQuery(
-    [queryKeys.getClasses, token?.school_uid],
-    async () => await getRequest({ url: HOMEROOMS(token?.school_uid) }),
+    [queryKeys.getClasses, easysch_token?.school_uid],
+    async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
     {
       retry: 2,
-      enabled: !!token?.school_uid
+      enabled: !!easysch_token?.school_uid
     }
   );
   const [state, setState] = React.useState({
@@ -38,9 +39,9 @@ const school = slug
     });
   };
   const cache = useQueryClient()
-  const {showAlert}  = React.useContext(ToastContext)
+  const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
-   onSuccess(data) {
+    onSuccess(data) {
       showAlert({
         message: data?.message,
         severity: "success",
@@ -60,7 +61,7 @@ const school = slug
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
-      url: HOMEROOMS(token?.school_uid),
+      url: HOMEROOMS(easysch_token?.school_uid),
       data: {
         name: state.name,
         fee: state.fee,
@@ -86,7 +87,7 @@ const school = slug
         />
       }
       currentPage="Classes"
-      slug={school}
+      // slug={school}
     />
   );
 }

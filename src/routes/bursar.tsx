@@ -27,6 +27,7 @@ export const Bursar = (
   <Switch>
     {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
     <Route path="/:slug/bursar" component={BursarDashBoard} exact />
+    <Route path="/:slug/" component={BursarDashBoard} exact />
     <Route path="/:slug/bursar/students" component={BursarStudents} exact />
     <Route path="/:slug/bursar/history/:id" component={BursarStudentHistory} exact />
     <Route path="/:slug/bursar/payments" component={BursarPayments} exact />

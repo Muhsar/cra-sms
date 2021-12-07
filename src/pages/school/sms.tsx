@@ -37,16 +37,17 @@ export default function SMS() {
     student: null,
     group: []
   })
-  const token = jwt_decode(localStorage?.token)
-  const {slug} = useParams()
-  const school = slug
+  const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
+  const params:{slug: any} = useParams()
+  const {slug: school} = params
+  
   const [selected, setSelected] = React.useState([])
-  const homerooms = query(queryKeys.getClasses, token?.school_uid, HOMEROOMS(token?.school_uid), token?.school_uid)
-  const studentList = query(queryKeys.getStudents, token?.school_uid, STUDENTS(token?.school_uid), token?.school_uid)
+  const homerooms = query(queryKeys.getClasses, easysch_token?.school_uid, HOMEROOMS(easysch_token?.school_uid), easysch_token?.school_uid)
+  const studentList = query(queryKeys.getStudents, easysch_token?.school_uid, STUDENTS(easysch_token?.school_uid), easysch_token?.school_uid)
   const [rooms, setRooms] = React.useState(homerooms?.data)
   const [students, setStudents] = React.useState(studentList?.data)
-  const studentData = query(queryKeys.getStudent, token?.school_uid, STUDENT(token?.school_uid, state.student), (token?.school_uid&&state.student))
-  const groupData = query(queryKeys.getClassStudents, token?.school_uid, CLASSSTUDENTS(token?.school_uid, state.steps.group!=="all" && state.steps.group!=="debtors" &&state.steps.group), (token?.school_uid&&state.steps.group!=="all" && state.steps.group!=="debtors" &&state.steps.group))
+  const studentData = query(queryKeys.getStudent, easysch_token?.school_uid, STUDENT(easysch_token?.school_uid, state.student), (easysch_token?.school_uid&&state.student))
+  const groupData = query(queryKeys.getClassStudents, easysch_token?.school_uid, CLASSSTUDENTS(easysch_token?.school_uid, state.steps.group!=="all" && state.steps.group!=="debtors" &&state.steps.group), (easysch_token?.school_uid&&state.steps.group!=="all" && state.steps.group!=="debtors" &&state.steps.group))
   const [student, setStudent] = React.useState(studentData?.data)
   const [groups, setGroups] = React.useState()
   const [group, setGroup] = React.useState()
@@ -89,7 +90,7 @@ console.log(groups)
         student_ids: ids
       } = state
     mutate({
-      url: SENDMESSAGE(token?.school_uid),
+      url: SENDMESSAGE(easysch_token?.school_uid),
       data: {
         kind,
         title,
@@ -105,11 +106,11 @@ console.log(groups)
         handleSelect={handleSelect}
         rooms={rooms}
         students={students}
-        selected={selected}
-        setSelected={setSelected}
+        // selected={selected}
+        // setSelected={setSelected}
         handleSubmit={submitForm}
-        open={open}
-        setOpen={setOpen}
+        // open={open}
+        // setOpen={setOpen}
         state={state}
         student={student}
         group={group}
@@ -117,6 +118,6 @@ console.log(groups)
       />
     }
     currentPage="Messages"
-    slug={school}
+    
   />;
 }

@@ -3,12 +3,12 @@ import { StaffList } from "Mock/StaffList";
 
 export default function StaffProfile({ data }) {
   const StaffDetail = [
-    { param: "Full Name", value: data.user.full_name },
-    { param: "Email Address", value: data.user.email },
+    { param: "Full Name", value: data.full_name },
+    { param: "Email Address", value: data.email },
     { param: "Class", value: data.class },
     { param: "Gender", value: data.gender },
     { param: "Religion", value: data.religion },
-    { param: "Mobile Number", value: data.user.phone_number },
+    { param: "Mobile Number", value: data.phone_number },
     { param: "Date Of Birth", value: data.date_of_birth },
     { param: "Residential Address", value: data.address },
   ];
