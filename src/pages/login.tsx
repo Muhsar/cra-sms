@@ -54,9 +54,13 @@ export default function Login() {
       const easysch_token: { groups: string[] } =
         typeof window !== "undefined" &&
         jwt_decode(localStorage?.getItem("easysch_token"));
+        await setOpen(true);
         if (easysch_token?.groups.length === 2) {
-          setOpen(true);
-          // LoginDialog({open, setOpen})
+          // TODO: Fix after BEc exam Dialog state isn't updating for some weird reason
+          window.location.href = `/${school}/`;
+          // setOpen(true);                    
+          // console.log(`Opem is currently ${open}`)
+          // LoginDialog({open, setOpen, school})
         }
         if (easysch_token?.groups.length === 1) {
           if (easysch_token?.groups[0] === "Teacher") {

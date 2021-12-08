@@ -66,6 +66,12 @@ const navigation = [
     icon: ChatAlt2Icon,
     current: false,
   },
+  {
+    name: "View as Teacher",
+    href: "staff",
+    icon: ChatAlt2Icon,
+    current: false,
+  },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },

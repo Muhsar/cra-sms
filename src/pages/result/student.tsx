@@ -113,7 +113,7 @@ export default function StudentResult() {
                         <th scope="col">TOTAL</th>
                         {/* <th scope="col">FIRST TERM</th>
                         <th scope="col">SECOND TERM</th> */}
-                        <th scope="col">AVERAGE</th>
+                        {/* <th scope="col">AVERAGE</th> */}
                         <th scope="col">GRADE</th>
                         <th scope="col">REMARKS</th>
                 </tr>
@@ -123,13 +123,13 @@ export default function StudentResult() {
                         result?.results.map((result, index) => (
                       <tr key={index}>
                         <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
+                        <td>{result.first_ca}</td>
+                        <td>{result.second_ca}</td>
+                        <td>{result.first_exam}</td>
+                        <td>{Number(result.first_ca)+Number(result.second_ca)+Number(result.first_exam)}</td>
                         {/* <td>{result.total_first}</td>
                         <td>{result.total_second}</td> */}
-                        <td>{result.session_average}</td>
+                        {/* <td>{result.session_average}</td> */}
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>
                       </tr>
