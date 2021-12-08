@@ -92,25 +92,25 @@ export default function Table({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {person.t_first_ca}
+                        {person.first_ca}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.t_second_ca}
+                      {person.second_ca}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.third_exam}
+                      {person.first_exam}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.t_first_ca + person.t_second_ca + person.third_exam}
+                      {person.first_ca + person.second_ca + person.first_exam}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
