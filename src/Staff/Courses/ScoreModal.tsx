@@ -31,7 +31,7 @@ export default function ScoreModal({setID,
                 autoComplete="first_ca"
                 
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                placeholder="Enter Course Name"
+                placeholder="Enter First CA Score"
               />
             </div>
           <div className='my-2'>
