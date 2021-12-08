@@ -143,16 +143,16 @@ export default function StudentResult() {
           <div className="text-lg teacher-remark-section" style={{width: 1004}}>
             Teacher's Remark
             <div className="text-lg teacher-remark" style={{width: 1004}}>
-              A splendid result. Increase your academic tempo. The sky is the beginning.
+            {result?.teacher_remark}
             </div>
           </div>
         </div>
         Principal's Remark
         <div className="text-lg teacher-remark" style={{width: 1004}}>
-          An excellent performance. keep it up.
+        {result?.principal_remark}
         </div>
         <div className="text-lg resumption-section" style={{width: 1004}}>
-          Next Term Begins: <span className="text-lg resumption-date">Tue, 04-May-2021</span>
+          Next Term Begins: <span className="text-lg resumption-date">Tue, 04-Jan-2022</span>
         </div>
       </div>
     </div>
