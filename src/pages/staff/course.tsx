@@ -61,17 +61,17 @@ export default function homeroom() {
         message: data?.message,
         severity: "success",
       });
-      const updatedData = students?.map(student => {
-        const datas = student
-        if (datas.student.id === studentId) {
-          datas.t_first_ca = data?.data.t_first_ca
-          datas.t_second_ca = data?.data.t_second_ca
-          datas.third_exam = data?.data.third_exam
-          console.log(datas)
-        }
-        return datas
-      })
-      setStudents(updatedData)
+//       const updatedData = students?.map(student => {
+//         const datas = student
+//         if (datas.student.id === studentId) {
+//           datas.t_first_ca = data?.data.t_first_ca
+//           datas.t_second_ca = data?.data.t_second_ca
+//           datas.third_exam = data?.data.third_exam
+//           console.log(datas)
+//         }
+//         return datas
+//       })
+//       setStudents(updatedData)
       setOpen(false)
       cache.invalidateQueries()
     },
