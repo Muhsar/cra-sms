@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React from "react";
 import StaffLayout from "components/StaffLayout";
 import Title from "School/Classes/Title";
@@ -64,8 +65,25 @@ export default function EditResult() {
       cache.invalidateQueries()
     },
   });
+  const [errors, setErrors] = React.useState<{message: string}[]>([])
   const submitForm = (e: any) => {
     e.preventDefault();
+    if(state.first_ca > 20) {
+      setErrors([...errors,{
+        message: "First CA can't be greater than 20"
+      }])
+    }
+    if(state.second_ca > 20) {
+      setErrors([...errors,{
+        message: "Second CA can't be greater than 20"
+      }])
+    }
+    if(state.exam > 60) {
+      setErrors([...errors,{
+        message: "Exam can't be greater than 60"
+      }])
+    }
+    if(!errors.length){
     mutate({
       url: GRADE(easysch_token?.school_uid,studentId),
       data: {
@@ -74,14 +92,14 @@ export default function EditResult() {
     second_ca: state.second_ca,
     exam: state.exam
       },
-    });
+    })}
   };
-  const [open, setOpen] = React.useState(false)
   return (
     <>
       <StaffLayout
         Component={
           <ResultForm
+          errors={errors}
           school={school}
           course={course}
           student={student}
