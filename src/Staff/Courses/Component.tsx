@@ -27,9 +27,9 @@ export default function Component({
                 </label>
                 <div className="mt-1">
                   <input
-                    required
                     onChange={handleChange}
-                    type="text"
+                    type="number"
+                    max={20}
                     name="first_ca"
                     id="first_ca"
                     placeholder="Enter First CA Score"
@@ -47,9 +47,9 @@ export default function Component({
                 </label>
                 <div className="mt-1">
                   <input
-                    required
                     onChange={handleChange}
-                    type="text"
+                    type="number"
+                    max={20}
                     name="second_ca"
                     id="second_ca"
                     placeholder="Enter Second CA Score"
@@ -67,9 +67,9 @@ export default function Component({
                 </label>
                 <div className="mt-1">
                   <input
-                    required
                     onChange={handleChange}
-                    type="text"
+                    type="number"
+                    max={20}
                     name="exam"
                     id="exam"
                     placeholder="Enter Exam Score"
