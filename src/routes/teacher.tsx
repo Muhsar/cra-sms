@@ -8,6 +8,7 @@ import LandingPage from "pages";
 import { Route } from 'react-router-dom';
 import { Switch } from "react-router-dom";
 import ErrorPage from "pages/404";
+import EditResult from "pages/staff/editResult";
 
 export const Teacher = (
   <Switch>
@@ -17,6 +18,7 @@ export const Teacher = (
     <Route path="/:slug/staff/courses" component={StaffCourses} exact />
     <Route path="/:slug/staff/course/:id" component={StaffCourse} exact />
     <Route path="/:slug/staff/class" component={StaffClass} exact />
+    <Route path="/:slug/staff/edit-result/:courseId/:studentId" component={EditResult} exact />
     <Route
       path="/:slug/parent-result/:id"
       component={UnAuthorizedResult}

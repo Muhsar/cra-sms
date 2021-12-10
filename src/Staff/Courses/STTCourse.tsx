@@ -7,12 +7,36 @@ export default function STTCourse({
   room,
   setID,
   ID,
-  handleChange,
-  handleSubmit,
   open,
   setOpen,
   school,
+  Component,
+  courseId
 }) {
+  // const students = [
+  //   {
+  //     student: {
+  //       image: "",
+  //       full_name: "Jubril Musa",
+  //       email: "",
+  //       id: Math.random()
+  //     },
+  //     first_ca: 10,
+  //     second_ca: 10,
+  //     first_exam: 30
+  //   },
+  //   {
+  //     student: {
+  //       image: "",
+  //       full_name: "Netala Nafiu",
+  //       email: "",
+  //       id: Math.random()
+  //     },
+  //     first_ca: 20,
+  //     second_ca: 20,
+  //     first_exam: 60
+  //   },
+  // ];
   return (
     <>
       <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
@@ -26,19 +50,17 @@ export default function STTCourse({
           setID={setID}
           school={school}
           ID={ID}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
           open={open}
           setOpen={setOpen}
-        />
+          courseId={courseId}
+          />
       </div>
       <div className="hidden sm:block">
         <Table
+          courseId={courseId}
           list={students}
           setID={setID}
           ID={ID}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
           open={open}
           setOpen={setOpen}
           school={school}

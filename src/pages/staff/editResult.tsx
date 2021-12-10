@@ -11,23 +11,22 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { queryKeys } from "api/queryKey";
 import { ToastContext } from "App.jsx";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Component from "Staff/Courses/Component";
+import ResultForm from "Staff/EditResult/ResultForm";
 
 
-export const getServerSideProps = (context: { query: { course: any, school: any } }) => {
-  const { course, school } = context.query;
 
-  return { props: { course, school } };
-};
-
-export default function homeroom() {
+export default function EditResult() {
   const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
-  const params:{slug:any, id:any} = useParams()
-  const {slug, id} = params
+  const params:{slug:any, courseId:any, studentId: any} = useParams()
+  const history = useHistory();
+  console.log(history)
+  const {slug, courseId, studentId} = params
   const school = slug
-  const course = id
+  const course = courseId
+  const student = studentId
   
   const {
     data:studentList
@@ -54,7 +53,6 @@ export default function homeroom() {
     setState({ ...state, [event.target.name]: event.target.value });
   };
   const cache = useQueryClient()
-  const [studentId, setStudentId] = React.useState()
   const {showAlert}  = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {
    onSuccess(data) {
@@ -62,18 +60,7 @@ export default function homeroom() {
         message: data?.message,
         severity: "success",
       });
-//       const updatedData = students?.map(student => {
-//         const datas = student
-//         if (datas.student.id === studentId) {
-//           datas.t_first_ca = data?.data.t_first_ca
-//           datas.t_second_ca = data?.data.t_second_ca
-//           datas.third_exam = data?.data.third_exam
-//           console.log(datas)
-//         }
-//         return datas
-//       })
-//       setStudents(updatedData)
-      setOpen(false)
+      history.replace(`/${school}/staff/course/${course}`, `/${school}/staff/course/${course}`)
       cache.invalidateQueries()
     },
   });
@@ -94,16 +81,12 @@ export default function homeroom() {
     <>
       <StaffLayout
         Component={
-          <STTCourse
-            students={students}
-            room={students?.subject_class}
-            setID={setStudentId}
-            ID={studentId}
-            courseId={course}
-            open={open}
-            setOpen={setOpen}
-            school={school}
-            Component={<Component handleChange={handleChange} handleSubmit={submitForm} />}
+          <ResultForm
+          school={school}
+          course={course}
+          student={student}
+          handleSubmit={submitForm}
+          handleChange={handleChange}
           />
         }
         currentPage="Courses"

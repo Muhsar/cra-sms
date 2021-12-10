@@ -66,7 +66,7 @@ export default function ScoreModal({setID,
           <div>
             <button
               type="submit"
-              className="relative mt-5 flex justify-center w-full py-2 text-sm font-medium text-white border border-transparent rounded-md cursor-pointer group bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              className="relative flex justify-center w-full py-2 mt-5 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md cursor-pointer group hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
               Save
             </button>

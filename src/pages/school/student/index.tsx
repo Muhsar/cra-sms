@@ -50,7 +50,6 @@ export default function SingleStudent() {
     { param: "Email Address", value: list?.email },
     { param: "Class", value: list?.current_class.name },
     { param: "State Of origin", value: list?.state_of_origin },
-    { param: "Local Government Area", value: list?.lga },
     { param: "Gender", value: list?.gender },
     { param: "Age", value: list?.age },
     { param: "Religion", value: list?.religion },

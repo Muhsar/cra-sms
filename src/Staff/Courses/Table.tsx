@@ -3,54 +3,54 @@ import { StudentList } from "Mock/StudentList";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import StudentProfile from "./StudentProfile";
 import ScoreModal from './ScoreModal';
+import SlideOver from './SlideOver';
 import {Link} from "react-router-dom"
 // import StudentProfile from "./StudentProfile";
 export default function Table({
   list,
   setID,
   ID,
-  handleChange,
-  handleSubmit,
   open,
   setOpen,
-  school
+  school,
+  courseId
 }) {
   
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     1st CA
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     2nd CA
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     Exam
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                   >
                     Total
                   </th>
@@ -71,9 +71,9 @@ export default function Table({
                   <tr>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="flex-shrink-0 h-10 w-10">
+                        <div className="flex-shrink-0 w-10 h-10">
                           <img
-                            className="h-10 w-10 rounded-full object-center object-cover"
+                            className="object-cover object-center w-10 h-10 rounded-full"
                             src={
                               person.student.image
                             }
@@ -114,27 +114,17 @@ export default function Table({
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
-                    <ScoreModal
-                      personId={person.student.id}
-                    setID={setID}
-                    ID={ID}
-                    handleChange={handleChange}
-                      handleSubmit={handleSubmit}
-                      open={open}
-          setOpen={setOpen}
-                      Component={(setOpen) => (
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium" onClick={() => {
-                          setOpen(true)
-                          setID(person.student.id)
-                        }}>
-                                      {/* <StudentProfile StudentId={person.id} /> */}
-                                        <a href="#" className="text-blue-600 hover:text-blue-900">
-                                          Add or Edit Score
-                                        </a>
-                                      </td>
-                      )}
-                    />
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    
+                                    <Link to={`/${school}/staff/edit-result/${courseId}/${person.student.id}`}
+                  className="flex flex-1 w-0 -ml-px"
+                  >
+                                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                                    <a href="#" className="text-blue-600 hover:text-blue-900">
+                                                      Add or Edit Score
+                                                    </a>
+                                                  </td>
+                                      </Link>
+                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                       <a href={`/${school}/result/${person.student.id}`} target="_blank" className="text-blue-600 hover:text-blue-900">
                         View Result
                       </a>
@@ -144,7 +134,7 @@ export default function Table({
                       {({ open }) => (
                         <>
                           <div>
-                            <Menu.Button className="inline-flex justify-center w-full rounded-md shadow-sm px-2 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500">
+                            <Menu.Button className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500">
                               <i className="far fa-grip-horizontal text-grey-400 hover:text-grey-900" />
                             </Menu.Button>
                           </div>
@@ -161,7 +151,7 @@ export default function Table({
                           >
                             <Menu.Items
                               static
-                              className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                              className="absolute right-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                               <div className="py-1">
                                 <Menu.Item>
@@ -170,7 +160,7 @@ export default function Table({
                                 <Menu.Item>
                                   <a
                                     href="#"
-                                    className="text-gray-700 block px-4 py-2 text-sm"
+                                    className="block px-4 py-2 text-sm text-gray-700"
                                   >
                                     Edit
                                   </a>
