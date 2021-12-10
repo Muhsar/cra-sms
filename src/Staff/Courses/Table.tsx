@@ -115,15 +115,15 @@ export default function Table({
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     
+                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <Link to={`/${school}/staff/edit-result/${courseId}/${person.student.id}`}
                   className="flex flex-1 w-0 -ml-px"
                   >
-                                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                     <a href="#" className="text-blue-600 hover:text-blue-900">
                                                       Add or Edit Score
                                                     </a>
-                                                  </td>
                                       </Link>
+                                                  </td>
                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                       <a href={`/${school}/result/${person.student.id}`} target="_blank" className="text-blue-600 hover:text-blue-900">
                         View Result
