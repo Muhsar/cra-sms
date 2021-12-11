@@ -66,8 +66,8 @@ export const Both = (
     />
     <Route path="/:slug/staff" component={StaffDashboard} exact />
     <Route path="/:slug/staff/courses" component={StaffCourses} exact />
-    <Route path="/:slug/staff/course/:id" component={StaffCourse} exact />
-    <Route path="/:slug/staff/edit-result/:courseId/:studentId" component={EditResult} exact />
+    <Route path="/:slug/staff/course/:room/:corse/:id" component={StaffCourse} exact />
+    <Route path="/:slug/staff/edit-result/:token" component={EditResult} exact />
     <Route path="/:slug/staff/class" component={StaffClass} exact />
     <Route
       path="/:slug/parent-result/:id"

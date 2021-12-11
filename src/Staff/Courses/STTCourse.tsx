@@ -11,7 +11,9 @@ export default function STTCourse({
   setOpen,
   school,
   Component,
-  courseId
+  courseId,
+  roomName,
+  courseName,
 }) {
   // const students = [
   //   {
@@ -41,7 +43,7 @@ export default function STTCourse({
     <>
       <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg font-medium leading-6 text-gray-900 capitalize">
-          {room?.school_class.name} {room?.subject.name}
+          {roomName} {courseName}
         </h3>
       </div>
       <div className="sm:hidden">
@@ -53,11 +55,15 @@ export default function STTCourse({
           open={open}
           setOpen={setOpen}
           courseId={courseId}
+          room={roomName}
+          course={courseName}
           />
       </div>
       <div className="hidden sm:block">
         <Table
           courseId={courseId}
+          room={roomName}
+          course={courseName}
           list={students}
           setID={setID}
           ID={ID}

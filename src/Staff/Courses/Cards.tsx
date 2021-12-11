@@ -5,7 +5,7 @@ import React from 'react'
 import ScoreModal from './ScoreModal'
 import SlideOver from './SlideOver'
 // import SlideOver from 'components/SlideOver'
-
+import jwt from "jsonwebtoken"
 import ProfileSlideOver from 'components/ProfileSlideOver'
 import NewModal from './NewModal'
 
@@ -16,7 +16,9 @@ export default function Cards({students,
   open,
   setOpen,
   school,
-  courseId
+  courseId,
+  room,
+  course:courseName
 }) {
   const handleClick = (id) => {
     setOpen(true)
@@ -35,6 +37,17 @@ export default function Cards({students,
   </a>
 </div>
   )
+  const JWTSign = (course, name,student, image) => {
+    const tokenToVerify = {
+      course,
+      name,
+      student,
+      image,
+      room,
+      courseName: courseName
+    }
+    return jwt.sign(tokenToVerify, "secret")
+  }
   return (
     <>
     
@@ -59,7 +72,7 @@ export default function Cards({students,
           <div>
             <div className="flex -mt-px divide-x divide-gray-200">
               
-            <Link to={`/${school}/staff/edit-result/${courseId}/${student.student.id}`}
+            <Link to={`/${school}/staff/edit-result/${JWTSign(courseId, student.student.full_name, student.student.id, student.student.image ? student.student.image : student.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
                   className="flex flex-1 w-0 -ml-px sm:hidden"
                   >
                 <>

@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom"
 export default function CourseCards({ courses, school }) {
   return (
-    <div className="flex flex-wrap -m-2 pt-5" id="Guests">
+    <div className="flex flex-wrap pt-5 -m-2" id="Guests">
       {courses?.map((course: any) => (
         <>
           {
@@ -10,8 +10,8 @@ export default function CourseCards({ courses, school }) {
               className="w-full p-2 lg:w-1/3 md:w-1/2 sm:w-full searchBody"
               key={course.id}
             >
-              <Link to={`/${school}/staff/course/${course.id}`}
-              className="flex items-center h-full p-4 transform border border-gray-200 rounded-lg shadow hover:scale-105  cursor-pointer hover:bg-gray-200 bg-gray-100"
+              <Link to={`/${school}/staff/course/${course?.school_class.name}/${course?.subject.name}/${course.id}`}
+              className="flex items-center h-full p-4 transform bg-gray-100 border border-gray-200 rounded-lg shadow cursor-pointer hover:scale-105 hover:bg-gray-200"
               >
               <>
                 <div

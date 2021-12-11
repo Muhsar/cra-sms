@@ -16,18 +16,24 @@ import { useParams, useHistory, useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Component from "Staff/Courses/Component";
 import ResultForm from "Staff/EditResult/ResultForm";
+import jwtDecode from "jwt-decode";
 
 
 
 export default function EditResult() {
   const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
-  const params:{slug:any, courseId:any, studentId: any} = useParams()
+  const params:{token: any, slug; any} = useParams()
   const history = useHistory();
   console.log(history)
-  const {slug, courseId, studentId} = params
+  const {slug, token} = params
+  const data: {course: any, student: any, name: any, image: any, room: any, courseName: any} = jwtDecode(token)
+  const {course, student, name, image, room, courseName} = data
+
   const school = slug
-  const course = courseId
-  const student = studentId
+  // const course = data?.course
+  // const student = studentId
+  // const name = studentName
+  // const image = studentImage
   
   const {
     data:studentList
@@ -85,7 +91,7 @@ export default function EditResult() {
     }
     if(!errors.length){
     mutate({
-      url: GRADE(easysch_token?.school_uid,studentId),
+      url: GRADE(easysch_token?.school_uid,student),
       data: {
         subject_class_id: course,
     first_ca: state.first_ca,
@@ -101,10 +107,14 @@ export default function EditResult() {
           <ResultForm
           errors={errors}
           school={school}
+          name={name}
+          image={image}
           course={course}
           student={student}
           handleSubmit={submitForm}
           handleChange={handleChange}
+          room={room}
+          courseName={courseName}
           />
         }
         currentPage="Courses"

@@ -24,11 +24,11 @@ export const getServerSideProps = (context: { query: { course: any, school: any 
 
 export default function homeroom() {
   const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
-  const params:{slug:any, id:any} = useParams()
-  const {slug, id} = params
+  const params:{slug:any, id:any, room: any, corse: any} = useParams()
+  const {slug, id, room, corse:name} = params
   const school = slug
   const course = id
-  
+  // alert(name)
   const {
     data:studentList
   } = useQuery(
@@ -101,6 +101,8 @@ export default function homeroom() {
             ID={studentId}
             courseId={course}
             open={open}
+            roomName={room}
+            courseName={name}
             setOpen={setOpen}
             school={school}
             Component={<Component handleChange={handleChange} handleSubmit={submitForm} />}

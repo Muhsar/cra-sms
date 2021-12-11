@@ -2,9 +2,10 @@ import React, { Fragment } from "react";
 import { StudentList } from "Mock/StudentList";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import StudentProfile from "./StudentProfile";
-import ScoreModal from './ScoreModal';
-import SlideOver from './SlideOver';
-import {Link} from "react-router-dom"
+import ScoreModal from "./ScoreModal";
+import SlideOver from "./SlideOver";
+import { Link } from "react-router-dom";
+import jwt from "jsonwebtoken"
 // import StudentProfile from "./StudentProfile";
 export default function Table({
   list,
@@ -13,9 +14,21 @@ export default function Table({
   open,
   setOpen,
   school,
-  courseId
+  courseId,
+  room,
+  course: courseName
 }) {
-  
+  const JWTSign = (course, name,student, image) => {
+    const tokenToVerify = {
+      course,
+      name,
+      student,
+      image,
+      room,
+      courseName
+    }
+    return jwt.sign(tokenToVerify, "secret")
+  }
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -54,7 +67,7 @@ export default function Table({
                   >
                     Total
                   </th>
-                  
+
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Add</span>
                   </th>
@@ -74,9 +87,7 @@ export default function Table({
                         <div className="flex-shrink-0 w-10 h-10">
                           <img
                             className="object-cover object-center w-10 h-10 rounded-full"
-                            src={
-                              person.student.image
-                            }
+                            src={person.student.image}
                             alt=""
                           />
                         </div>
@@ -98,38 +109,46 @@ export default function Table({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.second_ca}
+                        {person.second_ca}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.first_exam}
+                        {person.first_exam}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                      {person.first_ca + person.second_ca + person.first_exam}
+                        {person.first_ca + person.second_ca + person.first_exam}
                       </div>
                       {/* <div className="text-sm text-gray-500">100%</div> */}
                     </td>
-                    
+
                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                    <Link to={`/${school}/staff/edit-result/${courseId}/${person.student.id}`}
-                  className="flex flex-1 w-0 -ml-px"
-                  >
-                                                    <a href="#" className="text-blue-600 hover:text-blue-900">
-                                                      Add or Edit Score
-                                                    </a>
-                                      </Link>
-                                                  </td>
+                      <Link
+                        to={`/${school}/staff/edit-result/${JWTSign(courseId, person.student.full_name, person.student.id, person.student.image ? person.student.image : person.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
+                        className="flex flex-1 w-0 -ml-px"
+                      >
+                        <a
+                          href="#"
+                          className="text-blue-600 hover:text-blue-900"
+                        >
+                          Add or Edit Score
+                        </a>
+                      </Link>
+                    </td>
                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                      <a href={`/${school}/result/${person.student.id}`} target="_blank" className="text-blue-600 hover:text-blue-900">
+                      <a
+                        href={`/${school}/result/${person.student.id}`}
+                        target="_blank"
+                        className="text-blue-600 hover:text-blue-900"
+                      >
                         View Result
                       </a>
                     </td>
-                    
+
                     {/* <Menu as="td" className="relative inline text-left">
                       {({ open }) => (
                         <>
