@@ -69,7 +69,7 @@ export default function Component({
                   <input
                     onChange={handleChange}
                     type="number"
-                    max={20}
+                    max={60}
                     name="exam"
                     id="exam"
                     placeholder="Enter Exam Score"
