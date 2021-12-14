@@ -70,10 +70,7 @@ export default function Table({
 
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Add</span>
-                  </th>
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
+                  </th>                  
                 </tr>
               </thead>
               <tbody
