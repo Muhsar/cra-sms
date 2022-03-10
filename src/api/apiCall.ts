@@ -50,14 +50,12 @@ export const deleteRequest = async ({ url } : {url: string}) => {
 
 export const registration = async ({ url, data }: { url: string, data: any }) => {
   const response = await axios.post(url, data)
-  console.log(jwtDecode(response.data.access))
   localStorage.setItem('easysch_token', response.data.data.access)
   return response.data
 }
 
 export const login = async ({ url, data }: { url: string, data: any }) => {
   const response = await axios.post(url, data)
-  console.log(jwtDecode(response.data.access))
   localStorage.setItem('easysch_token', response.data.access)
   return response.data
 }

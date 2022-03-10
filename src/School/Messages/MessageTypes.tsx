@@ -78,7 +78,6 @@ export default function MessageTypes({
     filtered: filtered && filtered
   })
     },[filteredGroup])
-    console.log(state.student_ids)
   return (
     <form onSubmit={handleSubmit} className="flex flex-col self-center justify-center max-w-3xl mx-auto">
       <MessageComponent

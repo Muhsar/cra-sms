@@ -8,7 +8,7 @@ const query = (key, param, url, enabled) => {
       retry: 2,
       enabled: !!enabled,
       onError(data){
-        console.log(data)
+        alert(data)
       }
     }
     )

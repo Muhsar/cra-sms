@@ -29,7 +29,7 @@ export default function SchoolStaffs() {
       retry: 2,
       enabled: !!easysch_token?.school_uid,
       onError(err){
-        console.log(err)
+        alert(err)
       }
     }
   );

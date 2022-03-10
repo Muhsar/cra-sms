@@ -23,7 +23,6 @@ export default function SingleStaff() {
   const params:{id: any, slug: any} = useParams()
   const {id: staff, slug: school} = params
     const {schoolLogo: logo} = localStorage
-    console.log(logo)
     const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList

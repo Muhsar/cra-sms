@@ -162,7 +162,6 @@ const params:{slug: any} = useParams()
     setteachers(teacherList?.data)
     setStudents(studentList?.data)
   },[teacherList?.data, studentList?.data ])
-  console.log(teachers, students)
   return (
     <>
         <SecretaryLayout Component={<Body students={students} teachers={teachers} />} currentPage='Birthdays' />

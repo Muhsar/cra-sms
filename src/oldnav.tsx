@@ -40,9 +40,6 @@ import SecretaryEditCourse from "pages/secretary";
 import SecretaryEditClass from "pages/secretary";
 import SecretaryEditStudent from "pages/secretary";
 
-// const {slug} = matchPath
-// match
-// console.log(match.params.slug)
 export const UnAuthorized = (
   <Switch>
   <Route path="/:slug/school" render={({ location, match }) =>

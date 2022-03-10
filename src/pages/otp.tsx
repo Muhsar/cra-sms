@@ -56,7 +56,6 @@ export default function OTP() {
         payload,
         "verify"
       )
-      // console.log(easysch_token, jwt_decode(easysch_token))
       if(easysch_token){
       window.location.href = `/${school}/verify/${easysch_token}`
       } 

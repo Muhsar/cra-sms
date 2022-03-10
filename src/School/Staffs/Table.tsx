@@ -2,7 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function Table({ teachers, school }) {
-  console.log(teachers)
   return (
     <div className="flex-col hidden sm:flex">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

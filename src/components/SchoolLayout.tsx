@@ -167,28 +167,33 @@ export default function SchoolLayout({ Component, currentPage }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
+                    <>
+                    {
+                      // View as Teacher
+                    }
                     <Link
                      key={item.name} to={`/${slug}/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                         )}
-                     >
+                        >
                       <>
                         <item.icon
                           className={classNames(
                             item.name === currentPage
-                              ? "text-gray-500"
-                              : "text-gray-400 group-hover:text-gray-500",
+                            ? "text-gray-500"
+                            : "text-gray-400 group-hover:text-gray-500",
                             "mr-4 h-6 w-6"
-                          )}
-                          aria-hidden="true"
-                        />
+                            )}
+                            aria-hidden="true"
+                            />
                         {item.name}
                       </>
                     </Link>
+                            </>
                   ))}
                       <a
                         className={classNames(
@@ -215,23 +220,6 @@ export default function SchoolLayout({ Component, currentPage }) {
                       </a>
                 </nav>
               </div>
-              {/* <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
-              <a href="#" className="flex-shrink-0 block w-full group">
-                <div className="flex items-center">
-                  <div>
-                    <img
-                      className="inline-block rounded-full h-9 w-9"
-                      src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">Whitney Francis</p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                  </div>
-                </div>
-              </a>
-            </div> */}
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14" aria-hidden="true">

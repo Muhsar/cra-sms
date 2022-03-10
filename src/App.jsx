@@ -20,14 +20,9 @@ import useToast from './components/Alerts';
 export const ToastContext = React.createContext();
 
 export default function Test() {
-  // console.log(window.location.hostname.slice(0, -10))
 const { showAlert, Toast } = useToast();
     const easysch_token =
       localStorage?.easysch_token && jwt_decode(localStorage?.easysch_token);
-      console.log(easysch_token)
-      console.log(Number(easysch_token?.exp) < (Date.now() / 1000))
-      console.log(easysch_token?.exp*1000, Date.now())
-      // const decode = jwt_decode(localStorage)
     const AuthFunction = () => {
       let auth = "";
       if (easysch_token && easysch_token !== "undefined") {

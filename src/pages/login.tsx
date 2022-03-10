@@ -16,7 +16,6 @@ export default function Login() {
   const params: {slug: any} = useParams()
   const school = params?.slug
   const location = useLocation()
-  console.log(params)
   const { data } = useQuery(
     [queryKeys.getSchool, school],
     async () => await getSchool({ url: GETSCHOOL(school) }),
@@ -59,7 +58,6 @@ export default function Login() {
           // TODO: Fix after BEc exam Dialog state isn't updating for some weird reason
           window.location.href = `/${school}/`;
           // setOpen(true);                    
-          // console.log(`Opem is currently ${open}`)
           // LoginDialog({open, setOpen, school})
         }
         if (easysch_token?.groups.length === 1) {
@@ -76,23 +74,8 @@ export default function Login() {
           window.location.href = `/${school}/school/`;
         }
       }
-      // history.replace("/school/", "/school/");
     },
   });
-  // const [redirectRoute, setRedirectRoute] = React.useState("")
-  // const easysch_token: { groups: string[] } = typeof window !== "undefined" && localStorage?.easysch_token && localStorage?.easysch_token!=="undefined" && jwt_decode(localStorage?.easysch_token);
-  //     if (easysch_token?.groups.length === 2) {
-  //       setOpen(true);
-  //       // LoginDialog({open, setOpen})
-  //     }
-  //     if (easysch_token?.groups.length === 1) {
-  //       if (easysch_token?.groups[0] === "Teacher") {
-  //         setRedirectRoute(`/${school}/staff/`);
-  //       }
-  //       if (easysch_token?.groups[0] === "Owner") {
-  //         setRedirectRoute(`/${school}/school/`);
-  //       }
-  //     }
   const submitForm = (e: any) => {
     e.preventDefault();
     mutate({
@@ -104,12 +87,8 @@ export default function Login() {
       },
     });
   };
-//  console.log(schoolData?.uid)
   return (
     <>
-    {/* {
-      localStorage?.easysch_token && localStorage?.easysch_token !== "undefined" && easysch_token?.groups.length === 1 && <Redirect to={redirectRoute} />
-    } */}
     { 
     <>
       <LoginDialog open={open} setOpen={setOpen} school={school} />

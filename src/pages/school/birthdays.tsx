@@ -162,7 +162,6 @@ export default function SchoolBirthdays() {
     setteachers(teacherList?.data)
     setStudents(studentList?.data)
   },[teacherList?.data, studentList?.data ])
-  console.log(teachers, students)
   return (
     <>
         <SchoolLayout Component={<Body students={students} teachers={teachers} />} currentPage='Birthdays'  />

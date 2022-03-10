@@ -68,22 +68,5 @@ const [inputValue, setInputValue] = React.useState('')
       renderInput={(params) => <TextField {...params} label="Students" variant="outlined" className={classStyles} />}
       
       />
-    // <Autocomplete
-      
-    //     value={value}
-    //   onChange={(event: any, newValue: {value: any, label: any}) => {
-    //       console.log(newValue, value)
-    //       setValue(newValue?.value);
-    //   }}
-    //   id="controllable-states-demo"
-    //   inputValue={inputValue}
-    //   getOptionSelected={(option, value) => option.value === value.value}
-    //   getOptionLabel={(option) => option.label}
-    //     onInputChange={(event, newInputValue) => {
-    //       setInputValue(newInputValue);
-    //     }}
-    //     options={data}
-    //     renderInput={(params) => <TextField {...params} variant="outlined" className={classStyles} />}
-    //   />
   )
 }

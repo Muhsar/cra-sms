@@ -15,7 +15,6 @@ export default function SchoolDashboard() {
   const {slug: school} = params
   
   const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
-  console.log(easysch_token)
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, easysch_token?.school_uid],
     async () => await getRequest({ url: HOMEROOMS(easysch_token?.school_uid) }),
@@ -75,13 +74,11 @@ export default function SchoolDashboard() {
   // for (let index = 0; index < rooms?.length; index++) {
     // const test = rooms[index];
     // const studentList = debtors?.filter(debt => debt.current_class.id == rooms[index]?.id)
-    // console.log(rooms[index])
     // }
     React.useEffect(() => {
       const debtors = students?.filter(student => student.is_debtor)
       const paid = students?.filter(student => !student.is_debtor)
       const debtorsList = debtors && rooms?.map(room => {
-        console.log(room)
         const debtorsList = debtors?.filter(debt => debt.current_class.id == room.id)
         const paidList = paid?.filter(debt => debt.current_class.id == room.id)
         const totalFee = Number(room.fee) * (Number(debtorsList?.length) + Number(paidList?.length))
@@ -90,11 +87,7 @@ export default function SchoolDashboard() {
         const newData = { name: room.name, fee: room.fee, debtors: debtorsList, paid: paidList, totalFee, totalDebt, totalPaid }
         return newData
       })
-      // console.log(debtorsList)
     debtorsList?.length && setDebtorsData(debtorsList)
   },[rooms, students])
-  // const debtorsClass = rooms
-  console.log(debtorsData)
-  
   return <SchoolLayout Component={<Dashboard stats={stats} school={school} debts={debtorsData} />} currentPage='Dashboard'  />;
 }

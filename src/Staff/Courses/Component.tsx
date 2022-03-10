@@ -3,6 +3,7 @@ import React from 'react'
 export default function Component({
     handleChange,
     handleSubmit,
+    state
 }) {
     return (
         <div className="p-8">
@@ -31,6 +32,7 @@ export default function Component({
                     type="number"
                     max={20}
                     name="first_ca"
+                    value={state?.first_ca}
                     id="first_ca"
                     placeholder="Enter First CA Score"
                     autoComplete="first_ca"
@@ -51,6 +53,7 @@ export default function Component({
                     type="number"
                     max={20}
                     name="second_ca"
+                    value={state?.second_ca}
                     id="second_ca"
                     placeholder="Enter Second CA Score"
                     autoComplete="second_ca"
@@ -71,6 +74,7 @@ export default function Component({
                     type="number"
                     max={60}
                     name="exam"
+                    value={state?.exam}
                     id="exam"
                     placeholder="Enter Exam Score"
                     autoComplete="exam"

@@ -22,7 +22,6 @@ export default function SingleStaff() {
   const params:{id: any, slug: any} = useParams()
   const {id: staff, slug: school} = params
     const {schoolLogo: logo} = localStorage
-    console.log(logo)
     const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const {
     data:teacherList
@@ -40,9 +39,6 @@ export default function SingleStaff() {
     setTeacher(teacherList?.data)
   },[teacherList?.data])
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setState({ ...state, [event.target.name]: event.target.value });
-  // };
   const StaffDetail = [
     { param: "Full Name", value: teacher?.full_name },
     { param: "Email Address", value: teacher?.email },

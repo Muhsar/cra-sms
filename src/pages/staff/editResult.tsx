@@ -24,11 +24,9 @@ export default function EditResult() {
   const easysch_token:{school_uid: any} = jwt_decode(localStorage?.easysch_token)
   const params:{token: any, slug; any} = useParams()
   const history = useHistory();
-  console.log(history)
   const {slug, token} = params
   const data: {course: any, student: any, name: any, image: any, room: any, courseName: any} = jwtDecode(token)
   const {course, student, name, image, room, courseName} = data
-
   const school = slug
   // const course = data?.course
   // const student = studentId
@@ -46,8 +44,17 @@ export default function EditResult() {
     }
     )
   const [students, setStudents] = React.useState(studentList?.data)
+  React.useEffect(()=>{
+    const filteredData = students?.filter(stud=> stud?.student?.id === student)
+    const data = filteredData && filteredData[0]
+    setState({
+      ...state,
+      first_ca: data?.s_first_ca,
+      second_ca: data?.s_second_ca,
+      exam: data?.second_exam
+    })
+  },[students])
     React.useEffect(() => {
-
     setStudents(studentList?.data);
   }, [studentList?.data]);
   const [state, setState] = React.useState({
@@ -67,7 +74,7 @@ export default function EditResult() {
         message: data?.message,
         severity: "success",
       });
-      history.replace(`/${school}/staff/course/${course}`, `/${school}/staff/course/${course}`)
+      history.push(`/${school}/staff/course/${room}/${courseName}/${course}`, `/${school}/staff/course/${room}/${courseName}/${course}`)
       cache.invalidateQueries()
     },
   });
@@ -94,9 +101,9 @@ export default function EditResult() {
       url: GRADE(easysch_token?.school_uid,student),
       data: {
         subject_class_id: course,
-    first_ca: state.first_ca,
-    second_ca: state.second_ca,
-    exam: state.exam
+    s_first_ca: state.first_ca,
+    s_second_ca: state.second_ca,
+    second_exam: state.exam
       },
     })}
   };
@@ -115,6 +122,7 @@ export default function EditResult() {
           handleChange={handleChange}
           room={room}
           courseName={courseName}
+          state={state}
           />
         }
         currentPage="Courses"

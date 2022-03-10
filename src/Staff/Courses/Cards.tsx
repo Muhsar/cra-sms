@@ -61,10 +61,10 @@ export default function Cards({students,
                 
               </div>
               <div className="grid grid-cols-2 gap-x-6">
-              <p className="mt-1 text-sm text-gray-500 truncate">First CA: {student.first_ca}</p>
-              <p className="mt-1 text-sm text-gray-500 truncate">Second CA: {student.second_ca}</p>
-              <p className="mt-1 text-sm text-gray-500 truncate">Exam: {student.first_exam}</p>
-              <p className="mt-1 text-sm text-gray-500 truncate">Total: {student.first_ca + student.second_ca + student.first_exam}</p>
+              <p className="mt-1 text-sm text-gray-500 truncate">First CA: {student.s_first_ca}</p>
+              <p className="mt-1 text-sm text-gray-500 truncate">Second CA: {student.s_second_ca}</p>
+              <p className="mt-1 text-sm text-gray-500 truncate">Exam: {student.second_exam}</p>
+              <p className="mt-1 text-sm text-gray-500 truncate">Total: {student.s_first_ca + student.s_second_ca + student.second_exam}</p>
               </div>
             </div>
             <img className="flex-shrink-0 object-cover object-center w-16 h-16 bg-gray-300 rounded-full" src={student.student.image ? student.student.image : student.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png"} alt="" />

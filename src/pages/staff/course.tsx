@@ -41,7 +41,14 @@ export default function homeroom() {
     )
   const [students, setStudents] = React.useState(studentList?.data)
     React.useEffect(() => {
-
+      // const filteredData = studentList?.data?.filter(stud=> stud?.student?.id === student)
+      // const data = filteredData && filteredData[0]
+      // setState({
+      //   ...state,
+      //   first_ca: data?.s_first_ca,
+      //   second_ca: data?.s_second_ca,
+      //   exam: data?.second_exam
+      // })
     setStudents(studentList?.data);
   }, [studentList?.data]);
   const [state, setState] = React.useState({
@@ -62,17 +69,6 @@ export default function homeroom() {
         message: data?.message,
         severity: "success",
       });
-//       const updatedData = students?.map(student => {
-//         const datas = student
-//         if (datas.student.id === studentId) {
-//           datas.t_first_ca = data?.data.t_first_ca
-//           datas.t_second_ca = data?.data.t_second_ca
-//           datas.third_exam = data?.data.third_exam
-//           console.log(datas)
-//         }
-//         return datas
-//       })
-//       setStudents(updatedData)
       setOpen(false)
       cache.invalidateQueries()
     },
@@ -105,7 +101,7 @@ export default function homeroom() {
             courseName={name}
             setOpen={setOpen}
             school={school}
-            Component={<Component handleChange={handleChange} handleSubmit={submitForm} />}
+            Component={<Component handleChange={handleChange} handleSubmit={submitForm} state={state} />}
           />
         }
         currentPage="Courses"

@@ -16,7 +16,6 @@ export default function ChangePassword() {
   const params:{ slug:any, id:any} = useParams()
   const { slug, id} = params
   const staff = id
-  console.log(staff)
   const school = slug
   const { data } = useQuery(
     [queryKeys.getSchool, school],

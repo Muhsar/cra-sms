@@ -65,10 +65,6 @@ const params:{slug: any} = useParams()
 const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
   setState({ ...state, [event.target.name]: event.target.value })
 }
-console.log(groups)
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setState({ ...state, [event.target.name]: event.target.value });
-  // };
   const cache = useQueryClient()
   const {showAlert} = React.useContext(ToastContext)
   const { mutate } = useMutation(postRequest, {

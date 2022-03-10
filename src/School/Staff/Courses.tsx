@@ -3,7 +3,6 @@ import StaffCourseForm from './StaffCourseForm'
 
 export default function Courses({ courses, state, setState, handleSubmit, teacherCourses, open, setOpen, selected, setSelected }) {
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.labels)
     setState({
       ...state,
       [e.target.name]: e.target.value

@@ -85,7 +85,6 @@ export default function SingleClass() {
         const datas = {subject: {name: subject.name}}
         return datas
       })
-      console.log(subjectsData)
       setHomeroomCourses([...homeroomCourses, ...subjectsData])
       setState({
         ...state,

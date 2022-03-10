@@ -46,7 +46,6 @@ const params:{slug: any} = useParams()
         message: data?.message,
         severity: "success",
       });
-      console.log(data?.data)
       setRooms([...rooms, {name: data?.data.name, id: data?.data.id}])
       setOpen(false)
       setState({

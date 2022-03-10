@@ -109,7 +109,6 @@ const school = slug
     const studentValue = students?.filter(
       (student) => student.id == e.target.value
     );
-    console.log(studentValue);
     setState({
       ...state,
       [e.target.name]: e.target.value,

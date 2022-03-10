@@ -11,7 +11,8 @@ export default function ResultForm({
   name,
   image,
   room,
-  courseName
+  courseName,
+  state
 }) {
   return (
     <div className="h-screen max-w-5xl mx-auto">
@@ -47,6 +48,7 @@ export default function ResultForm({
             <Component
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              state={state}
             />
           </div>
         </div>
