@@ -70,10 +70,7 @@ export default function Table({
 
                   <th scope="col" className="relative px-6 py-3">
                     <span className="sr-only">Add</span>
-                  </th>
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
+                  </th>                  
                 </tr>
               </thead>
               <tbody
@@ -139,7 +136,7 @@ export default function Table({
                         </a>
                       </Link>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                    {/* <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                       <a
                         href={`/${school}/result/${person.student.id}`}
                         target="_blank"
@@ -147,7 +144,7 @@ export default function Table({
                       >
                         View Result
                       </a>
-                    </td>
+                    </td> */}
 
                     {/* <Menu as="td" className="relative inline text-left">
                       {({ open }) => (

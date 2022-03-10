@@ -84,7 +84,8 @@ export default function Cards({students,
                 </div>
               </>
               </Link>
-            <Link to={`/${school}/result/${student.student.id}`}
+              {/* TODO: I had to remove result view for staff */}
+            {/* <Link to={`/${school}/result/${student.student.id}`}
                     target="_blank"
                   className="flex flex-1 w-0 -ml-px sm:hidden"
                   >
@@ -96,7 +97,7 @@ export default function Cards({students,
                   <span className="ml-3">View Result</span>
                 </div>
               </>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </li>

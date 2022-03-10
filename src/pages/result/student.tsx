@@ -64,7 +64,7 @@ export default function StudentResult() {
                   </div>
                   <div>
                     CLASS: <span className="text-lg student-basic-data">{result?.student.current_class.name}</span>
-                    SESSION: <span className="text-lg student-basic-data">2020/2021</span>
+                    SESSION: <span className="text-lg student-basic-data">{result?.session}</span>
                   </div>
                   <div className="text-lg performance-summary-table">
                     <table className="table text-lg table-bordered">
