@@ -122,10 +122,10 @@ export default function StudentResult() {
                         result?.results.map((result, index) => (
                       <tr key={index}>
                         <td>{result.subject}</td>
-                        <td>{result.first_ca}</td>
-                        <td>{result.second_ca}</td>
-                        <td>{result.first_exam}</td>
-                        <td>{Number(result.first_ca)+Number(result.second_ca)+Number(result.first_exam)}</td>
+                        <td>{result.s_first_ca}</td>
+                        <td>{result.s_second_ca}</td>
+                        <td>{result.second_exam}</td>
+                        <td>{Number(result.s_first_ca)+Number(result.s_second_ca)+Number(result.second_exam)}</td>
                         {/* <td>{result.total_first}</td>
                         <td>{result.total_second}</td> */}
                         {/* <td>{result.session_average}</td> */}
