@@ -151,7 +151,7 @@ export default function StudentResult() {
         {result?.principal_remark}
         </div>
         <div className="text-lg resumption-section" style={{width: 1004}}>
-          Next Term Begins: <span className="text-lg resumption-date">Tue, 04-Jan-2022</span>
+          Next Term Begins: <span className="text-lg resumption-date">Mon, 25-APR-2022</span>
         </div>
       </div>
     </div>
