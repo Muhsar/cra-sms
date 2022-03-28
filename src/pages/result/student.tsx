@@ -55,7 +55,7 @@ export default function StudentResult() {
                   <img src="https://res.cloudinary.com/masterp4dev/image/upload/v1638876935/logo4-1_xoa0ru.jpg" alt="" />
                   
                 </div>
-              <h3 id="current-term-header">FIRST TERM STUDENT'S PERFORMANCE REPORT</h3>
+              <h3 id="current-term-header">SECOND TERM STUDENT'S PERFORMANCE REPORT</h3>
               <div className="flex flex-row justify-between w-full max-w-5xl text-lg bd-highlight" style={{width: 1004}}>
                 <div className="px-2 text-lg bd-highlight" style={{width: 804}}>
                   <div>
