@@ -55,7 +55,7 @@ export default function StudentResult() {
                   <img src="https://res.cloudinary.com/masterp4dev/image/upload/v1638876935/logo4-1_xoa0ru.jpg" alt="" />
                   
                 </div>
-              <h3 id="current-term-header">SECOND TERM STUDENT'S PERFORMANCE REPORT</h3>
+              <h3 id="current-term-header">THIRD TERM STUDENT'S PERFORMANCE REPORT</h3>
               <div className="flex flex-row justify-between w-full max-w-5xl text-lg bd-highlight" style={{width: 1004}}>
                 <div className="px-2 text-lg bd-highlight" style={{width: 804}}>
                   <div>
@@ -105,14 +105,33 @@ export default function StudentResult() {
             <table className="table text-lg table-bordered" style={{width: 1004}}>
               <thead className="text-lg thead-light">
                 <tr>
+                  {/* <tr>
+                        <th scope="col">SUBJECTS</th>
+                        <th scope="col">FIRST CA</th>
+                        <th scope="col">SECOND CA</th>
+                        <th scope="col">EXAM</th>
+                        <th scope="col">TOTAL</th>
+                        {{ if $DidFirstTerm}}
+                        <th scope="col">FIRST TERM</th>
+                        {{ end }}
+                        {{ if $DidSecondTerm}}
+                        <th scope="col">SECOND TERM</th>
+                        {{ end }}
+                        <th scope="col">AVERAGE</th>
+                        <th scope="col">GRADE</th>
+                        <th scope="col">REMARKS</th>
+                      </tr>
+                </thead> */}
                 <th scope="col">SUBJECTS</th>
                         <th scope="col">FIRST CA</th>
                         <th scope="col">SECOND CA</th>
                         <th scope="col">EXAM</th>
                         <th scope="col">TOTAL</th>
+                        <th scope="col">FIRST TERM</th>
+                        <th scope="col">SECOND TERM</th>
                         {/* <th scope="col">FIRST TERM</th>
                         <th scope="col">SECOND TERM</th> */}
-                        {/* <th scope="col">AVERAGE</th> */}
+                        <th scope="col">AVERAGE</th>
                         <th scope="col">GRADE</th>
                         <th scope="col">REMARKS</th>
                 </tr>
@@ -126,9 +145,9 @@ export default function StudentResult() {
                         <td>{result.s_second_ca}</td>
                         <td>{result.second_exam}</td>
                         <td>{Number(result.s_first_ca)+Number(result.s_second_ca)+Number(result.second_exam)}</td>
-                        {/* <td>{result.total_first}</td>
-                        <td>{result.total_second}</td> */}
-                        {/* <td>{result.session_average}</td> */}
+                        <td>{result.total_first}</td>
+                        <td>{result.total_second}</td>
+                        <td>{result.session_average}</td>
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>
                       </tr>
