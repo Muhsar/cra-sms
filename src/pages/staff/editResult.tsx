@@ -49,9 +49,9 @@ export default function EditResult() {
     const data = filteredData && filteredData[0]
     setState({
       ...state,
-      first_ca: data?.s_first_ca,
-      second_ca: data?.s_second_ca,
-      exam: data?.second_exam
+      first_ca: data?.t_first_ca,
+      second_ca: data?.t_second_ca,
+      exam: data?.third_exam
     })
   },[students])
     React.useEffect(() => {
@@ -101,9 +101,9 @@ export default function EditResult() {
       url: GRADE(easysch_token?.school_uid,student),
       data: {
         subject_class_id: course,
-    s_first_ca: state.first_ca,
-    s_second_ca: state.second_ca,
-    second_exam: state.exam
+    t_first_ca: state.first_ca,
+    t_second_ca: state.second_ca,
+    third_exam: state.exam
       },
     })}
   };
