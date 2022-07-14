@@ -125,7 +125,7 @@ export default function StudentResult() {
                         <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
                         {/* <td>{result.total_first}</td>
                         <td>{result.total_second}</td> */}
-                        <td>{result.session_average}</td>
+                        <td>{result.current_session_average}</td>
                         <td>{result.grade}</td>
                         <td>{result.remark}</td>
                       </tr>
