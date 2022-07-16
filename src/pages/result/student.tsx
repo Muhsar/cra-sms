@@ -36,6 +36,7 @@ export default function StudentResult() {
    React.useEffect(() => {
     setStudents(resultData?.data);
   }, [resultData?.data]);
+
   return (
     <>
       <Helmet>
@@ -126,9 +127,9 @@ export default function StudentResult() {
                         <th scope="col">FIRST CA</th>
                         <th scope="col">SECOND CA</th>
                         <th scope="col">EXAM</th>
-                        <th scope="col">TOTAL</th>
-                        <th scope="col">FIRST TERM</th>
-                        <th scope="col">SECOND TERM</th>
+                        <th scope="col">TOTAL</th> 
+                        {result?.did_first_term && <th scope="col">FIRST TERM</th>}    
+                        {result?.did_second_term && <th scope="col">SECOND TERM</th>}                            
                         {/* <th scope="col">FIRST TERM</th>
                         <th scope="col">SECOND TERM</th> */}
                         <th scope="col">AVERAGE</th>
@@ -138,18 +139,18 @@ export default function StudentResult() {
               </thead>
               <tbody>
               {
-                        result?.results.map((result, index) => (
+                        result?.results.map((subjectResult, index) => (
                       <tr key={index}>
-                        <td>{result.subject}</td>
-                        <td>{result.t_first_ca}</td>
-                        <td>{result.t_second_ca}</td>
-                        <td>{result.third_exam}</td>
-                        <td>{Number(result.t_first_ca)+Number(result.t_second_ca)+Number(result.third_exam)}</td>
-                        <td>{result.total_first}</td>
-                        <td>{result.total_second}</td>
-                        <td>{result.current_session_average}</td>
-                        <td>{result.grade}</td>
-                        <td>{result.remark}</td>
+                        <td>{subjectResult.subject}</td>
+                        <td>{subjectResult.t_first_ca}</td>
+                        <td>{subjectResult.t_second_ca}</td>
+                        <td>{subjectResult.third_exam}</td>
+                        <td>{Number(subjectResult.t_first_ca)+Number(subjectResult.t_second_ca)+Number(subjectResult.third_exam)}</td>
+                        {result?.did_first_term && <td>{subjectResult.total_first}</td>}    
+                        {result?.did_second_term && <td>{subjectResult.total_second}</td>}                                                
+                        <td>{subjectResult.current_session_average}</td>
+                        <td>{subjectResult.grade}</td>
+                        <td>{subjectResult.remark}</td>
                       </tr>
                         ))
                       }
