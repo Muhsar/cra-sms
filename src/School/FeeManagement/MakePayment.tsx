@@ -15,12 +15,8 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
   React.useEffect(() => {
     setState({
       ...state,
-<<<<<<< HEAD
       student_id: value,
       fee: students?.filter(std=>std.id===value)[0]?.fee
-=======
-      student_id: value
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
     })
   }, [value])
   const data = students?.map(student => {
