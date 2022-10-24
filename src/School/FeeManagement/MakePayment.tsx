@@ -112,10 +112,6 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
         </form>
 </DialogContent>
 </Dialog>
-<<<<<<< HEAD
-
-=======
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
     </>
   )
 }
