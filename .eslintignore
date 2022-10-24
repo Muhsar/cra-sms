@@ -1,0 +1,6 @@
+node_modules
+tailwind.config.js
+./node_modules
+./tailwind.config.js
+./src/api/
+./src/styles/
