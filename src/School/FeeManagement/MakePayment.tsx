@@ -40,11 +40,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
                             </div>
                         </div>
                         <div>
-<<<<<<< HEAD
                     <h6 className="mb-0">Make Payment </h6>
-=======
-                    <h6 className="mb-0">Add New Course </h6>
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
                         </div>
           </div>
         </DialogTitle>
@@ -52,11 +48,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
           <form
             onSubmit={handleSubmit}
             className='mx-3 mb-3'>
-<<<<<<< HEAD
           {/* <div className='my-2'>
-=======
-          <div className='my-2'>
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
               <label htmlFor="amount">
                 Enter Amount
               </label>
@@ -69,11 +61,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
                 placeholder="Enter Amount Paid"
               />
-<<<<<<< HEAD
             </div> */}
-=======
-            </div>
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
           <div className='my-2'>
               <label htmlFor="student_id">
                 Select Student
@@ -84,7 +72,6 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
                 setValue={setValue}
                 classStyles="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:z-10 sm:text-sm"
               />
-<<<<<<< HEAD
             </div>
           <div className='my-2'>
               <label htmlFor="student_id">
@@ -112,24 +99,6 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
             </div>
             <div className="mb-2">
 
-=======
-              {/* <select
-      onChange={handleSelect}
-      id="student_id"
-      name="student_id"
-      autoComplete="student_id"
-      required
-      className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-      placeholder="Enter Course Name"
-    >
-      <option>Please Select Student</option>
-      {
-        students?.map(student => (
-          <option value={student.id}>{student.full_name}</option>
-        ))
-      }
-    </select> */}
->>>>>>> d895de1227c8a0ddd48c40de5be1d4b2f7baabda
             </div>
             
           <div>
