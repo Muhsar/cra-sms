@@ -110,6 +110,7 @@ export default function SchoolStudents() {
       data: data,
     });
   };
+
   const [state, setState] = React.useState({
     first_name: "",
     last_name: "",

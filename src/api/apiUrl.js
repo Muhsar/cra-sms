@@ -40,3 +40,5 @@ export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
 export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
 export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
 export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
+export const ADDBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/bills`
+export const GETBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/bills`

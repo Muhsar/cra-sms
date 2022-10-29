@@ -10,8 +10,6 @@ import { PAYMENTS, STUDENTS } from "api/apiUrl";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { ToastContext } from "App.jsx";
-
-
 import { useParams } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 export const getServerSideProps = (context: { query: { school: any } }) => {

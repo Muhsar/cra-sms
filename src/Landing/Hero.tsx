@@ -13,6 +13,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { ChevronRightIcon, ExternalLinkIcon } from "@heroicons/react/solid";
+import PopOver from "./PopOver";
 export default function Hero({ images }) {
   return (
     <>
@@ -43,13 +44,14 @@ export default function Hero({ images }) {
                             />
                           </div> */}
                       <div className="mt-3 sm:mt-0 sm:ml-3 flex-1">
-                        <a
+                        <PopOver style="block w-full py-3 px-4 rounded-md shadow bg-white text-center text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900" />
+                        {/* <a
                           href="https://forms.gle/woRYojYbThAp5AqH7"
                           target="_blank"
-                          className="block w-full py-3 px-4 rounded-md shadow bg-white text-center text-cyan-600 font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                          className=
                         >
                           Setup Account
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>

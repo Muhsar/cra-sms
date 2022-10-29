@@ -19,4 +19,5 @@ export const queryKeys = {
   getStudentsBirthday: 'getStudentsBirthday',
   getStudentPayment: 'getStudentPayment',
   getSchool: 'getSchool',
+  getBills: 'getBills',
 }

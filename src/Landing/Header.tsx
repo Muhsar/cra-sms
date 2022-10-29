@@ -11,6 +11,7 @@ import {
   ShieldCheckIcon,
   XIcon,
 } from '@heroicons/react/outline'
+import PopOver from './PopOver'
 export default function Header({navigation}) {
   return (
     <>
@@ -52,13 +53,14 @@ export default function Header({navigation}) {
                     </div>
                   </div>
                   <div className="hidden md:flex md:items-center md:space-x-6">
-                    <a
+                    <PopOver style="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700" />
+                    {/* <a
                       href="https://forms.gle/woRYojYbThAp5AqH7"
                       target="_blank"
                       className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
                     >
                       Setup Account
-                    </a>
+                    </a> */}
                   </div>
                 </nav>
               </div>

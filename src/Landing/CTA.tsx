@@ -12,6 +12,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { ChevronRightIcon, ExternalLinkIcon } from '@heroicons/react/solid'
+import PopOver from './PopOver'
 export default function CTA({img1}) {
   return (
     <>
@@ -45,6 +46,7 @@ export default function CTA({img1}) {
                 </p>
                 <div className="mt-8">
                   <div className="inline-flex rounded-md shadow">
+                    {/* <PopOver style="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50" /> */}
                     <a
                       href="https://forms.gle/woRYojYbThAp5AqH7"
                       target="_blank"
