@@ -1,37 +1,30 @@
 import React, { Fragment, useState } from "react";
-import { Link, useHistory, withRouter, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { motion } from "framer-motion";
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
-  BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
   MenuAlt2Icon,
-  UsersIcon,
   XIcon,
-  OfficeBuildingIcon,
-  ClipboardListIcon,
-  BookOpenIcon,
-  CogIcon,
   LogoutIcon,
+  ChatAlt2Icon,
 } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/solid";
+import { AttachMoneyOutlined } from "@material-ui/icons";
+import { FaMoneyBillAlt } from "react-icons/fa";
 // import history from '../pages/school/student/[student]/history';
 const navigation = [
-  { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "bursar/", icon: HomeIcon, current: true },
+  
   {
-    name: "Students",
-    href: "secretary/students",
-    icon: OfficeBuildingIcon,
+    name: "Payment History",
+    href: "bursar/fees",
+    icon: AttachMoneyOutlined,
     current: false,
   },
   {
-    name: "Add Students",
-    href: "secretary/add",
-    icon: BookOpenIcon,
+    name: "Bills",
+    href: "bursar/bill",
+    icon: FaMoneyBillAlt,
     current: false,
   },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
@@ -55,7 +48,7 @@ const fadeInUp = {
     }
   }
 }
-export default function SecretaryLayout({ Component, currentPage }) {
+export default function BursarLayout({ children, currentPage }) {
 
   const slug = localStorage?.schoolSlug && localStorage?.schoolSlug 
   const history = useHistory()
@@ -307,7 +300,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
               {/* <div className="py-4">
                 <div className="border-4 border-gray-200 border-dashed rounded-lg h-96" />
               </div> */}
-              {Component}
+              {children}
               {/* /End replace */}
             </div>
           </div>

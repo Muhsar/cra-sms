@@ -22,15 +22,17 @@ import LandingPage from "pages";
 import { Route } from 'react-router-dom';
 import { Switch } from "react-router-dom";
 import ErrorPage from "pages/404";
+import Dashboard from '../pages/bursar/index';
+import Bill from "pages/bursar/bill";
 
 export const Bursar = (
   <Switch>
     {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
-    <Route path="/:slug/bursar" component={BursarDashBoard} exact />
-    <Route path="/:slug/" component={BursarDashBoard} exact />
-    <Route path="/:slug/bursar/students" component={BursarStudents} exact />
-    <Route path="/:slug/bursar/history/:id" component={BursarStudentHistory} exact />
-    <Route path="/:slug/bursar/payments" component={BursarPayments} exact />
+    <Route path="/:slug/bursar" component={Dashboard} exact />
+    <Route path="/:slug/" component={Dashboard} exact />
+    <Route path="/:slug/bursar/fees" component={SchoolFees} exact />
+    <Route path="/:slug/bursar/bill" component={Bill} exact />
+    <Route path="/:slug/bursar/sms" component={SMS} exact />
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"

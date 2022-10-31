@@ -3,6 +3,7 @@
 /.autogit
 # dependencies
 /node_modules
+/dist
 /.pnp
 .pnp.js
 /src/style.css

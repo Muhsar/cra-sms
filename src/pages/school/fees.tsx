@@ -9,9 +9,11 @@ import { PAYMENTS, STUDENTS } from "api/apiUrl";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { ToastContext } from "App.jsx";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { GETSTUDENTBILL } from '../../api/apiUrl';
+import BursarLayout from 'components/BursarLayout';
+import SecretaryLayout from "components/SecretaryLayout";
 export const getServerSideProps = (context: { query: { school: any } }) => {
   const { school } = context.query;
   
@@ -19,6 +21,8 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolFees() {
+  const pageHistory = useHistory()
+  console.log(pageHistory.location.pathname)
   const [state, setState] = React.useState({
     full_name: "",
     amount: 0,
@@ -166,8 +170,12 @@ export default function SchoolFees() {
     });
   };
   const [open, setOpen] = React.useState(false);
+  // const PageLayout = pageHistory.location.pathname===`/${school}/bursar/fees` ? BursarLayout : pageHistory.location.pathname===`/${school}/school/fees` ? SchoolLayout : SecretaryLayout
   return (
-    <SchoolLayout currentPage="Fee Management">
+    <>
+    {
+      pageHistory.location.pathname===`/${school}/bursar/fees` ?
+    <BursarLayout currentPage="Payment History">
       <FeeManagement
         state={state}
         handleChange={handleChange}
@@ -180,7 +188,25 @@ export default function SchoolFees() {
         open={open}
         setOpen={setOpen}
         bill={bill}
-      />
+        />
+    </BursarLayout>
+    :
+    <SchoolLayout currentPage="Payment History">
+      <FeeManagement
+        state={state}
+        handleChange={handleChange}
+        handleSelect={handleSelect}
+        handleSubmit={submitForm}
+        handleSearch={handleSearch}
+        setState={setState}
+        history={filteredData}
+        students={students}
+        open={open}
+        setOpen={setOpen}
+        bill={bill}
+        />
     </SchoolLayout>
+    }
+        </>
   );
 }
