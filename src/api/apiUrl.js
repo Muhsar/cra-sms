@@ -41,4 +41,5 @@ export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${
 export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
 export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
 export const ADDBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/bills`
-export const GETBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/bills`
+export const GETBILL = (schoolId) => `${API_URL}/schools/${schoolId}/bills`
+export const GETSTUDENTBILL = (schoolId, studentId) => `${API_URL}/schools/${schoolId}/students/${studentId}/bills`

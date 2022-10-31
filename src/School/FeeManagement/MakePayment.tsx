@@ -2,7 +2,7 @@ import { Dialog, DialogTitle, DialogContent, TextareaAutosize } from '@material-
 import React from 'react'
 import { SingleAutoComplete } from 'components/AutoComplete'
 
-export default function FormDialog({handleSubmit, handleChange, state, setState, handleSelect, students, open, setOpen}) {
+export default function FormDialog({handleSubmit, handleChange, state, setState, handleSelect, students, open, setOpen, bill}) {
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -23,6 +23,7 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
     const val = { label: student.full_name, value: student.id }
     return val
   })
+  console.log(state.amount_left)
   return (
     <>
       <button
@@ -53,57 +54,57 @@ export default function FormDialog({handleSubmit, handleChange, state, setState,
               <label htmlFor="student_id">
                 Select Student
               </label>
+              {
+                students?.length &&
               <SingleAutoComplete
-                value={value}
-                data={data}
-                setValue={setValue}
-                classStyles="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:z-10 sm:text-sm"
+              value={value}
+              data={data}
+              setValue={setValue}
+              classStyles="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:z-10 sm:text-sm"
               />
+            }
             </div>
           <div className='my-2'>
-              <label htmlFor="student_id">
-                Select Payment Type
+              <label htmlFor="student_bill_id">
+                What are you paying for?
               </label>
               <select
+              name='student_bill_id'
+              id='student_bill_id'
+              onChange={handleSelect}
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:z-10 sm:text-sm"
               >
-                <option value="">Please Select Payment Type</option>
+                <option value="">Please Select What You Are Paying For</option>
                 {
-                  [
-                    "School fees",
-                    "Uniform",
-                    "Sport Wear",
-                    "Friday Wear",
-                    "Cultural Wear",
-                    "Mathematics Textbook",
-                    "English Textbook",
-                    "Notebooks"
-                  ].map((bill)=>(
-                    <option value={bill}>{bill}</option>
+                  bill?.map((fee)=>(
+                    <option value={fee.id}>{fee.bill.display_name}</option>
                   ))
                 }
               </select>
             </div>
             <div className="my-2">
+              <label htmlFor="source">Please Select Either Cash Or Transfer</label>
               <select
                 required
-                // onChange={handleChange}
+                name="source"
+                id="source"
+                onChange={handleSelect}
                 className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
               >
-                <option value="">Please Select Payment</option>
-                <option value="">Cash</option>
-                <option value="">Transfer</option>
+                <option value="">Please Select Payment Type</option>
+                <option value="cash">Cash</option>
+                <option value="transfer">Transfer</option>
               </select>
             </div>
              <div className='my-2'>
               <label htmlFor="amount">
-                Amount Left # 30,000
+                Amount Left # {state.amount_left}
               </label>
               <input onChange={handleChange}
                 id="amount"
                 name="amount"
                 type="number"
-                max={30000}
+                max={Number(state.amount_left)}
                 autoComplete="amount"
                 required
                 className="relative block w-full px-3 py-2 mb-1 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"

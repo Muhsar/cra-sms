@@ -6,7 +6,7 @@ import FeeManagement from "School/FeeManagement";
 import { SearchField } from "components/search";
 import { PaymentHistory } from "Mock/PaymentHistory";
 import { queryKeys } from "api/queryKey";
-import { PAYMENTS, STUDENTS } from "api/apiUrl";
+import { GETSTUDENTBILL, PAYMENTS, STUDENTS } from "api/apiUrl";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { ToastContext } from "App.jsx";
@@ -81,7 +81,13 @@ const school = slug
       url: PAYMENTS(easysch_token?.school_uid),
       data: {
         student_id: state.student_id,
-        amount: state.amount,
+        payments: [
+          {
+            student_bill_id: state.student_bill_id,
+            amount: state.amount,
+            source: state.source,
+          }
+        ],
       },
     });
   };
@@ -103,24 +109,52 @@ const school = slug
     amount: 0,
     student_id: "",
     current_class: { name: "" },
+    student_bill_id: "",
+    amount_left: null,
+    source: null,
   });
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const studentValue = students?.filter(
-      (student) => student.id == e.target.value
-    );
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-      current_class: { name: studentValue[0].current_class.name },
-      full_name: studentValue[0].full_name,
-    });
+    if(e.target.name==="student_bill_id"){
+      const currentBill = bill?.filter(fee=>fee.id==e.target.value)[0]
+      console.log(e.target.value, currentBill);
+      setState({
+        ...state,
+        student_bill_id: e.target.value,
+        amount_left: Number(currentBill.amount * currentBill.bill.unit) - Number(currentBill.amount_paid)
+      })
+    }
+    else{
+      const studentValue = students?.filter(
+        (student) => student.id == e.target.value
+        );
+        
+        setState({
+          ...state,
+          [e.target.name]: e.target.value,
+          current_class: { name: studentValue[0].current_class.name },
+          full_name: studentValue[0].full_name,
+        });
+      }
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
     const searchBody = "#PaymentHistory tr";
     // SearchField({ value, searchBody });
   };
+
+  const { data: studentBillList } = useQuery(
+    [queryKeys.getStudentBill, easysch_token?.school_uid, state?.student_id],
+    async () => await getRequest({ url: GETSTUDENTBILL(easysch_token?.school_uid, state?.student_id) }),
+    {
+      retry: 2,
+      enabled: !!easysch_token?.school_uid && !!state?.student_id
+    }
+  );
+  const [bill, setBill] = React.useState(studentBillList?.data)
+  React.useEffect(()=>{
+    setBill(studentBillList?.data)
+  },[studentBillList?.data]);
   const [open, setOpen] = React.useState(false);
   return (
     <SecretaryLayout
@@ -136,6 +170,7 @@ const school = slug
           students={students}
           open={open}
           setOpen={setOpen}
+          bill={bill}
         />
       }
       currentPage="Fee Management"

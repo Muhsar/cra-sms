@@ -34,12 +34,18 @@ export default function Table({
                   >
                     Amount Paid
                   </th>
-                  {/* <th
+                  <th
                     scope="col"
                     className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Amount Left
-                  </th> */}
+                    Payment For
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Payment Type
+                  </th>
                   <th
                     scope="col"
                     className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -86,15 +92,20 @@ export default function Table({
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 text-center">
-                        #{history.amount}
+                      #{history.student_bill.amount_paid}
                       </div>
                       {/* <div className="text-sm text-gray-500">{person.department}</div> */}
                     </td>
-                    {/* <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 text-center">
-                        #50000
+                      {history.student_bill.bill.display_name}
                       </div>
-                    </td> */}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-900 text-center">
+                      {history.source}
+                      </div>
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900 text-center">
                         {moment(history.date_added).format("LL")}

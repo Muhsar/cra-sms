@@ -4,7 +4,7 @@ import React from 'react'
 import SlideOver from 'components/SlideOver'
 import FormDialog from './MakePayment'
 
-export default function Title({handleSearch, handleSubmit, handleChange, state, setState, handleSelect, students, open, setOpen}) {
+export default function Title({handleSearch, handleSubmit, handleChange, state, setState, handleSelect, students, open, setOpen, bill}) {
   return (
     <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
       <h3 className="text-lg font-medium leading-6 text-gray-900">Payment History</h3>
@@ -43,7 +43,7 @@ export default function Title({handleSearch, handleSubmit, handleChange, state, 
             <ChevronDownIcon className="ml-2.5 -mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
           </button> */}
           {/* <SlideOver title="Add Course" Component={Component} /> */}
-          <FormDialog handleSubmit={handleSubmit} handleChange={handleChange} state={state} setState={setState} handleSelect={handleSelect} students={students} open={open} setOpen={setOpen} />
+          <FormDialog handleSubmit={handleSubmit} handleChange={handleChange} state={state} setState={setState} handleSelect={handleSelect} students={students} open={open} setOpen={setOpen} bill={bill} />
         </div>
       </div>
     </div>
