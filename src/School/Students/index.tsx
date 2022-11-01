@@ -249,6 +249,25 @@ const Component = ({
               </div>
               <div className="sm:col-span-full">
                 <label
+                  htmlFor="outstanding_debt"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Outstanding Debt
+                </label>
+                <div className="mt-1">
+                  <input
+                    required
+                    onChange={handleChange}
+                    id="outstanding_debt"
+                    name="outstanding_debt"
+                    type="text"
+                    autoComplete="outstanding_debt"
+                    className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-full">
+                <label
                   htmlFor="gender"
                   className="block text-sm font-medium text-gray-700"
                 >

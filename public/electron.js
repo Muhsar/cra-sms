@@ -13,7 +13,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({width: 900, height: 680
   });
-  const usePath = isDev ? 'http://localhost:3000/rexregina' : 'https://6360f47f9d8fd30008f52fe3--fabulous-chimera-82efa6.netlify.app/rexregina'
+  const usePath = isDev ? 'http://localhost:3000/rexregina' : 'https://rexreginaschools.com/rexregina'
   // const usePath = isDev ? 'http://localhost:3000/rexregina' : 'https://easysch.com/rexregina'
   // const startUrl = url.format({
   //   pathname: usePath,

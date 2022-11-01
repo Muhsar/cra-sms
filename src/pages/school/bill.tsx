@@ -26,7 +26,7 @@ export default function Bill() {
     is_compulsory: false,
     edit: false,
     id: "",
-    fee: "",
+    fee: null,
     display_name: "",
   });
   const easysch_token: { school_uid: any } = jwtDecode(
@@ -138,10 +138,12 @@ export default function Bill() {
     mutate({
       url: ADDBILL(easysch_token?.school_uid, state.class_id),
       data: {
-        bills: [
+        bills: state.fee ? [
           {display_name: "School Fee", unit: 1, amount: state.fee, kind: "old_and_new_student", is_compulsory: true, name: "school_fee"},
           ...state.bills,
         ]
+        :
+        [...state.bills]
       }
     })
 
@@ -175,12 +177,6 @@ export default function Bill() {
     title: "Not Compulsory",
     info: "Debt won't be moved to the next term or succession"
   },
-  ]
-  const plans = [
-    { name: 'Hobby', ram: '8GB', cpus: '4 CPUs', disk: '160 GB SSD disk', price: '$40' },
-    { name: 'Startup', ram: '12GB', cpus: '6 CPUs', disk: '256 GB SSD disk', price: '$80' },
-    { name: 'Business', ram: '16GB', cpus: '8 CPUs', disk: '512 GB SSD disk', price: '$160' },
-    { name: 'Enterprise', ram: '32GB', cpus: '12 CPUs', disk: '1024 GB SSD disk', price: '$240' },
   ]
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

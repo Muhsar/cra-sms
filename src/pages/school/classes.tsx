@@ -32,7 +32,6 @@ export default function SchoolClasses() {
   );
   const [state, setState] = React.useState({
     name: "",
-    fee: 0,
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({
@@ -52,7 +51,6 @@ export default function SchoolClasses() {
       setOpen(false);
       setState({
         name: "",
-        fee: 0,
       });
 
       cache.invalidateQueries();
@@ -64,7 +62,6 @@ export default function SchoolClasses() {
       url: HOMEROOMS(easysch_token?.school_uid),
       data: {
         name: state.name,
-        fee: state.fee,
       },
     });
   };

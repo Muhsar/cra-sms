@@ -82,7 +82,7 @@ export default function SchoolStudents() {
         gender: null,
         guardian_name: "",
         image: "",
-        imageFile: ""
+        imageFile: "",
       })
       cache.invalidateQueries()
     },
@@ -129,7 +129,7 @@ export default function SchoolStudents() {
     gender: null,
     guardian_name: "",
     image: "",
-    imageFile: ""
+    imageFile: "",
   });
   const handleDate = (date: Date | null) => {
     setState({ ...state, date_of_birth: date });
