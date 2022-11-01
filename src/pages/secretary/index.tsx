@@ -73,12 +73,12 @@ const school = slug
       )
     const [rooms, setRooms] = React.useState(homerooms?.data)
     const [students, setStudents] = React.useState(studentList?.data)
-    const [count, setCount] = React.useState(studentCount?.data)
+    const [count, setCount] = React.useState(studentCount?.count)
     React.useEffect(() => {
     setRooms(homerooms?.data)
     setStudents(studentList?.data)
-    setCount(studentCount?.data)
-    }, [homerooms?.data, studentList?.data, studentCount?.data])
+    setCount(studentCount?.count)
+    }, [homerooms?.data, studentList?.data, studentCount?.count])
     const {
       data:teachersList
     } = useQuery(
