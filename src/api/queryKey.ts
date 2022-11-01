@@ -21,4 +21,5 @@ export const queryKeys = {
   getSchool: 'getSchool',
   getBills: 'getBills',
   getStudentBill: 'getStudentBill',
+  getStudentsCount: 'getStudentsCount',
 }

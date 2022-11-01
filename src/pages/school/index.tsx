@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // import { ToastContext } from "App.jsx";
 import { useQuery } from "react-query";
 import { getRequest } from "api/apiCall";
-import { HOMEROOMS, STUDENTS, TEACHERS } from "api/apiUrl";
+import { HOMEROOMS, STUDENTS, STUDENTSCOUNT, TEACHERS } from "api/apiUrl";
 import { queryKeys } from "api/queryKey";
 import jwtDecode from 'jwt-decode';
 
@@ -33,12 +33,24 @@ export default function SchoolDashboard() {
       enabled: !!easysch_token?.school_uid
     }
     )
+  const {
+    data:studentCount
+  } = useQuery(
+    [queryKeys.getStudentsCount, easysch_token?.school_uid],
+    async () => await getRequest({ url: STUDENTSCOUNT(easysch_token?.school_uid) }),
+    {
+      retry: 2,
+      enabled: !!easysch_token?.school_uid
+    }
+    )
     const [rooms, setRooms] = React.useState(homerooms?.data)
     const [students, setStudents] = React.useState(studentList?.data)
+    const [count, setCount] = React.useState(studentCount?.data)
     React.useEffect(() => {
     setRooms(homerooms?.data)
     setStudents(studentList?.data)
-    }, [homerooms?.data, studentList?.data])
+    setCount(studentCount?.data)
+    }, [homerooms?.data, studentList?.data, studentCount?.data])
     const {
       data:teacherList
     } = useQuery(
@@ -92,7 +104,7 @@ export default function SchoolDashboard() {
   return(
     <SchoolLayout 
     currentPage='Dashboard'  >
-      <Dashboard stats={stats} school={school} debts={debtorsData} />
+      <Dashboard stats={stats} school={school} debts={debtorsData} count={count} />
       </SchoolLayout>
     ) 
 }

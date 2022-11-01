@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { getRequest } from 'api/apiCall'
-import { TEACHER, TEACHERCOURSES, HOMEROOMS, STUDENTS, TEACHERS } from 'api/apiUrl'
+import { TEACHER, TEACHERCOURSES, HOMEROOMS, STUDENTS, TEACHERS, STUDENTSCOUNT } from 'api/apiUrl'
 import { queryKeys } from 'api/queryKey'
 // import Dashboard from 'Staff/Dashboard'
 import SecretaryLayout from 'components/SecretaryLayout'
@@ -32,12 +32,12 @@ const school = slug
   React.useEffect(() => {
     setTeacher(teacherList?.data)
   }, [teacherList?.data])
-  const Dashboard = ({teacher, stats, school, debts}) => {
+  const Dashboard = ({teacher, stats, school, debts, count}) => {
     return (
 <>
 <Header teacher={teacher} />
 {/* <Greeting /> */}
-    <StatsCards stats={stats} school={school} />
+    <StatsCards stats={stats} school={school} count={count} />
     <DebtorsCards debts={debts} />
     <BirthdayCard />
 </>
@@ -61,12 +61,24 @@ const school = slug
       enabled: !!easysch_token?.school_uid
     }
     )
+    const {
+      data:studentCount
+    } = useQuery(
+      [queryKeys.getStudentsCount, easysch_token?.school_uid],
+      async () => await getRequest({ url: STUDENTSCOUNT(easysch_token?.school_uid) }),
+      {
+        retry: 2,
+        enabled: !!easysch_token?.school_uid
+      }
+      )
     const [rooms, setRooms] = React.useState(homerooms?.data)
     const [students, setStudents] = React.useState(studentList?.data)
+    const [count, setCount] = React.useState(studentCount?.data)
     React.useEffect(() => {
     setRooms(homerooms?.data)
     setStudents(studentList?.data)
-    }, [homerooms?.data, studentList?.data])
+    setCount(studentCount?.data)
+    }, [homerooms?.data, studentList?.data, studentCount?.data])
     const {
       data:teachersList
     } = useQuery(
@@ -121,7 +133,7 @@ const school = slug
     <>
       <SecretaryLayout Component={<Dashboard
         teacher={teacher}
-        stats={stats} school={school} debts={debtorsData}
+        stats={stats} school={school} debts={debtorsData} count={count}
       />} currentPage='Dashboard' />
 </>
   )

@@ -3,10 +3,10 @@ import { ArrowSmDownIcon, ArrowSmUpIcon } from '@heroicons/react/solid'
 import { UserGroupIcon, UsersIcon, OfficeBuildingIcon } from '@heroicons/react/outline'
 import {Link} from "react-router-dom"
 
-export default function StatsCards({stats: data, school}) {
+export default function StatsCards({stats: data, school, count}) {
 
   const stats = [
-    { href: `/${school}/school/students`,id: 1, name: 'Total Students', stat: data.students, icon: UserGroupIcon},
+    { href: `/${school}/school/students`,id: 1, name: 'Total Students', stat: count, icon: UserGroupIcon},
     { href: `/${school}/school/staffs`,id: 2, name: 'Total Staffs', stat: data.teachers, icon: UsersIcon},
     { href: `/${school}/school/classes`,id: 3, name: 'Total Classes', stat: data.rooms, icon: OfficeBuildingIcon},
   ]
