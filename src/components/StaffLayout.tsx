@@ -173,7 +173,7 @@ export default function StaffLayout({ Component, currentPage }) {
                         localStorage?.removeItem("schoolName");
                       typeof window !== "undefined" &&
                         localStorage?.removeItem("schoolLogo");
-                      window.location.href =`/${slug}/login`;
+                      window.location.href =`/${slug}`;
                     }}
                   >
                     <LogoutIcon
@@ -249,7 +249,7 @@ export default function StaffLayout({ Component, currentPage }) {
                       localStorage?.removeItem("schoolName");
                     typeof window !== "undefined" &&
                       localStorage?.removeItem("schoolLogo");
-                    window.location.href =`/${slug}/login`;
+                    window.location.href =`/${slug}`;
                   }}
                 >
                   <LogoutIcon

@@ -14,7 +14,7 @@ export const Teacher = (
   <Switch>
     {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
     <Route path="/:slug/staff" component={StaffDashboard} exact />
-    <Route path="/:slug/" component={StaffDashboard} exact />
+    <Route path="/:slug" component={StaffDashboard} exact />
     <Route path="/:slug/staff/courses" component={StaffCourses} exact />
     <Route path="/:slug/staff/course/:room/:corse/:id" component={StaffCourse} exact />
     <Route path="/:slug/staff/class" component={StaffClass} exact />
