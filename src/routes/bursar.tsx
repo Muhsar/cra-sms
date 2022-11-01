@@ -24,6 +24,7 @@ import { Switch } from "react-router-dom";
 import ErrorPage from "pages/404";
 import Dashboard from '../pages/bursar/index';
 import Bill from "pages/bursar/bill";
+import Debt from "pages/bursar/debt";
 
 export const Bursar = (
   <Switch>
@@ -32,7 +33,7 @@ export const Bursar = (
     <Route path="/:slug/" component={Dashboard} exact />
     <Route path="/:slug/bursar/fees" component={SchoolFees} exact />
     <Route path="/:slug/bursar/bill" component={Bill} exact />
-    <Route path="/:slug/bursar/sms" component={SMS} exact />
+    <Route path="/:slug/bursar/debt" component={Debt} exact />
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"

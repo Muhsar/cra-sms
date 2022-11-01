@@ -13,7 +13,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({width: 900, height: 680
   });
-  const usePath = isDev ? 'http://localhost:3000/rex-regina' : 'https://easysch.com/rex-regina'
+  const usePath = isDev ? 'http://localhost:3000/rexregina' : 'https://easysch.com/rexregina'
   // const startUrl = url.format({
   //   pathname: usePath,
 

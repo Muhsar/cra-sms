@@ -10,7 +10,7 @@ import {
   ChatAlt2Icon,
 } from "@heroicons/react/outline";
 import { AttachMoneyOutlined } from "@material-ui/icons";
-import { FaMoneyBillAlt } from "react-icons/fa";
+import { FaMoneyBillAlt, FaMoneyBillWave } from "react-icons/fa";
 // import history from '../pages/school/student/[student]/history';
 const navigation = [
   { name: "Dashboard", href: "bursar/", icon: HomeIcon, current: true },
@@ -25,6 +25,12 @@ const navigation = [
     name: "Bills",
     href: "bursar/bill",
     icon: FaMoneyBillAlt,
+    current: false,
+  },
+  {
+    name: "Debt",
+    href: "bursar/debt",
+    icon: FaMoneyBillWave,
     current: false,
   },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
