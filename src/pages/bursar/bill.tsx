@@ -215,7 +215,7 @@ export default function Bill() {
   },[rooms, bills])
   console.log(allBills)
   return (
-    <BursarLayout currentPage="Bill">
+    <>
       <AddBill open={open} setOpen={setOpen}>
         
         <div className="mb-2">
@@ -450,6 +450,6 @@ export default function Bill() {
             ))
         }
       </div>
-    </BursarLayout>
+    </>
   );
 }

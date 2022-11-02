@@ -11,27 +11,31 @@ import {
 } from "@heroicons/react/outline";
 import { AttachMoneyOutlined } from "@material-ui/icons";
 import { FaMoneyBillAlt, FaMoneyBillWave } from "react-icons/fa";
+import Bill from "pages/bursar/bill";
+import SchoolFees from "pages/bursar/fees";
 // import history from '../pages/school/student/[student]/history';
+import Dashboard from '../pages/bursar/index';
+import Debt from '../pages/bursar/debt';
 const navigation = [
-  { name: "Dashboard", href: "bursar/", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "bursar/", icon: HomeIcon, component: Dashboard },
   
   {
     name: "Payment History",
     href: "bursar/fees",
     icon: AttachMoneyOutlined,
-    current: false,
+    component: SchoolFees,
   },
   {
     name: "Bills",
     href: "bursar/bill",
     icon: FaMoneyBillAlt,
-    current: false,
+    component: Bill,
   },
   {
     name: "Debt",
     href: "bursar/debt",
     icon: FaMoneyBillWave,
-    current: false,
+    component: Debt,
   },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
 ];
@@ -54,8 +58,9 @@ const fadeInUp = {
     }
   }
 }
-export default function BursarLayout({ children, currentPage }) {
-
+export default function BursarLayout() {
+const [page, setPage] = useState({ name: "Dashboard", href: "bursar/", icon: HomeIcon, component: Dashboard });
+// const [currentPage, setCurrentPage] = useState(page);
   const slug = localStorage?.schoolSlug && localStorage?.schoolSlug 
   const history = useHistory()
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -133,12 +138,13 @@ export default function BursarLayout({ children, currentPage }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}
+                    <div key={item.name}
+                    onClick={() => setPage(item)}
                         className={classNames(
-                          item.name === currentPage
+                          item.name === page.name
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
+                          "group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer"
                         )}
                     >
                       <
@@ -146,7 +152,7 @@ export default function BursarLayout({ children, currentPage }) {
                       >
                         <item.icon
                           className={classNames(
-                            item.name === currentPage
+                            item.name === page.name
                               ? "text-gray-300"
                               : "text-gray-400 group-hover:text-gray-300",
                             "mr-4 h-6 w-6"
@@ -155,7 +161,7 @@ export default function BursarLayout({ children, currentPage }) {
                         />
                         {item.name}
                       </>
-                    </Link>
+                    </div>
                   ))}
                   <a
                     className={classNames(
@@ -210,19 +216,20 @@ export default function BursarLayout({ children, currentPage }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1 bg-gray-800">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}
+                  <div key={item.name}
+                  onClick={() => setPage(item)}
                       className={classNames(
-                        item.name === currentPage
+                        item.name === page.name
                           ? "bg-gray-900 text-white"
                           : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                        "group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
                       )}
                   >
                     <
                     >
                       <item.icon
                         className={classNames(
-                          item.name === currentPage
+                          item.name === page.name
                             ? "text-gray-300"
                             : "text-gray-400 group-hover:text-gray-300",
                           "mr-3 h-6 w-6"
@@ -231,7 +238,7 @@ export default function BursarLayout({ children, currentPage }) {
                       />
                       {item.name}
                     </>
-                  </Link>
+                  </div>
                 ))}
                 <a
                   className={classNames(
@@ -302,12 +309,9 @@ export default function BursarLayout({ children, currentPage }) {
               {/* <h1 className="text-2xl font-semibold text-gray-900">{currentPage}</h1> */}
             </div>
             <div className="max-w-full px-4 mx-auto sm:px-4 md:px-4">
-              {/* Replace with your content */}
-              {/* <div className="py-4">
-                <div className="border-4 border-gray-200 border-dashed rounded-lg h-96" />
-              </div> */}
-              {children}
-              {/* /End replace */}
+              
+              <page.component />
+              
             </div>
           </div>
         </main>

@@ -25,15 +25,16 @@ import ErrorPage from "pages/404";
 import Dashboard from '../pages/bursar/index';
 import Bill from "pages/bursar/bill";
 import Debt from "pages/bursar/debt";
+import BursarLayout from '../components/BursarLayout';
 
 export const Bursar = (
   <Switch>
     {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
-    <Route path="/:slug/bursar" component={Dashboard} exact />
-    <Route path="/:slug" component={Dashboard} exact />
-    <Route path="/:slug/bursar/fees" component={SchoolFees} exact />
-    <Route path="/:slug/bursar/bill" component={Bill} exact />
-    <Route path="/:slug/bursar/debt" component={Debt} exact />
+    {/* <Route path="/:slug/bursar" component={Dashboard} exact /> */}
+    <Route path="/:slug" component={BursarLayout} exact />
+    {/* <Route path="/:slug/bursar/fees" component={SchoolFees} exact /> */}
+    {/* <Route path="/:slug/bursar/bill" component={Bill} exact /> */}
+    {/* <Route path="/:slug/bursar/debt" component={Debt} exact /> */}
     <Route path="/" component={LandingPage} exact />
     <Route
       // path="*"

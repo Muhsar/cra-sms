@@ -173,8 +173,6 @@ export default function SchoolFees() {
   // const PageLayout = pageHistory.location.pathname===`/${school}/bursar/fees` ? BursarLayout : pageHistory.location.pathname===`/${school}/school/fees` ? SchoolLayout : SecretaryLayout
   return (
     <>
-    {
-      pageHistory.location.pathname===`/${school}/bursar/fees` ?
       <FeeManagement
         state={state}
         handleChange={handleChange}
@@ -188,23 +186,6 @@ export default function SchoolFees() {
         setOpen={setOpen}
         bill={bill}
         />
-    :
-    <SchoolLayout currentPage="Payment History">
-      <FeeManagement
-        state={state}
-        handleChange={handleChange}
-        handleSelect={handleSelect}
-        handleSubmit={submitForm}
-        handleSearch={handleSearch}
-        setState={setState}
-        history={filteredData}
-        students={students}
-        open={open}
-        setOpen={setOpen}
-        bill={bill}
-        />
-    </SchoolLayout>
-    }
         </>
   );
 }

@@ -29,8 +29,8 @@ const school = slug
   }, [teacherList?.data])
 console.log(teacher)
   return (
-    <BursarLayout currentPage="Dashboard">
+    <>
         <BursarDashboard teacher={teacher} />
-    </BursarLayout>
+    </>
   )
 }

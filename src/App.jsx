@@ -20,6 +20,8 @@ import useToast from './components/Alerts';
 export const ToastContext = React.createContext();
 
 export default function Test() {
+  console.log(window.location, window.location.hostname, window.location.hostname.slice(0, window.location.hostname.length-10))
+const [page, setPage] = React.useState("Dashboard");
 const { showAlert, Toast } = useToast();
     const easysch_token =
       localStorage?.easysch_token && jwtDecode(localStorage?.easysch_token);
@@ -100,7 +102,6 @@ const { showAlert, Toast } = useToast();
         </AnimatePresence>
       )}
       />
-          {/* <UserRoutes /> */}
       </Router>
       </ToastContext.Provider>
       </AnimateSharedLayout>
