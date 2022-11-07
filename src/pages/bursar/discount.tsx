@@ -87,7 +87,7 @@ export default function Discount() {
     })
   }
   return (
-    <BursarLayout currentPage="Discount">
+    <>
       <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg font-medium leading-6 text-gray-900 capitalize">
           Student Discount
@@ -255,6 +255,6 @@ export default function Discount() {
         </div>
       </div>
     </div>
-    </BursarLayout>
+    </>
   )
 }

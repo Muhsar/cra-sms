@@ -26,6 +26,7 @@ import Dashboard from '../pages/bursar/index';
 import Bill from "pages/bursar/bill";
 import Debt from "pages/bursar/debt";
 import Discount from "pages/bursar/discount";
+import BursarLayout from "components/BursarLayout";
 
 export const Bursar = (
   <Switch>
@@ -34,8 +35,16 @@ export const Bursar = (
     <Route path="/" component={Dashboard} exact />
     <Route path="/fees" component={SchoolFees} exact />
     <Route path="/bill" component={Bill} exact />
-    <Route path="/debt" component={Debt} exact />
-    <Route path="/discount" component={Discount} exact />
+    <Route path="/debt" exact >
+      <BursarLayout currentPage="Debt">
+        <Debt />
+      </BursarLayout>
+    </Route>
+    <Route path="/discount" exact >
+      <BursarLayout currentPage="Discount">
+        <Discount />
+      </BursarLayout>
+    </Route>
     {/* <Route path="/" component={LandingPage} exact /> */}
     <Route
       // path="*"

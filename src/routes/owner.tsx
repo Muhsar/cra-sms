@@ -22,6 +22,9 @@ import { Route } from 'react-router-dom';
 import { Switch } from "react-router-dom";
 import ErrorPage from "pages/404";
 import Bill from "pages/school/bill";
+import Debt from "pages/bursar/debt";
+import Discount from "pages/bursar/discount";
+import SchoolLayout from "components/SchoolLayout";
 
 export const Owner = (
   <Switch>
@@ -42,6 +45,17 @@ export const Owner = (
     <Route path="/sms" component={SMS} exact />
     <Route path="/bill" component={Bill} exact />
     <Route path="/birthdays" component={SchoolBirthdays} exact />
+    <Route path="/debt" exact >
+      <SchoolLayout currentPage="Debt">
+        <Debt />
+      </SchoolLayout>
+    </Route>
+    <Route path="/discount" exact >
+      <SchoolLayout currentPage="Discount">
+        <Discount />
+      </SchoolLayout>
+    </Route>
+    {/* <Route path="/discount" component={Discount} exact /> */}
     <Route path="/class/:id" component={SingleClass} exact />
     <Route path="/course/:id" component={SingleCourse} exact />
     <Route path="/staff/:id" component={SingleStaff} exact />

@@ -1,6 +1,6 @@
 import { Link, useParams, withRouter, Redirect } from 'react-router-dom';
 import React, { Fragment, useState } from "react";
-import { FaMoneyBillAlt } from "react-icons/fa"
+// import { FaMoneyBillAlt } from "react-icons/fa"
 import { motion } from "framer-motion"
 import { Dialog, Transition } from "@headlessui/react";
 import {
@@ -26,6 +26,8 @@ import {
 } from "@heroicons/react/outline";
 import { AttachMoneyOutlined } from "@material-ui/icons";
 import { useHistory } from "react-router-dom"
+
+import { FaDollarSign, FaMoneyBillAlt, FaMoneyBillWave } from "react-icons/fa";
 // import PageHeader from "PageHeader";
 // import { SearchIcon } from "@heroicons/react/solid";
 
@@ -66,6 +68,18 @@ const navigation = [
     href: "bill",
     icon: FaMoneyBillAlt,
     current: false,
+  },
+
+  {
+    name: "Debt",
+    href: "debt",
+    icon: FaMoneyBillWave,
+    current: false,
+  },
+  {
+    name: "Discount",
+    href: "discount",
+    icon: FaDollarSign,
   },
   {
     name: "Messages",

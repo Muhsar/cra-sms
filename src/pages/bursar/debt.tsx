@@ -87,7 +87,7 @@ export default function Debt() {
     })
   }
   return (
-    <BursarLayout currentPage="Debt">
+    <>
       <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg font-medium leading-6 text-gray-900 capitalize">
           Add Students OutStanding Debt
@@ -255,6 +255,6 @@ export default function Debt() {
         </div>
       </div>
     </div>
-    </BursarLayout>
+    </>
   )
 }
