@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { SchoolBirthdays } from 'pages/school/birthdays';
 
 // TODO: return teacher ID gotten in the token from the page that actually requires it
 // const teacher_id = token()?.groups.length > 0 && (token()?.groups[0] || token()?.groups[1]) === "Teacher" && token()?.teacher_id
@@ -44,3 +45,8 @@ export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId
 export const ADDBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/bills`
 export const GETBILL = (schoolId) => `${API_URL}/schools/${schoolId}/bills`
 export const GETSTUDENTBILL = (schoolId, studentId) => `${API_URL}/schools/${schoolId}/students/${studentId}/bills`
+export const STUDENTBASIC = (schoolId) => `${API_URL}/schools/${schoolId}/students-basic`
+export const ADDOUTSTANDING = (schoolId, studentId) => `${API_URL}/schools/${schoolId}/custom-fee`
+export const ADDDISCOUNT = (schoolId, studentId) => `${API_URL}/schools/${schoolId}/custom-fee`
+export const GETOUTSTANDING = (schoolId) => `${API_URL}/schools/${schoolId}/debt`
+export const GETDISCOUNT = (schoolId) => `${API_URL}/schools/${schoolId}/school_fee`

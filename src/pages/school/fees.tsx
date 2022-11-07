@@ -5,7 +5,7 @@ import FeeManagement from "School/FeeManagement";
 import { SearchField } from "components/search";
 import { PaymentHistory } from "Mock/PaymentHistory";
 import { queryKeys } from "api/queryKey";
-import { PAYMENTS, STUDENTS } from "api/apiUrl";
+import { PAYMENTS, STUDENTBASIC, STUDENTS } from "api/apiUrl";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { getRequest, postRequest } from "api/apiCall";
 import { ToastContext } from "App.jsx";
@@ -48,7 +48,7 @@ export default function SchoolFees() {
   );
   const { data: studentList } = useQuery(
     [queryKeys.getStudents, easysch_token?.school_uid],
-    async () => await getRequest({ url: STUDENTS(easysch_token?.school_uid) }),
+    async () => await getRequest({ url: STUDENTBASIC(easysch_token?.school_uid) }),
     {
       retry: 2,
       enabled: !!easysch_token?.school_uid,
@@ -129,7 +129,7 @@ export default function SchoolFees() {
   }, [paymentHistory?.data, studentList?.data]);
 
 
-
+console.log(students)
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if(e.target.name==="student_bill_id"){
       const currentBill = bill?.filter(fee=>fee.id==e.target.value)[0]

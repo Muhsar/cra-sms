@@ -19,7 +19,7 @@ export default function ProfilePage({ Component, user, userId, page, school }) {
       ? [
           {
             name: "Profile",
-            href: `/${user}/${userId}/`,
+            href: `/${user}/${userId}`,
             icon: UserIcon,
             current: true,
           },
@@ -43,7 +43,7 @@ export default function ProfilePage({ Component, user, userId, page, school }) {
           },
           {
             name: "Action",
-            href: `/${user}/${userId}/`,
+            href: `/${user}/${userId}`,
             icon: CancelOutlined,
             current: false,
           },

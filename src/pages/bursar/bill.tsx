@@ -139,10 +139,11 @@ export default function Bill() {
     mutate({
       url: ADDBILL(easysch_token?.school_uid, state.class_id),
       data: {
-        bills: [
+        bills: state.fee ? [
           {display_name: "School Fee", unit: 1, amount: state.fee, kind: "old_and_new_student", is_compulsory: true, name: "school_fee"},
           ...state.bills,
         ]
+        : [...state.bills]
       }
     })
 

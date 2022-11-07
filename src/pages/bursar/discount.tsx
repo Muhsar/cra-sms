@@ -3,7 +3,7 @@ import { DialogContent, DialogTitle } from '@material-ui/core'
 import Dialog from '@material-ui/core/Dialog'
 import { SettingsInputComponent } from '@material-ui/icons'
 import { getRequest, postRequest } from 'api/apiCall'
-import { STUDENTBASIC, ADDOUTSTANDING, GETOUTSTANDING } from 'api/apiUrl'
+import { STUDENTBASIC, ADDDISCOUNT, GETDISCOUNT } from 'api/apiUrl'
 import { queryKeys } from 'api/queryKey'
 import { ToastContext } from 'App'
 import { SingleAutoComplete } from 'components/AutoComplete'
@@ -14,7 +14,7 @@ import moment from 'moment'
 import React from 'react'
 import { useMutation, useQuery } from 'react-query'
 
-export default function Debt() {
+export default function Discount() {
   const easysch_token: { school_uid: any } = jwtDecode(
     localStorage?.easysch_token
   );
@@ -34,7 +34,7 @@ export default function Debt() {
   );
   const { data: debtList } = useQuery(
     [queryKeys.getDebtors, easysch_token?.school_uid],
-    async () => await getRequest({ url: GETOUTSTANDING(easysch_token?.school_uid) }),
+    async () => await getRequest({ url: GETDISCOUNT(easysch_token?.school_uid) }),
     {
       retry: 2,
       enabled: !!easysch_token?.school_uid,
@@ -77,20 +77,20 @@ export default function Debt() {
   const handleSubmit = (e: any) => {
     e.preventDefault()
     mutate({
-      url: ADDOUTSTANDING(easysch_token?.school_uid, state.student_id),
+      url: ADDDISCOUNT(easysch_token?.school_uid, state.student_id),
       data: {
         amount: state.fee,
         student_id: state.student_id,
-        bill_type: "debt",
+        bill_type: "school_fee",
         // unit: 1
       }
     })
   }
   return (
-    <BursarLayout currentPage="Debt">
+    <BursarLayout currentPage="Discount">
       <div className="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
         <h3 className="text-lg font-medium leading-6 text-gray-900 capitalize">
-          Add Students OutStanding Debt
+          Student Discount
         </h3>
         <div className="mt-3 sm:mt-0 sm:ml-4">
         <label htmlFor="search_candidate" className="sr-only">
@@ -123,7 +123,7 @@ export default function Debt() {
             className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-white border border-gray-900 rounded-md bg-gray-900 hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-900 focus:border-gray-900 hover:text-gray-900 ml-2"
             onClick={()=>setOpen(true)}
           >
-           Add Debt
+           Add Discount
           </button>
           <Dialog onClose={()=>setOpen(false)} aria-labelledby="simple-dialog-title" open={open} fullWidth className="">
         <DialogTitle id="simple-dialog-title">
@@ -135,7 +135,7 @@ export default function Debt() {
                         </div>
                         <div>
               <h6 className="mb-0">
-                Add Outstanding
+                Add Discount
               </h6>
                         </div>
           </div>
@@ -157,7 +157,7 @@ export default function Debt() {
             </div>
             <div className='my-2'>
               <label htmlFor="fee">
-                Outstanding Debt
+                Enter School Fee For Student
               </label>
               <input 
               onChange={handleChange}
@@ -175,7 +175,7 @@ export default function Debt() {
               type="submit"
               className="relative flex justify-center w-full py-2 text-sm font-medium text-white border border-transparent rounded-md cursor-pointer group bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
             >
-              Add Debt
+              Add Discount
             </button>
               </div>
         </form>
@@ -202,7 +202,7 @@ export default function Debt() {
                     scope="col"
                     className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Outstanding Balance
+                    School Fee Discount
                   </th>
                   <th
                     scope="col"
