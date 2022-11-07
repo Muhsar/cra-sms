@@ -37,9 +37,10 @@ const Body = ({ school, room, students, courses, roomCourses, handleSubmit, stat
   );
 };
 export default function SingleClass() {
-  const params:{id: any, slug: any} = useParams()
-  const {id: classId, slug: school} = params
-  const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
+  const params:{id: any} = useParams()
+  const {id: classId} = params
+  const easysch_token:{school_uid: any, schoolSlug: any} = jwtDecode(localStorage?.easysch_token)
+  const school = easysch_token?.schoolSlug
   const [open, setOpen] = React.useState(false)
   const { data: courseList } = useQuery(
     [queryKeys.getCourses, easysch_token?.school_uid],

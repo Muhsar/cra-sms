@@ -26,7 +26,7 @@ export default function EditResult() {
   const {slug, token} = params
   const data: {course: any, student: any, name: any, image: any, room: any, courseName: any} = jwtDecode(token)
   const {course, student, name, image, room, courseName} = data
-  const school = slug
+  const { schoolSlug: school } = localStorage
   // const course = data?.course
   // const student = studentId
   // const name = studentName
@@ -73,7 +73,7 @@ export default function EditResult() {
         message: data?.message,
         severity: "success",
       });
-      history.push(`/${school}/staff/course/${room}/${courseName}/${course}`, `/${school}/staff/course/${room}/${courseName}/${course}`)
+      history.push(`/course/${room}/${courseName}/${course}`, `/course/${room}/${courseName}/${course}`)
       cache.invalidateQueries()
     },
   });

@@ -11,19 +11,19 @@ import ParentStats from "Parent/pages/stats";
 
 export const Parent = (
   <Switch>
-    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
-    <Route path="/:slug/" component={ParentDashboard} exact />
-    <Route path="/:slug/parent" component={ParentDashboard} exact />
-    <Route path="/:slug/parent/child/:id" component={ParentChildDashboard} exact />
-    <Route path="/:slug/parent/child/:id/result/test" component={ParentTestResult} exact />
-    <Route path="/:slug/parent/child/:id/stats" component={ParentStats} exact />
+    {/* <Route path="/login" component={LoginPage} exact /> */}
+    <Route path="/" component={ParentDashboard} exact />
+    <Route path="/" component={ParentDashboard} exact />
+    <Route path="/child/:id" component={ParentChildDashboard} exact />
+    <Route path="/child/:id/result/test" component={ParentTestResult} exact />
+    <Route path="/child/:id/stats" component={ParentStats} exact />
     <Route
-      path="/:slug/parent-result/:id"
+      path="/parent-result/:id"
       component={UnAuthorizedResult}
       exact
     />
-    <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
-    <Route path="/" component={LandingPage} exact />
+    <Route path="/result/:id" component={AuthorizedResult} exact />
+    {/* <Route path="/" component={LandingPage} exact /> */}
     <Route
       // path="*"
       // component={ErrorPage}

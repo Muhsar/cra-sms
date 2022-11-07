@@ -58,6 +58,7 @@ export default function Login() {
         if(easysch_token){
           if (easysch_token?.groups.length === 2) {
             // TODO: Fix after BEc exam Dialog state isn't updating for some weird reason
+            localStorage.setItem("role", "both")
             history.replace(`/${school}`, `/${school}`);
             // window.location.href = `/${school}/`;
             // setOpen(true);                    
@@ -65,15 +66,19 @@ export default function Login() {
           }
           if (easysch_token?.groups.length === 1) {
             if (easysch_token?.groups[0] === "Teacher") {
+              localStorage.setItem("role", "teacher")
               history.push(`/${school}/staff`, `/${school}/staff`);
             }
             if (easysch_token?.groups[0] === "Bursar") {
+              localStorage.setItem("role", "bursar")
               history.push(`/${school}/bursar`, `/${school}/bursar`);
             }
             if (easysch_token?.groups[0] === "Secretary") {
+              localStorage.setItem("role", "secretary")
               history.push(`/${school}/secretary`, `/${school}/secretary`);
             }
             if (easysch_token?.groups[0] === "Owner") {
+              localStorage.setItem("role", "owner")
               history.push(`/${school}/school`, `/${school}/school`);
             }
           }

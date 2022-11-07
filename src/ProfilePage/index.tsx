@@ -19,31 +19,31 @@ export default function ProfilePage({ Component, user, userId, page, school }) {
       ? [
           {
             name: "Profile",
-            href: `/${school}/school/${user}/${userId}/`,
+            href: `/${user}/${userId}/`,
             icon: UserIcon,
             current: true,
           },
           {
             name: "Courses",
-            href: `/${school}/school/${user}/${userId}/courses`,
+            href: `/${user}/${userId}/courses`,
             icon: BookOpenIcon,
             current: false,
           },
           {
             name: "Fee history",
-            href: `/${school}/school/${user}/${userId}/history`,
+            href: `/${user}/${userId}/history`,
             icon: AttachMoneyOutlined,
             current: false,
           },
           {
             name: "Edit",
-            href: `/${school}/school/${user}/${userId}/edit`,
+            href: `/${user}/${userId}/edit`,
             icon: PencilIcon,
             current: false,
           },
           {
             name: "Action",
-            href: `/${school}/school/${user}/${userId}/`,
+            href: `/${user}/${userId}/`,
             icon: CancelOutlined,
             current: false,
           },
@@ -51,25 +51,25 @@ export default function ProfilePage({ Component, user, userId, page, school }) {
       : [
           {
             name: "Profile",
-            href: `/${school}/school/${user}/${userId}/`,
+            href: `/${user}/${userId}/`,
             icon: UserIcon,
             current: true,
           },
           {
             name: "Courses",
-            href: `/${school}/school/${user}/${userId}/courses`,
+            href: `/${user}/${userId}/courses`,
             icon: BookOpenIcon,
             current: false,
           },
           {
             name: "Edit",
-            href: `/${school}/school/${user}/${userId}/edit`,
+            href: `/${user}/${userId}/edit`,
             icon: PencilIcon,
             current: false,
           },
           {
             name: "Action",
-            href: `/${school}/school/${user}/${userId}/`,
+            href: `/${user}/${userId}/`,
             icon: CancelOutlined,
             current: false,
           },

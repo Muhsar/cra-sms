@@ -33,7 +33,7 @@ export default function Cards({students, school}) {
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">
-            <Link to={`/${school}/school/student/${student.id}`} className="-ml-px w-0 flex-1 flex sm:hidden">
+            <Link to={`/student/${student.id}`} className="-ml-px w-0 flex-1 flex sm:hidden">
               <>
                 <a
                   href="#"
@@ -44,11 +44,11 @@ export default function Cards({students, school}) {
                 </a>
               </>
               </Link>
-            <Link to={`/${school}/result/${student.id}`} className="-ml-px w-0 flex-1 flex sm:hidden">
+            <Link to={`/result/${student.id}`} className="-ml-px w-0 flex-1 flex sm:hidden">
               <>
                   <a
                     target="_blank"
-                  href={`/${school}/result/${student.id}`}
+                  href={`/result/${student.id}`}
                   className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
                 >
                   <ExternalLinkIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />

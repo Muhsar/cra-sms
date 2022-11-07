@@ -125,7 +125,7 @@ export default function Table({
 
                     <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                       <Link
-                        to={`/${school}/staff/edit-result/${JWTSign(courseId, person.student.full_name, person.student.id, person.student.image ? person.student.image : person.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
+                        to={`/edit-result/${JWTSign(courseId, person.student.full_name, person.student.id, person.student.image ? person.student.image : person.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
                         className="flex flex-1 w-0 -ml-px"
                       >
                         <a

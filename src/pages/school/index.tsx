@@ -11,8 +11,7 @@ import jwtDecode from 'jwt-decode';
 
 
 export default function SchoolDashboard() {
-  const params:{slug: any} = useParams()
-  const {slug: school} = params
+  const { schoolSlug: school } = localStorage
   
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const { data: homerooms } = useQuery(

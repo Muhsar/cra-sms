@@ -12,20 +12,20 @@ import EditResult from "pages/staff/editResult";
 
 export const Teacher = (
   <Switch>
-    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
-    <Route path="/:slug/staff" component={StaffDashboard} exact />
-    <Route path="/:slug" component={StaffDashboard} exact />
-    <Route path="/:slug/staff/courses" component={StaffCourses} exact />
-    <Route path="/:slug/staff/course/:room/:corse/:id" component={StaffCourse} exact />
-    <Route path="/:slug/staff/class" component={StaffClass} exact />
-    <Route path="/:slug/staff/edit-result/:token" component={EditResult} exact />
+    {/* <Route path="/login" component={LoginPage} exact /> */}
+    <Route path="/" component={StaffDashboard} exact />
+    <Route path="/" component={StaffDashboard} exact />
+    <Route path="/courses" component={StaffCourses} exact />
+    <Route path="/course/:room/:corse/:id" component={StaffCourse} exact />
+    <Route path="/class" component={StaffClass} exact />
+    <Route path="/edit-result/:token" component={EditResult} exact />
     <Route
-      path="/:slug/parent-result/:id"
+      path="/parent-result/:id"
       component={UnAuthorizedResult}
       exact
     />
-    <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
-    <Route path="/" component={LandingPage} exact />
+    <Route path="/result/:id" component={AuthorizedResult} exact />
+    {/* <Route path="/" component={LandingPage} exact /> */}
     <Route
       // path="*"
       // component={ErrorPage}

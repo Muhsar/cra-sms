@@ -19,9 +19,7 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 
 export default function classes() {
   const easysch_token:{school_uid: any, user_id} = jwtDecode(localStorage?.easysch_token)
-const params:{slug: any} = useParams()
-  const {slug} = params
-  const school = slug
+  const { schoolSlug: school } = localStorage
   // const [easysch_token, setToken] = React.useState<any>()
   // const localToken = typeof window !== "undefined" && localStorage?.getItem("easysch_token")
   // React.useEffect(() => {

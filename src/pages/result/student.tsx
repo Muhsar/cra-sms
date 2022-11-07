@@ -18,9 +18,9 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function StudentResult() {
-  const params:{ id: any, slug: any } = useParams()
-  const { id: student, slug: school } = params
-  const {schoolLogo: logo} = localStorage
+  const params:{ id: any } = useParams()
+  const { id: student } = params
+  const {schoolLogo: logo, schoolSlug: school} = localStorage
   const easysch_token: {school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const {
     data:resultData

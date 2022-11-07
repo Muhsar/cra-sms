@@ -30,46 +30,46 @@ import { useHistory } from "react-router-dom"
 // import { SearchIcon } from "@heroicons/react/solid";
 
 const navigation = [
-  { name: "Dashboard", href: "school/", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "", icon: HomeIcon, current: true },
   {
     name: "Classes",
-    href: "school/classes",
+    href: "classes",
     icon: OfficeBuildingIcon,
     current: false,
   },
   {
     name: "Students",
-    href: "school/students",
+    href: "students",
     icon: UserGroupIcon,
     current: false,
   },
   {
     name: "Staffs",
-    href: "school/staffs",
+    href: "staffs",
     icon: UsersIcon,
     current: false,
   },
   {
     name: "Courses",
-    href: "school/courses",
+    href: "courses",
     icon: BookOpenIcon,
     current: false,
   },
   {
     name: "Payment History",
-    href: "school/fees",
+    href: "fees",
     icon: AttachMoneyOutlined,
     current: false,
   },
   {
     name: "Bills",
-    href: "school/bill",
+    href: "bill",
     icon: FaMoneyBillAlt,
     current: false,
   },
   {
     name: "Messages",
-    href: "school/sms",
+    href: "sms",
     icon: ChatAlt2Icon,
     current: false,
   },
@@ -179,7 +179,7 @@ export default function SchoolLayout({ children, currentPage }) {
                       // View as Teacher
                     }
                     <Link
-                     key={item.name} to={`/${slug}/${item.href}`}
+                     key={item.name} to={`/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-100 text-gray-900"
@@ -250,7 +250,7 @@ export default function SchoolLayout({ children, currentPage }) {
             <div className="flex flex-col flex-grow mt-5">
               <nav className="flex-1 px-2 space-y-1 bg-white">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}
+                  <Link key={item.name} to={`/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-100 text-gray-900"

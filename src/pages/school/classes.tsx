@@ -19,8 +19,7 @@ export default function SchoolClasses() {
   const easysch_token: { school_uid: any } = jwtDecode(
     localStorage?.easysch_token
   );
-  const params: { slug: any } = useParams();
-  const { slug: school } = params;
+  const { schoolSlug: school } = localStorage
 
   const { data: homerooms } = useQuery(
     [queryKeys.getClasses, easysch_token?.school_uid],

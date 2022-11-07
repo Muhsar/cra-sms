@@ -36,8 +36,7 @@ export default function SchoolFees() {
   const easysch_token: { school_uid: any } = jwtDecode(
     localStorage?.easysch_token
   );
-  const params: { slug: any } = useParams();
-  const { slug: school } = params;
+  const { schoolSlug: school } = localStorage
 
   const { data: paymentHistory } = useQuery(
     [queryKeys.getPayments, easysch_token?.school_uid],
@@ -170,11 +169,12 @@ export default function SchoolFees() {
     });
   };
   const [open, setOpen] = React.useState(false);
+  const {role} = localStorage
   // const PageLayout = pageHistory.location.pathname===`/${school}/bursar/fees` ? BursarLayout : pageHistory.location.pathname===`/${school}/school/fees` ? SchoolLayout : SecretaryLayout
   return (
     <>
     {
-      pageHistory.location.pathname===`/${school}/bursar/fees` ?
+      role==="bursar" ?
     <BursarLayout currentPage="Payment History">
       <FeeManagement
         state={state}

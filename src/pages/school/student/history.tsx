@@ -19,8 +19,9 @@ export const getServerSideProps = (context: {
 };
 
 export default function StudentFeeHistory() {
-  const params:{id: any, slug: any} = useParams()
-  const {id: student, slug: school} = params
+  const params:{id: any} = useParams()
+  const {id: student} = params
+  const { schoolSlug: school } = localStorage
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const { data: paymentHistory } = useQuery(
     [queryKeys.getStudentPayment, easysch_token?.school_uid],

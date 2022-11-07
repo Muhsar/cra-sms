@@ -7,19 +7,19 @@ export default function ErrorPage(props) {
     const params: {slug: any} = useParams()
     const slug = params.slug
     if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Owner") {
-        window.location.href = `/${localStorage?.schoolSlug}`
+        window.location.href = `/`
     }
     if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Teacher") {
-        window.location.href = `/${localStorage?.schoolSlug}`
+        window.location.href = `/`
     }
     if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Secretary") {
-        window.location.href = `/${localStorage?.schoolSlug}`
+        window.location.href = `/`
     }
-    if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Burasr") {
-        window.location.href = `/${localStorage?.schoolSlug}`
+    if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Bursar") {
+        window.location.href = `/`
     }
     if(localStorage?.easysch_token && easysch_token?.groups.length===1 && easysch_token?.groups[0]==="Parent") {
-        window.location.href = `/${localStorage?.schoolSlug}`
+        window.location.href = `/`
     }
     if(!localStorage?.easysch_token) {
         window.location.href = `/${match.params.slug}`

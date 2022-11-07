@@ -12,9 +12,7 @@ import jwtDecode from 'jwt-decode';
 
 
 export default function homeroom() {
-const params:{slug: any} = useParams()
-  const {slug} = params
-  const school = slug
+  const { schoolSlug: school } = localStorage
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const [order, setOrder] = React.useState("asc");
   const [listCount, setlistCount] = React.useState(0);

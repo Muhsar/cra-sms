@@ -13,6 +13,7 @@ export default function Dashboard() {
   const {slug} = params
 const school = slug
   const easysch_token:{school_uid: any, user_id} = jwtDecode(localStorage?.easysch_token)
+  console.log(easysch_token)
   const {
     data:teacherList
   } = useQuery(

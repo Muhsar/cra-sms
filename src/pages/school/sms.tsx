@@ -38,8 +38,7 @@ export default function SMS() {
     group: []
   })
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
-  const params:{slug: any} = useParams()
-  const {slug: school} = params
+  const { schoolSlug: school } = localStorage
   
   const [selected, setSelected] = React.useState([])
   const homerooms = query(queryKeys.getClasses, easysch_token?.school_uid, HOMEROOMS(easysch_token?.school_uid), easysch_token?.school_uid)

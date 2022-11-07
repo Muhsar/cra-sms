@@ -21,14 +21,14 @@ import {
 import { SearchIcon } from "@heroicons/react/solid";
 // import history from '../pages/school/student/[student]/history';
 const navigation = [
-  { name: "Dashboard", href: "staff/", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "", icon: HomeIcon, current: true },
   {
     name: "Courses",
-    href: "staff/courses",
+    href: "courses",
     icon: BookOpenIcon,
     current: false,
   },
-  // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
+  // { name: 'Settings', href: 'setting', icon: CogIcon, current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -133,7 +133,7 @@ export default function StaffLayout({ Component, currentPage }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}
+                    <Link key={item.name} to={`/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-900 text-white"
@@ -210,7 +210,7 @@ export default function StaffLayout({ Component, currentPage }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1 bg-gray-800">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}
+                  <Link key={item.name} to={`/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-900 text-white"

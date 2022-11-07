@@ -28,13 +28,13 @@ import Debt from "pages/bursar/debt";
 
 export const Bursar = (
   <Switch>
-    {/* <Route path="/:slug/login" component={LoginPage} exact /> */}
-    <Route path="/:slug/bursar" component={Dashboard} exact />
-    <Route path="/:slug" component={Dashboard} exact />
-    <Route path="/:slug/bursar/fees" component={SchoolFees} exact />
-    <Route path="/:slug/bursar/bill" component={Bill} exact />
-    <Route path="/:slug/bursar/debt" component={Debt} exact />
-    <Route path="/" component={LandingPage} exact />
+    {/* <Route path="/login" component={LoginPage} exact /> */}
+    <Route path="/" component={Dashboard} exact />
+    <Route path="/" component={Dashboard} exact />
+    <Route path="/fees" component={SchoolFees} exact />
+    <Route path="/bill" component={Bill} exact />
+    <Route path="/debt" component={Debt} exact />
+    {/* <Route path="/" component={LandingPage} exact /> */}
     <Route
       // path="*"
       // component={ErrorPage}

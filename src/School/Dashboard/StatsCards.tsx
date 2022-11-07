@@ -6,9 +6,9 @@ import {Link} from "react-router-dom"
 export default function StatsCards({stats: data, school, count}) {
 
   const stats = [
-    { href: `/${school}/school/students`,id: 1, name: 'Total Students', stat: count, icon: UserGroupIcon},
-    { href: `/${school}/school/staffs`,id: 2, name: 'Total Staffs', stat: data.teachers, icon: UsersIcon},
-    { href: `/${school}/school/classes`,id: 3, name: 'Total Classes', stat: data.rooms, icon: OfficeBuildingIcon},
+    { href: `/students`,id: 1, name: 'Total Students', stat: count, icon: UserGroupIcon},
+    { href: `/staffs`,id: 2, name: 'Total Staffs', stat: data.teachers, icon: UsersIcon},
+    { href: `/classes`,id: 3, name: 'Total Classes', stat: data.rooms, icon: OfficeBuildingIcon},
   ]
 
   function classNames(...classes) {

@@ -26,7 +26,7 @@ export default function homeroom() {
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const params:{slug:any, id:any, room: any, corse: any} = useParams()
   const {slug, id, room, corse:name} = params
-  const school = slug
+  const { schoolSlug: school } = localStorage
   const course = id
   // alert(name)
   const {

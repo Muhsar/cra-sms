@@ -19,8 +19,9 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 export default function StudentCourses() {
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   // const { id: student, slug: school } = useParams()
-  const params:{id: any, slug: any} = useParams()
-  const {id: student, slug: school} = params
+  const params:{id: any} = useParams()
+  const {id: student} = params
+  const { schoolSlug: school } = localStorage
   const [classId, setClassId] = React.useState()
   const { data: homeroomCourseList } = useQuery(
     [queryKeys.getHomeroomCourses, classId, easysch_token?.school_uid],

@@ -13,23 +13,23 @@ import { AttachMoneyOutlined } from "@material-ui/icons";
 import { FaMoneyBillAlt, FaMoneyBillWave } from "react-icons/fa";
 // import history from '../pages/school/student/[student]/history';
 const navigation = [
-  { name: "Dashboard", href: "bursar/", icon: HomeIcon, current: true },
+  { name: "Dashboard", href: "", icon: HomeIcon, current: true },
   
   {
     name: "Payment History",
-    href: "bursar/fees",
+    href: "fees",
     icon: AttachMoneyOutlined,
     current: false,
   },
   {
     name: "Bills",
-    href: "bursar/bill",
+    href: "bill",
     icon: FaMoneyBillAlt,
     current: false,
   },
   {
     name: "Debt",
-    href: "bursar/debt",
+    href: "debt",
     icon: FaMoneyBillWave,
     current: false,
   },
@@ -133,7 +133,7 @@ export default function BursarLayout({ children, currentPage }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}
+                    <Link key={item.name} to={`/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-900 text-white"
@@ -210,7 +210,7 @@ export default function BursarLayout({ children, currentPage }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1 bg-gray-800">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}
+                  <Link key={item.name} to={`/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-900 text-white"

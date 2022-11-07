@@ -24,44 +24,44 @@ import ErrorPage from "pages/404";
 
 export const Secretary = (
   <Switch>
-    <Route path="/" component={LandingPage} exact />
+    {/* <Route path="/" component={LandingPage} exact /> */}
     <Route
-      path="/:slug/parent-result/:id"
+      path="/parent-result/:id"
       component={UnAuthorizedResult}
       exact
     />
-    <Route path="/:slug/result/:id" component={AuthorizedResult} exact />
-    <Route path="/:slug" component={Dashboard} exact />
-    <Route path="/:slug/secretary" component={Dashboard} exact />
-    <Route path="/:slug/secretary/classes" component={SchoolClasses} exact />
-    <Route path="/:slug/secretary/students" component={SchoolStudents} exact />
-    <Route path="/:slug/secretary/staffs" component={SchoolStaffs} exact />
-    <Route path="/:slug/secretary/courses" component={SchoolCourses} exact />
-    <Route path="/:slug/secretary/fees" component={SchoolFees} exact />
-    <Route path="/:slug/secretary/sms" component={SMS} exact />
-    <Route path="/:slug/secretary/birthdays" component={SchoolBirthdays} exact />
-    <Route path="/:slug/secretary/class/:id" component={SingleClass} exact />
-    <Route path="/:slug/secretary/course/:id" component={SingleCourse} exact />
-    <Route path="/:slug/secretary/staff/:id" component={SingleStaff} exact />
+    <Route path="/result/:id" component={AuthorizedResult} exact />
+    <Route path="/" component={Dashboard} exact />
+    <Route path="/" component={Dashboard} exact />
+    <Route path="/classes" component={SchoolClasses} exact />
+    <Route path="/students" component={SchoolStudents} exact />
+    <Route path="/staffs" component={SchoolStaffs} exact />
+    <Route path="/courses" component={SchoolCourses} exact />
+    <Route path="/fees" component={SchoolFees} exact />
+    <Route path="/sms" component={SMS} exact />
+    <Route path="/birthdays" component={SchoolBirthdays} exact />
+    <Route path="/class/:id" component={SingleClass} exact />
+    <Route path="/course/:id" component={SingleCourse} exact />
+    <Route path="/staff/:id" component={SingleStaff} exact />
     <Route
-      path="/:slug/secretary/staff/:id/courses"
+      path="/staff/:id/courses"
       component={TeacherCourses}
       exact
     />
-    <Route path="/:slug/secretary/staff/:id/edit" component={EditStaff} exact />
-    <Route path="/:slug/secretary/student/:id" component={SingleStudent} exact />
+    <Route path="/staff/:id/edit" component={EditStaff} exact />
+    <Route path="/student/:id" component={SingleStudent} exact />
     <Route
-      path="/:slug/secretary/student/:id/courses"
+      path="/student/:id/courses"
       component={StudentCourses}
       exact
     />
     <Route
-      path="/:slug/secretary/student/:id/edit"
+      path="/student/:id/edit"
       component={EditStudent}
       exact
     />
     <Route
-      path="/:slug/secretary/student/:id/history"
+      path="/student/:id/history"
       component={StudentFeeHistory}
       exact
     />

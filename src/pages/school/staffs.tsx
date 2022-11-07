@@ -18,8 +18,7 @@ export const getServerSideProps = (context: { query: { school: any } }) => {
 };
 
 export default function SchoolStaffs() {
-  const params:{slug: any} = useParams()
-  const {slug: school} = params
+  const { schoolSlug: school } = localStorage
   
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const { data: teacherList } = useQuery(

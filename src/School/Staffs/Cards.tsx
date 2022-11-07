@@ -25,7 +25,7 @@ export default function Cards({staffs, school}) {
           </div>
           <div>
             <div className="flex -mt-px divide-x divide-gray-200">
-            <Link to={`/${school}/school/staff/${staff.id}`}
+            <Link to={`/staff/${staff.id}`}
                className="flex flex-1 w-0 -ml-px sm:hidden"
             >
               <

@@ -25,46 +25,46 @@ import {
   CakeIcon,
   LogoutIcon
 } from "@heroicons/react/outline";
-// import history from '../pages/secretary/student/[student]/history';
+// import history from '../pages/student/[student]/history';
 const navigation = [
-   { name: "Dashboard", href: "secretary/", icon: HomeIcon, current: true },
+   { name: "Dashboard", href: "", icon: HomeIcon, current: true },
   {
     name: "Classes",
-    href: "secretary/classes",
+    href: "classes",
     icon: OfficeBuildingIcon,
     current: false,
   },
   {
     name: "Students",
-    href: "secretary/students",
+    href: "students",
     icon: UserGroupIcon,
     current: false,
   },
   {
     name: "Staffs",
-    href: "secretary/staffs",
+    href: "staffs",
     icon: UsersIcon,
     current: false,
   },
   {
     name: "Courses",
-    href: "secretary/courses",
+    href: "courses",
     icon: BookOpenIcon,
     current: false,
   },
   {
     name: "Fee Management",
-    href: "secretary/fees",
+    href: "fees",
     icon: AttachMoneyOutlined,
     current: false,
   },
   {
     name: "Messages",
-    href: "secretary/sms",
+    href: "sms",
     icon: ChatAlt2Icon,
     current: false,
   },
-  { name: "Birthdays", href: "secretary/birthdays", icon: CakeIcon, current: false },
+  { name: "Birthdays", href: "birthdays", icon: CakeIcon, current: false },
   // { name: 'Settings', href: 'staff/setting', icon: CogIcon, current: false },
 ];
 
@@ -165,7 +165,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
               <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
-                    <Link key={item.name} to={`/${slug}/${item.href}`}
+                    <Link key={item.name} to={`/${item.href}`}
                         className={classNames(
                           item.name === currentPage
                             ? "bg-gray-900 text-white"
@@ -242,7 +242,7 @@ export default function SecretaryLayout({ Component, currentPage }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex-1 px-2 py-4 space-y-1 bg-gray-800">
                 {navigation.map((item) => (
-                  <Link key={item.name} to={`/${slug}/${item.href}`}
+                  <Link key={item.name} to={`/${item.href}`}
                       className={classNames(
                         item.name === currentPage
                           ? "bg-gray-900 text-white"

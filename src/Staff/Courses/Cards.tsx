@@ -72,7 +72,7 @@ export default function Cards({students,
           <div>
             <div className="flex -mt-px divide-x divide-gray-200">
               
-            <Link to={`/${school}/staff/edit-result/${JWTSign(courseId, student.student.full_name, student.student.id, student.student.image ? student.student.image : student.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
+            <Link to={`/edit-result/${JWTSign(courseId, student.student.full_name, student.student.id, student.student.image ? student.student.image : student.gender === "Male" ? "https://res.cloudinary.com/jewbreel1/image/upload/v1625737172/jewbreel/sms/male_avatar_c3v0vu.png" : "https://res.cloudinary.com/jewbreel1/image/upload/v1625737170/jewbreel/sms/female_avatar_pgqx9s.png")}`}
                   className="flex flex-1 w-0 -ml-px sm:hidden"
                   >
                 <>

@@ -32,6 +32,7 @@ export default function Bill() {
   const easysch_token: { school_uid: any } = jwtDecode(
     localStorage?.easysch_token
   );
+  const { schoolSlug: school } = localStorage
   const { showAlert } = React.useContext(ToastContext);
   const { mutate } = useMutation(postRequest, {
     onSuccess(data) {

@@ -17,8 +17,9 @@ export const getServerSideProps = (context: { query: { student: any, school: any
 };
 
 export default function EditStudent() {
-  const params:{id: any, slug: any} = useParams()
-  const {id: student, slug: school} = params
+  const params:{id: any} = useParams()
+  const {id: student} = params
+  const { schoolSlug: school } = localStorage
   const easysch_token:{school_uid: any} = jwtDecode(localStorage?.easysch_token)
   const {
     data:wardList

@@ -53,7 +53,7 @@ export default function Table({ teachers, school }) {
                 {teachers?.map((person) => (
                     <tr className="cursor-pointer bg-gray-50 hover:bg-gray-200">
                       <td className="hidden px-6 py-4 cursor-pointer sm:inline whitespace-nowrap">
-                  <Link to={`/${school}/school/staff/${person?.id}`}>
+                  <Link to={`/staff/${person?.id}`}>
                         <div className="flex items-center">
                           <div className="flex-shrink-0 w-10 h-10 ml-3">
                             <img

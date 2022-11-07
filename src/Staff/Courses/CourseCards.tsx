@@ -10,7 +10,7 @@ export default function CourseCards({ courses, school }) {
               className="w-full p-2 lg:w-1/3 md:w-1/2 sm:w-full searchBody"
               key={course.id}
             >
-              <Link to={`/${school}/staff/course/${course?.school_class.name}/${course?.subject.name}/${course.id}`}
+              <Link to={`/course/${course?.school_class.name}/${course?.subject.name}/${course.id}`}
               className="flex items-center h-full p-4 transform bg-gray-100 border border-gray-200 rounded-lg shadow cursor-pointer hover:scale-105 hover:bg-gray-200"
               >
               <>

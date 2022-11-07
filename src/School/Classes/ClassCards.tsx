@@ -7,7 +7,7 @@ export default function ClassCards({ rooms, school }) {
     <div className="flex flex-wrap pt-5 -m-2" id="Classes">
       {rooms?.map((room: any) => (
         <Link
-          to={`/${school}/school/class/${room.id}`}
+          to={`/class/${room.id}`}
           className="w-full p-2 lg:w-1/3 md:w-1/2 sm:w-full searchBody"
           key={room.id}
         >
